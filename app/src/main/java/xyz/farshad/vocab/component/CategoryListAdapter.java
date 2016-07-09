@@ -15,7 +15,7 @@ import java.util.List;
 
 import xyz.farshad.vocab.R;
 import xyz.farshad.vocab.activity.WordActivity;
-import xyz.farshad.vocab.dao.CategoryRepo;
+import xyz.farshad.vocab.repository.CategoryRepository;
 import xyz.farshad.vocab.model.Category;
 
 /**
@@ -97,9 +97,9 @@ public class CategoryListAdapter extends ArrayAdapter<Category>{
                 clickedCategoryEditText.setVisibility(View.GONE);
 
                 // update category
-                CategoryRepo categoryRepo = new CategoryRepo(getContext());
-                categoryRepo.open();
-                categoryRepo.update(procCategory);
+                CategoryRepository categoryRepository = new CategoryRepository(getContext());
+                categoryRepository.open();
+                categoryRepository.update(procCategory);
 
                 // show textView and edit button
                 editButton.setVisibility(View.VISIBLE);

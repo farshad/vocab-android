@@ -11,29 +11,29 @@ import java.util.List;
 
 import xyz.farshad.vocab.R;
 import xyz.farshad.vocab.component.CategoryListAdapter;
-import xyz.farshad.vocab.dao.CategoryRepo;
-import xyz.farshad.vocab.dao.WordRepo;
+import xyz.farshad.vocab.repository.CategoryRepository;
+import xyz.farshad.vocab.repository.WordRepository;
 import xyz.farshad.vocab.model.Category;
 import xyz.farshad.vocab.model.Word;
 
 
 public class MainActivity extends Activity {
 
-    CategoryRepo categoryRepo;
+    CategoryRepository categoryRepository;
     List<Category> categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        categoryRepo = new CategoryRepo(this);
-        categoryRepo.open();
-        categories = categoryRepo.findAll();
+        categoryRepository = new CategoryRepository(this);
+        categoryRepository.open();
+        categories = categoryRepository.findAll();
 
         // create default categories if not exist
         if(categories.size() == 0){
             createDefaultCategories();
-            categories = categoryRepo.findAll();
+            categories = categoryRepository.findAll();
         }
         showCategoryList();
     }
@@ -64,20 +64,20 @@ public class MainActivity extends Activity {
         Category category = new Category();
         category.setName("504");
         category.setWordCount(504);
-        categoryRepo.insert(category);
+        categoryRepository.insert(category);
 
         category = new Category();
         category.setName("Test");
         category.setWordCount(2);
-        categoryRepo.insert(category);
+        categoryRepository.insert(category);
 
         category = new Category();
         category.setName("public");
         category.setWordCount(5);
-        categoryRepo.insert(category);
+        categoryRepository.insert(category);
 
-        WordRepo wordRepo = new WordRepo(this);
-        wordRepo.open();
+        WordRepository wordRepository = new WordRepository(this);
+        wordRepository.open();
 
         Word word = new Word();
         word.setName("Abandon");
@@ -87,7 +87,7 @@ public class MainActivity extends Activity {
         word.setCategory_id(1);
         word.setView_count(0);
         word.setFavorite(false);
-        wordRepo.insert(word);
+        wordRepository.insert(word);
 
         word = new Word();
         word.setName("keen");
@@ -97,7 +97,7 @@ public class MainActivity extends Activity {
         word.setCategory_id(1);
         word.setView_count(0);
         word.setFavorite(false);
-        wordRepo.insert(word);
+        wordRepository.insert(word);
 
         word = new Word();
         word.setName("Tact");
@@ -107,7 +107,7 @@ public class MainActivity extends Activity {
         word.setCategory_id(1);
         word.setView_count(0);
         word.setFavorite(false);
-        wordRepo.insert(word);
+        wordRepository.insert(word);
 
     }
 
@@ -117,7 +117,7 @@ public class MainActivity extends Activity {
 
     private void showCategoryList(boolean reload){
         if (reload == true){
-            categories = categoryRepo.findAll();
+            categories = categoryRepository.findAll();
         }
         ArrayAdapter<Category> adapter = new CategoryListAdapter(MainActivity.this, R.layout.category_list_view, categories);
         ListView list = (ListView) findViewById(R.id.catMainListView);

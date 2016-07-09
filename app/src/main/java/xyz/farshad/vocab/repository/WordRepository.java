@@ -1,4 +1,4 @@
-package xyz.farshad.vocab.dao;
+package xyz.farshad.vocab.repository;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,7 +14,7 @@ import xyz.farshad.vocab.model.Word;
 /**
  * Created by farshad on 9/29/15.
  */
-public class WordRepo {
+public class WordRepository {
 
     SQLiteOpenHelper dbHelper;
     SQLiteDatabase database;
@@ -29,7 +29,7 @@ public class WordRepo {
             VocabDBOpenHelper.WORDS_COL_VIEW_COUNT,
             VocabDBOpenHelper.WORDS_COL_FAVORITE};
 
-    public WordRepo(Context context){
+    public WordRepository(Context context){
         dbHelper = new VocabDBOpenHelper(context);
     }
 

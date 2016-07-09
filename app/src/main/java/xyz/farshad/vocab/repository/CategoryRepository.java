@@ -1,4 +1,4 @@
-package xyz.farshad.vocab.dao;
+package xyz.farshad.vocab.repository;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,7 +14,7 @@ import xyz.farshad.vocab.model.Category;
 /**
  * Created by farshad on 9/29/15.
  */
-public class CategoryRepo {
+public class CategoryRepository {
 
     SQLiteOpenHelper dbHelper;
     SQLiteDatabase database;
@@ -25,7 +25,7 @@ public class CategoryRepo {
             VocabDBOpenHelper.CATEGORIES_COL_WORD_COUNT
     };
 private final Context ctx;
-    public CategoryRepo(Context context){
+    public CategoryRepository(Context context){
         dbHelper = new VocabDBOpenHelper(context);
         ctx = context;
     }

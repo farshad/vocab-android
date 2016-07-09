@@ -1,4 +1,4 @@
-package xyz.farshad.vocab.dao;
+package xyz.farshad.vocab.repository;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

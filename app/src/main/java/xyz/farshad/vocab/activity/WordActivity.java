@@ -2,24 +2,21 @@ package xyz.farshad.vocab.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import xyz.farshad.vocab.R;
 import xyz.farshad.vocab.component.WordListAdapter;
-import xyz.farshad.vocab.component.WordSwipeAdapter;
-import xyz.farshad.vocab.dao.WordRepo;
+import xyz.farshad.vocab.repository.WordRepository;
 import xyz.farshad.vocab.model.Word;
 
 public class WordActivity extends Activity {
 
-    WordRepo wordRepo;
+    WordRepository wordRepository;
     List<Word> words;
     private Long categoryId;
 
@@ -43,9 +40,9 @@ public class WordActivity extends Activity {
 
             //Toast.makeText(WordActivity.this, "id = "+ categoryId +"", Toast.LENGTH_LONG).show();
 
-            wordRepo = new WordRepo(this);
-            wordRepo.open();
-            words = wordRepo.findByQuery("category_id = "+ categoryId +"");
+            wordRepository = new WordRepository(this);
+            wordRepository.open();
+            words = wordRepository.findByQuery("category_id = "+ categoryId +"");
 
             showWordList();
         }
@@ -58,7 +55,7 @@ public class WordActivity extends Activity {
 
     private void showWordList(boolean reload){
         if (reload == true){
-            words = wordRepo.findByQuery("id = " + categoryId);
+            words = wordRepository.findByQuery("id = " + categoryId);
         }
         ArrayAdapter<Word> adapter = new WordListAdapter(WordActivity.this, R.layout.word_list_view, words);
         ListView list = (ListView) findViewById(R.id.wordMainListView);
