@@ -14,15 +14,15 @@ import android.widget.TextView;
 import java.util.List;
 
 import xyz.farshad.vocab.R;
-import xyz.farshad.vocab.activity.WordActivity;
+import xyz.farshad.vocab.activity.LevelListActivity;
 import xyz.farshad.vocab.model.Course;
 
 /**
  * Created by farshad on 9/29/15.
  */
-public class CategoryListAdapter extends ArrayAdapter<Course>{
+public class CourseListAdapter extends ArrayAdapter<Course>{
 
-    public CategoryListAdapter(Context context, int resource, List<Course> categories) {
+    public CourseListAdapter(Context context, int resource, List<Course> categories) {
         super(context, resource, categories);
     }
 
@@ -30,7 +30,7 @@ public class CategoryListAdapter extends ArrayAdapter<Course>{
     public View getView(final int position, View convertView, ViewGroup parent) {
         View itemView = convertView;
         if (itemView == null){
-            itemView = LayoutInflater.from(getContext()).inflate(R.layout.category_list_view, parent, false);
+            itemView = LayoutInflater.from(getContext()).inflate(R.layout.cuorse_list_view, parent, false);
         }
         Course currentCourse = getItem(position);
 
@@ -53,11 +53,10 @@ public class CategoryListAdapter extends ArrayAdapter<Course>{
             public void onClick(View view) {
                 Course clickedCourse = getItem(position);
 
-                //start word activity
-                Intent wordIntent = new Intent(getContext(), WordActivity.class);
-                wordIntent.putExtra("categoryId", clickedCourse.getId());
-                wordIntent.putExtra("action", "edit");
-                getContext().startActivity(wordIntent);
+                //start Level list activity
+                Intent levelListIntent = new Intent(getContext(), LevelListActivity.class);
+                levelListIntent.putExtra("courseId", clickedCourse.getId());
+                getContext().startActivity(levelListIntent);
             }
         });
 

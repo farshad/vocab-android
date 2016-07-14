@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 import xyz.farshad.vocab.R;
+import xyz.farshad.vocab.model.Word;
 
 /**
  * Created by farshad on 10/1/15.
@@ -20,7 +23,7 @@ public class WordSwipeAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
 
-    public WordSwipeAdapter(Context context){
+    public WordSwipeAdapter(Context context, List<Word> words){
         this.context = context;
     }
     @Override
@@ -39,7 +42,7 @@ public class WordSwipeAdapter extends PagerAdapter {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View item_view = layoutInflater.inflate(R.layout.word_swipe_layer, container, false);
         TextView textView = (TextView) item_view.findViewById(R.id.textView);
-        textView.setText("page " + position);
+        textView.setText("aaaaaaaaaa");
 
         container.addView(item_view);
 

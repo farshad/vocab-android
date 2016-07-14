@@ -1,6 +1,7 @@
 package xyz.farshad.vocab.component;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -13,6 +14,9 @@ import android.widget.TextView;
 import java.util.List;
 
 import xyz.farshad.vocab.R;
+import xyz.farshad.vocab.activity.WordListActivity;
+import xyz.farshad.vocab.activity.WordPagerActivity;
+import xyz.farshad.vocab.model.Level;
 import xyz.farshad.vocab.model.Word;
 
 /**
@@ -24,7 +28,7 @@ public class WordListAdapter extends ArrayAdapter<Word> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View itemView = convertView;
         if (itemView == null){
             itemView = LayoutInflater.from(getContext()).inflate(R.layout.word_list_view, parent, false);
@@ -49,6 +53,20 @@ public class WordListAdapter extends ArrayAdapter<Word> {
 //        editButton.setTypeface(font);
 //        bookTextView.setTypeface(font);
 //        submitEditButton.setTypeface(font);
+
+        // item click listener
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Word clickedWord = getItem(position);
+
+                //start word pager activity
+                Intent wordPageIntent = new Intent(getContext(), WordPagerActivity.class);
+                wordPageIntent.putExtra("wordId", clickedWord.getId());
+                wordPageIntent.putExtra("levelId", clickedWord.getLevelId());
+                getContext().startActivity(wordPageIntent);
+            }
+        });
 
         return itemView;
     }

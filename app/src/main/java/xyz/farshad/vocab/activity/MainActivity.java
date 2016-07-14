@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.farshad.vocab.R;
-import xyz.farshad.vocab.component.CategoryListAdapter;
+import xyz.farshad.vocab.component.CourseListAdapter;
 import xyz.farshad.vocab.model.Course;
 import xyz.farshad.vocab.model.Level;
 import xyz.farshad.vocab.model.Word;
@@ -105,7 +105,7 @@ public class MainActivity extends Activity {
             courses = Course.listAll(Course.class);
         }
 
-        ArrayAdapter<Course> adapter = new CategoryListAdapter(MainActivity.this, R.layout.category_list_view, courses);
+        ArrayAdapter<Course> adapter = new CourseListAdapter(MainActivity.this, R.layout.cuorse_list_view, courses);
         ListView list = (ListView) findViewById(R.id.catMainListView);
         list.setAdapter(adapter);
         list.setItemsCanFocus(true);
