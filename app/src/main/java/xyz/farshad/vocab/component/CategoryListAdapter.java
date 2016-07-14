@@ -15,15 +15,14 @@ import java.util.List;
 
 import xyz.farshad.vocab.R;
 import xyz.farshad.vocab.activity.WordActivity;
-import xyz.farshad.vocab.repository.CategoryRepository;
-import xyz.farshad.vocab.model.Category;
+import xyz.farshad.vocab.model.Course;
 
 /**
  * Created by farshad on 9/29/15.
  */
-public class CategoryListAdapter extends ArrayAdapter<Category>{
+public class CategoryListAdapter extends ArrayAdapter<Course>{
 
-    public CategoryListAdapter(Context context, int resource, List<Category> categories) {
+    public CategoryListAdapter(Context context, int resource, List<Course> categories) {
         super(context, resource, categories);
     }
 
@@ -33,12 +32,12 @@ public class CategoryListAdapter extends ArrayAdapter<Category>{
         if (itemView == null){
             itemView = LayoutInflater.from(getContext()).inflate(R.layout.category_list_view, parent, false);
         }
-        Category currentCategory = getItem(position);
+        Course currentCourse = getItem(position);
 
         TextView categoryText = (TextView) itemView.findViewById(R.id.catTextView);
-        categoryText.setText(currentCategory.getName());
+        categoryText.setText(currentCourse.getName());
         TextView countText = (TextView) itemView.findViewById(R.id.countTextView);
-        countText.setText("" + currentCategory.getWordCount() + "");
+        countText.setText("" + currentCourse.getWordCount() + "");
 
         Typeface font = Typeface.createFromAsset(getContext().getAssets(), "font/fontawesome.ttf");
         final Button editButton = (Button) itemView.findViewById(R.id.edit);
@@ -48,15 +47,15 @@ public class CategoryListAdapter extends ArrayAdapter<Category>{
         bookTextView.setTypeface(font);
         submitEditButton.setTypeface(font);
 
-        // item click listener
+       // item click listener
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Category clickedCategory = getItem(position);
+                Course clickedCourse = getItem(position);
 
                 //start word activity
                 Intent wordIntent = new Intent(getContext(), WordActivity.class);
-                wordIntent.putExtra("categoryId", clickedCategory.getId());
+                wordIntent.putExtra("categoryId", clickedCourse.getId());
                 wordIntent.putExtra("action", "edit");
                 getContext().startActivity(wordIntent);
             }
@@ -66,7 +65,7 @@ public class CategoryListAdapter extends ArrayAdapter<Category>{
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Category editCategory = getItem(position);
+                Course editCourse = getItem(position);
                 View parentView = (View) view.getParent().getParent();
 
                 // hide textView and edit button
@@ -78,7 +77,7 @@ public class CategoryListAdapter extends ArrayAdapter<Category>{
                 submitEditButton.setVisibility(View.VISIBLE);
                 EditText clickedCategoryEditText = (EditText) parentView.findViewById(R.id.categoryEditText);
                 clickedCategoryEditText.setVisibility(View.VISIBLE);
-                clickedCategoryEditText.setText(editCategory.getName());
+                clickedCategoryEditText.setText(editCourse.getName());
                 clickedCategoryEditText.requestFocus();
             }
         });
@@ -87,25 +86,25 @@ public class CategoryListAdapter extends ArrayAdapter<Category>{
         submitEditButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Category procCategory = getItem(position);
-                View parentView = (View) view.getParent().getParent();
-
-                // hide editText and submit button
-                submitEditButton.setVisibility(View.GONE);
-                EditText clickedCategoryEditText = (EditText) parentView.findViewById(R.id.categoryEditText);
-                procCategory.setName(clickedCategoryEditText.getText().toString());
-                clickedCategoryEditText.setVisibility(View.GONE);
-
-                // update category
-                CategoryRepository categoryRepository = new CategoryRepository(getContext());
-                categoryRepository.open();
-                categoryRepository.update(procCategory);
-
-                // show textView and edit button
-                editButton.setVisibility(View.VISIBLE);
-                TextView clickedCatTextView = (TextView) parentView.findViewById(R.id.catTextView);
-                clickedCatTextView.setVisibility(View.VISIBLE);
-                clickedCatTextView.setText(procCategory.getName());
+//                Category procCategory = getItem(position);
+//                View parentView = (View) view.getParent().getParent();
+//
+//                // hide editText and submit button
+//                submitEditButton.setVisibility(View.GONE);
+//                EditText clickedCategoryEditText = (EditText) parentView.findViewById(R.id.categoryEditText);
+//                procCategory.setName(clickedCategoryEditText.getText().toString());
+//                clickedCategoryEditText.setVisibility(View.GONE);
+//
+//                // update category
+//                CategoryRepository categoryRepository = new CategoryRepository(getContext());
+//                categoryRepository.open();
+//                categoryRepository.update(procCategory);
+//
+//                // show textView and edit button
+//                editButton.setVisibility(View.VISIBLE);
+//                TextView clickedCatTextView = (TextView) parentView.findViewById(R.id.catTextView);
+//                clickedCatTextView.setVisibility(View.VISIBLE);
+//                clickedCatTextView.setText(procCategory.getName());
 
             }
         });

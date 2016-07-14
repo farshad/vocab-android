@@ -11,18 +11,17 @@ import java.util.List;
 
 import xyz.farshad.vocab.R;
 import xyz.farshad.vocab.component.WordListAdapter;
-import xyz.farshad.vocab.repository.WordRepository;
 import xyz.farshad.vocab.model.Word;
 
 public class WordActivity extends Activity {
-
+/*
     WordRepository wordRepository;
     List<Word> words;
     private Long categoryId;
 
     //ViewPager viewPager;
     //WordSwipeAdapter wordSwipeAdapter;
-
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +33,7 @@ public class WordActivity extends Activity {
         //viewPager.setCurrentItem(5);
 
         Bundle b = getIntent().getExtras();
-        if (b != null && b.containsKey("action")) {
+    /*    if (b != null && b.containsKey("action")) {
             categoryId = b.getLong("categoryId");
             String action = b.getString("action");
 
@@ -46,9 +45,9 @@ public class WordActivity extends Activity {
 
             showWordList();
         }
-
+*/
     }
-
+/*
     private void showWordList(){
         showWordList(false);
     }
@@ -84,4 +83,5 @@ public class WordActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }

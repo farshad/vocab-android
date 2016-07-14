@@ -37,7 +37,7 @@ public class WordListAdapter extends ArrayAdapter<Word> {
         Typeface font = Typeface.createFromAsset(getContext().getAssets(), "font/fontawesome.ttf");
         TextView starBtn = (TextView) itemView.findViewById(R.id.starBtn);
 
-        if (currentWord.getFavorite() == true){
+        if (currentWord.isFavorite() == true){
             starBtn.setText(Html.fromHtml("&#xf005;"));
         }
         starBtn.setTypeface(font);
