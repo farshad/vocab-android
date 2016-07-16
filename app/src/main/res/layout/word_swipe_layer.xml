@@ -4,12 +4,19 @@
     android:weightSum="1"
     android:gravity="center">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="0.36" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/wordPagerTxt"
+            android:layout_weight="0.36" />
+
+    </LinearLayout>
+
 </LinearLayout>

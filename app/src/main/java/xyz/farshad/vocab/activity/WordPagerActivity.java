@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import java.util.List;
 
 import xyz.farshad.vocab.R;
-import xyz.farshad.vocab.component.WordSwipeAdapter;
+import xyz.farshad.vocab.component.DataAdapter.WordSwipeAdapter;
 import xyz.farshad.vocab.model.Word;
 
 public class WordPagerActivity extends Activity {
@@ -30,12 +30,12 @@ public class WordPagerActivity extends Activity {
         if (b != null && b.containsKey("wordId") && b.containsKey("levelId")) {
             wordId = b.getInt("wordId");
             levelId = b.getInt("levelId");
-            words = Word.find(Word.class, "level_id = ?", ""+levelId+"");
+            words = Word.find(Word.class, "level_id = ?", Integer.toString(levelId));
 
             viewPager = (ViewPager)findViewById(R.id.word_view_page);
             wordSwipeAdapter = new WordSwipeAdapter(this, words);
             viewPager.setAdapter(wordSwipeAdapter);
-            viewPager.setCurrentItem(wordId);
+            viewPager.setCurrentItem(wordId-1);
         }
     }
 

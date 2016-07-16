@@ -1,4 +1,4 @@
-package xyz.farshad.vocab.component;
+package xyz.farshad.vocab.component.DataAdapter;
 
 
 import android.content.Context;
@@ -21,14 +21,16 @@ import xyz.farshad.vocab.model.Word;
 public class WordSwipeAdapter extends PagerAdapter {
 
     private Context context;
+    List<Word> words;
     private LayoutInflater layoutInflater;
 
     public WordSwipeAdapter(Context context, List<Word> words){
         this.context = context;
+        this.words = words;
     }
     @Override
     public int getCount() {
-        return 100;
+        return words.size();
     }
 
     @Override
@@ -39,10 +41,12 @@ public class WordSwipeAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
 
+        Word currentWord = words.get(position);
+
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View item_view = layoutInflater.inflate(R.layout.word_swipe_layer, container, false);
-        TextView textView = (TextView) item_view.findViewById(R.id.textView);
-        textView.setText("aaaaaaaaaa");
+        TextView textView = (TextView) item_view.findViewById(R.id.wordPagerTxt);
+        textView.setText(currentWord.getName());
 
         container.addView(item_view);
 

@@ -12,7 +12,7 @@ import com.orm.SugarContext;
 import java.util.List;
 
 import xyz.farshad.vocab.R;
-import xyz.farshad.vocab.component.LevelListAdapter;
+import xyz.farshad.vocab.component.DataAdapter.LevelListAdapter;
 import xyz.farshad.vocab.model.Level;
 
 public class LevelListActivity extends Activity {

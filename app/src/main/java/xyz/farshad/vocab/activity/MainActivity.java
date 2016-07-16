@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.orm.SugarContext;
 import com.orm.SugarRecord;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.farshad.vocab.R;
-import xyz.farshad.vocab.component.CourseListAdapter;
+import xyz.farshad.vocab.component.DataAdapter.CourseListAdapter;
 import xyz.farshad.vocab.model.Course;
 import xyz.farshad.vocab.model.Level;
 import xyz.farshad.vocab.model.Word;
@@ -55,6 +56,7 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(MainActivity.this, "retrieve from server...", Toast.LENGTH_LONG).show();
             return true;
         }
 

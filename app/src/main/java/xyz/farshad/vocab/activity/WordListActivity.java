@@ -10,7 +10,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import xyz.farshad.vocab.R;
-import xyz.farshad.vocab.component.WordListAdapter;
+import xyz.farshad.vocab.component.DataAdapter.WordListAdapter;
 import xyz.farshad.vocab.model.Word;
 
 public class WordListActivity extends Activity {
