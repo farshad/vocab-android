@@ -39,7 +39,7 @@ public class RemoteGet extends RemoteRequest {
         try {
             res = getString(response);
         } catch (JSONException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return res;
 

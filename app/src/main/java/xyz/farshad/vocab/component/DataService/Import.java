@@ -1,4 +1,4 @@
-package xyz.farshad.vocab.component.DataSource;
+package xyz.farshad.vocab.component.DataService;
 
 import com.orm.SugarRecord;
 

@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
 
         // create default courses if not exist
         if(courses.size() == 0){
-            createDefaultCourses();
+            //createDefaultCourses();
             courses = Course.listAll(Course.class);
         }
         showCategoryList(false);
@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            new DataTransfer().execute();
+            new DataTransfer(this).execute();
             Toast.makeText(MainActivity.this, "retrieve from server...", Toast.LENGTH_LONG).show();
             showCategoryList(true);
             return true;

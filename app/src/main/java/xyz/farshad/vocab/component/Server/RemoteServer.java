@@ -19,13 +19,12 @@ public class RemoteServer {
      * @param link
      * @return JSONObject
      */
-    public JSONObject get(String link){
+    public Object get(String link){
 
         try {
             return remoteGet.send(link, null);
         } catch (Exception e) {
-            Log.i("WEB", e.getMessage());
+            return e;
         }
-        return null;
     }
 }
