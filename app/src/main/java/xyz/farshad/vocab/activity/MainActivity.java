@@ -16,6 +16,7 @@ import java.util.List;
 
 import xyz.farshad.vocab.R;
 import xyz.farshad.vocab.component.DataAdapter.CourseListAdapter;
+import xyz.farshad.vocab.component.Server.DataTransfer;
 import xyz.farshad.vocab.model.Course;
 import xyz.farshad.vocab.model.Level;
 import xyz.farshad.vocab.model.Word;
@@ -56,6 +57,7 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            new DataTransfer().execute();
             Toast.makeText(MainActivity.this, "retrieve from server...", Toast.LENGTH_LONG).show();
             return true;
         }
