@@ -15,8 +15,19 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Map;
 
+/**
+ * get request to api and convert response to string
+ */
 public class RemoteGet extends RemoteRequest {
 
+    /**
+     *
+     * @param link
+     * @param data (in get request will be null)
+     * @return JSONObject
+     * @throws IOException
+     * @throws URISyntaxException
+     */
     @Override
     JSONObject send(String link, Optional<Map<String, Object>> data) throws IOException, URISyntaxException {
         URL url = new URL(link);

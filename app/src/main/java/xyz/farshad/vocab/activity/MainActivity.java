@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
             createDefaultCourses();
             courses = Course.listAll(Course.class);
         }
-        showCategoryList();
+        showCategoryList(false);
     }
 
     @Override
@@ -59,6 +59,7 @@ public class MainActivity extends Activity {
         if (id == R.id.action_settings) {
             new DataTransfer().execute();
             Toast.makeText(MainActivity.this, "retrieve from server...", Toast.LENGTH_LONG).show();
+            showCategoryList(true);
             return true;
         }
 

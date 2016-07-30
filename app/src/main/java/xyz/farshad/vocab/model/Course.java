@@ -26,4 +26,5 @@ public class Course extends SugarRecord {
     public int getWordCount() {
         return wordCount;
     }
+
 }
