@@ -62,7 +62,7 @@ public class WordListAdapter extends ArrayAdapter<Word> {
 
                 //start word pager activity
                 Intent wordPageIntent = new Intent(getContext(), WordPagerActivity.class);
-                wordPageIntent.putExtra("wordId", clickedWord.getId());
+                wordPageIntent.putExtra("wordId", position);
                 wordPageIntent.putExtra("levelId", clickedWord.getLevelId());
                 getContext().startActivity(wordPageIntent);
             }

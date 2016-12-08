@@ -1,8 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="AppTheme" parent="android:Theme.Holo.Light">
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/gray_bg</item>
     </style>
     <style name="menu_labels_style">
         <item name="android:background">@drawable/fab_label_background</item>

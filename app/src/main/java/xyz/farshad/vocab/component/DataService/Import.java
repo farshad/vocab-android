@@ -27,8 +27,8 @@ public class Import {
             String sql="INSERT INTO level VALUES ( ?, ?, ?)";
             Level.executeQuery(sql,
                     new String[]{String.valueOf(level.getInt("id")),
-                    level.getString("name"),
-                    String.valueOf(level.getInt("courseId"))
+                            String.valueOf(level.getInt("courseId")),
+                            level.getString("name")
                     });
         }
     }

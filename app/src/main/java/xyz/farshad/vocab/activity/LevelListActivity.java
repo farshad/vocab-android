@@ -24,6 +24,7 @@ public class LevelListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_list);
+        setTitle("Levels");
         SugarContext.init(LevelListActivity.this);
 
         Bundle b = getIntent().getExtras();

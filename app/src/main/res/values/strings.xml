@@ -2,18 +2,18 @@
 <resources>
 
     <string name="app_name">Vocab</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_word">WordActivity</string>
+    <string name="title_activity_word">Words</string>
     <string name="icon_heart"></string>
     <string name="icon_book"></string>
     <string name="icon_edit"></string>
     <string name="icon_pencil"></string>
     <string name="icon_check_circle"></string>
+    <string name="icon_eye">&#xf06e;</string>
     <string name="words">word(s)</string>
     <string name="icon_star"></string>
     <string name="icon_star_o"></string>
-    <string name="title_activity_level_list">LevelListActivity</string>
-    <string name="title_activity_word_pager">WordPagerActivity</string>
+    <string name="title_activity_level_list">Levels List</string>
+    <string name="title_activity_word_pager">Words Pager</string>
 
 </resources>

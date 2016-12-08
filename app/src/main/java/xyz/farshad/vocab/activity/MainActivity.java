@@ -31,11 +31,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SugarContext.init(MainActivity.this);
+        setTitle("Courses");
         courses = Course.listAll(Course.class);
 
         // create default courses if not exist
         if(courses.size() == 0){
-            //createDefaultCourses();
+            createDefaultCourses();
             courses = Course.listAll(Course.class);
         }
         showCategoryList(false);
@@ -58,7 +59,6 @@ public class MainActivity extends Activity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             new DataTransfer(this).execute();
-            Toast.makeText(MainActivity.this, "retrieve from server...", Toast.LENGTH_LONG).show();
             showCategoryList(true);
             return true;
         }
@@ -67,38 +67,38 @@ public class MainActivity extends Activity {
     }
 
     private void createDefaultCourses(){
-
-        List<Course> curs = new ArrayList();
-        curs.add(new Course("Oxford Word Skills", 504));
-        curs.add(new Course("Wikipedia", 10));
-        SugarRecord.saveInTx(curs);
-
-        List<Level> levels = new ArrayList<Level>();
-        levels.add(new Level("Unit 1", 1));
-        levels.add(new Level("Unit 2", 1));
-        levels.add(new Level("Unit 3", 1));
-        SugarRecord.saveInTx(levels);
-
-        List<Word> words = new ArrayList<Word>();
-        words.add(new Word(
-                "Abandon",
-                "desert",
-                "abandon her idea",
-                "ترک کردن",
-                1,
-                0,
-                false
-        ));
-        words.add(new Word(
-                "keen",
-                "sharp",
-                "keen sense of smell",
-                "مشتاق",
-                1,
-                0,
-                false
-        ));
-        SugarRecord.saveInTx(words);
+//
+//        List<Course> curs = new ArrayList();
+//        curs.add(new Course("Oxford Word Skills", 504));
+//        curs.add(new Course("Wikipedia", 10));
+//        SugarRecord.saveInTx(curs);
+//
+//        List<Level> levels = new ArrayList<Level>();
+//        levels.add(new Level("Unit 1", 1));
+//        levels.add(new Level("Unit 2", 1));
+//        levels.add(new Level("Unit 3", 1));
+//        SugarRecord.saveInTx(levels);
+//
+//        List<Word> words = new ArrayList<Word>();
+//        words.add(new Word(
+//                "Abandon",
+//                "desert",
+//                "abandon her idea",
+//                "ترک کردن",
+//                1,
+//                0,
+//                false
+//        ));
+//        words.add(new Word(
+//                "keen",
+//                "sharp",
+//                "keen sense of smell",
+//                "مشتاق",
+//                1,
+//                0,
+//                false
+//        ));
+//        SugarRecord.saveInTx(words);
     }
 
     private void showCategoryList(){

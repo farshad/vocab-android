@@ -6,6 +6,7 @@ import com.orm.SugarRecord;
  * Created by farshad on 7/14/16.
  */
 public class Level extends SugarRecord {
+
     String name;
     int courseId;
 

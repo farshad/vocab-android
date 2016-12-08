@@ -1,5 +1,6 @@
 package xyz.farshad.vocab.component.Server;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -17,19 +18,23 @@ public class DataTransfer extends AsyncTask {
 
     private Context context;
     private RemoteServer server;
+    private ProgressDialog dialog;
 
     public DataTransfer(Context context) {
         this.context = context;
+        this.dialog = new ProgressDialog(this.context);
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        this.dialog.setMessage("Please wait...");
+        this.dialog.show();
     }
 
     @Override
     protected Object doInBackground(Object[] objects) {
-        String link = "http://192.168.0.101:8080/api/retrieve";
+        String link = "http://192.168.0.100:8080/api/retrieve";
         server = new RemoteServer();
         Object responseData = server.get(link);
         return responseData;
@@ -39,10 +44,14 @@ public class DataTransfer extends AsyncTask {
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);
 
-         if (o instanceof Exception){
+        if (dialog.isShowing()) {
+            dialog.dismiss();
+        }
+
+        if (o instanceof Exception){
              Log.i("WEB", ((Exception) o).getMessage());
-             Toast.makeText(context, "Can not connect to server!", Toast.LENGTH_LONG).show();
-         }else {
+             Toast.makeText(context, "Can not connect to server, please try again later.", Toast.LENGTH_LONG).show();
+        }else {
              //delete all records
              Course.deleteAll(Course.class);
              Level.deleteAll(Level.class);
@@ -59,7 +68,7 @@ public class DataTransfer extends AsyncTask {
              } catch (JSONException e) {
                  e.printStackTrace();
              }
-         }
+        }
 
     }
 }

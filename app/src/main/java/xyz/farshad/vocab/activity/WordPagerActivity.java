@@ -25,6 +25,7 @@ public class WordPagerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_pager);
+        setTitle("Words");
 
         Bundle b = getIntent().getExtras();
         if (b != null && b.containsKey("wordId") && b.containsKey("levelId")) {
@@ -35,7 +36,7 @@ public class WordPagerActivity extends Activity {
             viewPager = (ViewPager)findViewById(R.id.word_view_page);
             wordSwipeAdapter = new WordSwipeAdapter(this, words);
             viewPager.setAdapter(wordSwipeAdapter);
-            viewPager.setCurrentItem(wordId-1);
+            viewPager.setCurrentItem(wordId);
         }
     }
 

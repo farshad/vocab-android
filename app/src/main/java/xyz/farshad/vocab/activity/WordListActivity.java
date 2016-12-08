@@ -22,6 +22,7 @@ public class WordListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_list);
+        setTitle("Words");
 
         Bundle b = getIntent().getExtras();
         if (b != null && b.containsKey("levelId")) {
