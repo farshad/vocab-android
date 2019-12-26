@@ -2,20 +2,19 @@ package xyz.farshad.vocab.component.DataAdapter;
 
 
 import android.content.Context;
-import android.graphics.Typeface;
-import android.support.v4.view.PagerAdapter;
-import android.text.Layout;
+import android.speech.tts.TextToSpeech;
+import androidx.viewpager.widget.PagerAdapter;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
 import xyz.farshad.vocab.R;
+import xyz.farshad.vocab.activity.WordPagerActivity;
 import xyz.farshad.vocab.model.Word;
 
 /**
@@ -44,24 +43,40 @@ public class WordSwipeAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
 
-        Word currentWord = words.get(position);
+        final Word currentWord = words.get(position);
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View item_view = layoutInflater.inflate(R.layout.word_swipe_layer, container, false);
         TextView wordPagerName = (TextView) item_view.findViewById(R.id.wordPagerName);
         TextView wordPagerMeaning = (TextView) item_view.findViewById(R.id.wordPagerMeaning);
-        TextView wordPagerTranslate = (TextView) item_view.findViewById(R.id.wordPagerTranslate);
+        final TextView wordPagerTranslate = (TextView) item_view.findViewById(R.id.wordPagerTranslate);
         TextView wordPagerExample = (TextView) item_view.findViewById(R.id.wordPagerExample);
         wordPagerName.setText(currentWord.getName());
         wordPagerMeaning.setText(currentWord.getMeaning());
         wordPagerTranslate.setText(currentWord.getTranslate());
         wordPagerExample.setText(currentWord.getExample());
 
-        // set font awesome
-        Typeface font = Typeface.createFromAsset(context.getAssets(), "font/fontawesome.ttf");
-        final Button showTranslateButton = (Button) item_view.findViewById(R.id.showTranslateButton);
-        showTranslateButton.setTypeface(font);
 
+
+//        showTranslateButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                wordPagerTranslate.setVisibility(View.VISIBLE);
+//                showTranslateButton.setVisibility(View.GONE);
+//                hideTranslateButton.setVisibility(View.VISIBLE);
+//
+//            }
+//        });
+//        hideTranslateButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                wordPagerTranslate.setVisibility(View.INVISIBLE);
+//                hideTranslateButton.setVisibility(View.GONE);
+//                showTranslateButton.setVisibility(View.VISIBLE);
+//            }
+//        });
+
+        item_view.setTag("word_pager" + position);
         container.addView(item_view);
 
         return item_view;

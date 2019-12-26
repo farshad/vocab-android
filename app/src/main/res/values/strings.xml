@@ -9,11 +9,16 @@
     <string name="icon_edit"></string>
     <string name="icon_pencil"></string>
     <string name="icon_check_circle"></string>
-    <string name="icon_eye">&#xf06e;</string>
+    <string name="icon_open_eye">&#xf06e;</string>
+    <string name="icon_close_eye">&#xf070;</string>
+    <string name="icon_volume_up">&#xf028;</string>
+    <string name="icon_volume_off">&#xf026;</string>
     <string name="words">word(s)</string>
     <string name="icon_star"></string>
     <string name="icon_star_o"></string>
     <string name="title_activity_level_list">Levels List</string>
     <string name="title_activity_word_pager">Words Pager</string>
+    <string name="sound_off">sound off</string>
+    <string name="sound_on">sound on</string>
 
 </resources>

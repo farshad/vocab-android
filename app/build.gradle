@@ -1,13 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 14
-    buildToolsVersion "23.0.0"
+    compileSdkVersion 29
+    buildToolsVersion "28.0.3"
+
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "xyz.farshad.vocab"
-        minSdkVersion 14
-        targetSdkVersion 15
+        minSdkVersion 16
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
     }
@@ -17,15 +19,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
     lintOptions {
         checkReleaseBuilds false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile "com.android.support:appcompat-v7:20.0.+"
-    compile 'com.getbase:floatingactionbutton:1.10.1'
-    compile 'com.github.satyan:sugar:1.5'
-    compile 'com.google.guava:guava:20.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.getbase:floatingactionbutton:1.10.1'
+    implementation 'com.github.satyan:sugar:1.5'
+    implementation 'com.google.guava:guava:24.1-jre'
 }

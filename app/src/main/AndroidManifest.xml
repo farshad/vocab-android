@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="xyz.farshad.vocab" >
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="14" />
+    <!--<uses-sdk-->
+        <!--android:minSdkVersion="28"-->
+        <!--android:targetSdkVersion="28" />-->
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:supportsRtl="false"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/AppTheme"
+        tools:targetApi="m"
+        android:fullBackupContent="true"
+        tools:ignore="GoogleAppIndexingWarning">
+
         <meta-data
             android:name="DATABASE"
             android:value="vocab.db" />
@@ -24,7 +30,7 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="xyz.farshad.vocab.model" />
-
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
@@ -36,22 +42,23 @@
         </activity>
         <activity
             android:name=".activity.WordListActivity"
+            android:launchMode="singleTop"
             android:label="@string/title_activity_word" >
         </activity>
         <activity
             android:name=".activity.LevelListActivity"
+            android:launchMode="singleTop"
             android:label="@string/title_activity_level_list" >
         </activity>
         <activity
             android:name=".activity.WordPagerActivity"
-            android:label="@string/title_activity_word_pager" >
-        </activity>
+            android:launchMode="singleTop"
+            android:label="@string/title_activity_word_pager" />
 
         <service
             android:name=".component$Server$DataTransfer"
             android:enabled="true"
-            android:exported="true" >
-        </service>
+            android:exported="true" />
     </application>
 
 </manifest>

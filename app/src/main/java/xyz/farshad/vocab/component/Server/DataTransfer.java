@@ -34,7 +34,7 @@ public class DataTransfer extends AsyncTask {
 
     @Override
     protected Object doInBackground(Object[] objects) {
-        String link = "http://192.168.0.100:8080/api/retrieve";
+        String link = "http://192.168.43.207:8080/api/retrieve";
         server = new RemoteServer();
         Object responseData = server.get(link);
         return responseData;

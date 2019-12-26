@@ -1,6 +1,5 @@
 package xyz.farshad.vocab.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,11 +10,12 @@ import com.orm.SugarContext;
 
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
 import xyz.farshad.vocab.R;
 import xyz.farshad.vocab.component.DataAdapter.LevelListAdapter;
 import xyz.farshad.vocab.model.Level;
 
-public class LevelListActivity extends Activity {
+public class LevelListActivity extends AppCompatActivity {
 
     List<Level> levels;
     private Long courseId;

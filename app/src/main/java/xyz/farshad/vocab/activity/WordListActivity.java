@@ -1,6 +1,5 @@
 package xyz.farshad.vocab.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,11 +8,12 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
 import xyz.farshad.vocab.R;
 import xyz.farshad.vocab.component.DataAdapter.WordListAdapter;
 import xyz.farshad.vocab.model.Word;
 
-public class WordListActivity extends Activity {
+public class WordListActivity extends AppCompatActivity {
 
     List<Word> words;
     private Long levelId;

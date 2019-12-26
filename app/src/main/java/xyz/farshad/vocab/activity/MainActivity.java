@@ -1,28 +1,23 @@
 package xyz.farshad.vocab.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.orm.SugarContext;
-import com.orm.SugarRecord;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
 import xyz.farshad.vocab.R;
 import xyz.farshad.vocab.component.DataAdapter.CourseListAdapter;
 import xyz.farshad.vocab.component.Server.DataTransfer;
 import xyz.farshad.vocab.model.Course;
-import xyz.farshad.vocab.model.Level;
-import xyz.farshad.vocab.model.Word;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     List<Course> courses;
 
