@@ -153,7 +153,7 @@ public class WordPagerActivity extends AppCompatActivity implements TextToSpeech
             @Override
             public void onPageSelected(int position) {
                 currentItem = position;
-                if (sound){
+                if (sound) {
                     textToSpeech.speak(words.get(position).getName(), TextToSpeech.QUEUE_FLUSH, null);
                 }
             }
