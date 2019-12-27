@@ -35,37 +35,25 @@ public class WordListAdapter extends ArrayAdapter<Word> {
         }
         Word currentWord = getItem(position);
 
-        TextView word_name_txt = (TextView) itemView.findViewById(R.id.word_name_txt);
+        TextView word_name_txt = itemView.findViewById(R.id.word_name_txt);
         word_name_txt.setText(currentWord.getName());
 
         Typeface font = Typeface.createFromAsset(getContext().getAssets(), "font/fontawesome.ttf");
-        TextView starBtn = (TextView) itemView.findViewById(R.id.starBtn);
+        TextView starBtn = itemView.findViewById(R.id.starBtn);
 
-        if (currentWord.isFavorite() == true){
+        if (currentWord.isFavorite()){
             starBtn.setText(Html.fromHtml("&#xf005;"));
         }
         starBtn.setTypeface(font);
 
-//        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "font/fontawesome.ttf");
-//        final Button editButton = (Button) itemView.findViewById(R.id.edit);
-//        final Button submitEditButton = (Button) itemView.findViewById(R.id.submitEditButton);
-//        TextView bookTextView = (TextView) itemView.findViewById(R.id.bookTextView);
-//        editButton.setTypeface(font);
-//        bookTextView.setTypeface(font);
-//        submitEditButton.setTypeface(font);
+        itemView.setOnClickListener(view -> {
+            Word clickedWord = getItem(position);
 
-        // item click listener
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Word clickedWord = getItem(position);
-
-                //start word pager activity
-                Intent wordPageIntent = new Intent(getContext(), WordPagerActivity.class);
-                wordPageIntent.putExtra("wordId", position);
-                wordPageIntent.putExtra("levelId", clickedWord.getLevelId());
-                getContext().startActivity(wordPageIntent);
-            }
+            //start word pager activity
+            Intent wordPageIntent = new Intent(getContext(), WordPagerActivity.class);
+            wordPageIntent.putExtra("wordId", position);
+            wordPageIntent.putExtra("levelId", clickedWord.getLevelId());
+            getContext().startActivity(wordPageIntent);
         });
 
         return itemView;
