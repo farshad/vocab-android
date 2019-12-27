@@ -5,13 +5,13 @@ import android.speech.tts.TextToSpeech;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.ViewPager;
@@ -28,11 +28,10 @@ public class WordPagerActivity extends AppCompatActivity implements TextToSpeech
     private Integer currentItem;
     private boolean sound = true;
     private int speed = 3;
-    Menu optionsMenu;
+    private Menu optionsMenu;
 
-    Timer timer;
-    ViewPager viewPager;
-    WordSwipeAdapter wordSwipeAdapter;
+    private Timer timer;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +58,12 @@ public class WordPagerActivity extends AppCompatActivity implements TextToSpeech
         binding.pause.setOnClickListener(this);
         binding.play.setOnClickListener(this);
 
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     private void setPageAdopter(int wordId) {
         viewPager = findViewById(R.id.word_view_page);
-        wordSwipeAdapter = new WordSwipeAdapter(this, words);
+        WordSwipeAdapter wordSwipeAdapter = new WordSwipeAdapter(this, words);
         viewPager.setAdapter(wordSwipeAdapter);
         currentItem = wordId;
         viewPager.setCurrentItem(currentItem);
