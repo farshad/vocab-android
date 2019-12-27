@@ -5,7 +5,6 @@ import android.speech.tts.TextToSpeech;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toolbar;
 
 import java.util.List;
 import java.util.Locale;
@@ -19,7 +18,6 @@ import androidx.viewpager.widget.ViewPager;
 import xyz.farshad.vocab.R;
 import xyz.farshad.vocab.component.DataAdapter.WordSwipeAdapter;
 import xyz.farshad.vocab.databinding.ActivityWordPagerBinding;
-import xyz.farshad.vocab.model.Level;
 import xyz.farshad.vocab.model.Word;
 
 public class WordPagerActivity extends AppCompatActivity implements TextToSpeech.OnInitListener, View.OnClickListener {
@@ -27,7 +25,6 @@ public class WordPagerActivity extends AppCompatActivity implements TextToSpeech
     private ActivityWordPagerBinding binding;
     private TextToSpeech textToSpeech;
     private List<Word> words;
-    private Level level;
     private Integer currentItem;
     private boolean sound = true;
     private int speed = 3;
@@ -50,12 +47,10 @@ public class WordPagerActivity extends AppCompatActivity implements TextToSpeech
             int wordId = b.getInt("wordId");
             int levelId = b.getInt("levelId");
             words = Word.find(Word.class, "level_id = ?", Integer.toString(levelId));
-            level = Level.findById(Level.class, levelId);
 
             setPageAdopter(wordId);
         }
 
-        setToolBar();
         pageSwitcher(speed);
         setViewPagerChangeListener();
         binding.hideTranslateButton.setOnClickListener(this);
@@ -66,18 +61,13 @@ public class WordPagerActivity extends AppCompatActivity implements TextToSpeech
 
     }
 
-    private void setToolBar(){
-        ActionBar toolbar = getSupportActionBar();
-        toolbar.setTitle("Words of " + level.getName());
-    }
-
     private void setPageAdopter(int wordId) {
         viewPager = findViewById(R.id.word_view_page);
         wordSwipeAdapter = new WordSwipeAdapter(this, words);
         viewPager.setAdapter(wordSwipeAdapter);
         currentItem = wordId;
-        textToSpeech.speak(words.get(currentItem).getName(), TextToSpeech.QUEUE_FLUSH, null);
         viewPager.setCurrentItem(currentItem);
+        textToSpeech.speak(words.get(currentItem).getName(), TextToSpeech.QUEUE_FLUSH, null);
     }
 
 
