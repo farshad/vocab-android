@@ -26,6 +26,7 @@ public class WordPagerActivity extends AppCompatActivity implements TextToSpeech
     private List<Word> words;
     private Integer currentItem;
     private boolean sound = true;
+    private int speed = 3;
     Menu optionsMenu;
 
     Timer timer;
@@ -48,7 +49,7 @@ public class WordPagerActivity extends AppCompatActivity implements TextToSpeech
 
             setPageAdopter(wordId);
         }
-        pageSwitcher(4);
+        pageSwitcher(speed);
         setViewPagerChangeListener();
         binding.hideTranslateButton.setOnClickListener(this);
         binding.showTranslateButton.setOnClickListener(this);
@@ -132,7 +133,7 @@ public class WordPagerActivity extends AppCompatActivity implements TextToSpeech
             case R.id.play:
                 binding.play.setVisibility(View.GONE);
                 binding.pause.setVisibility(View.VISIBLE);
-                pageSwitcher(4);
+                pageSwitcher(speed);
                 break;
         }
     }

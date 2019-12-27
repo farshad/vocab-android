@@ -20,5 +20,7 @@
     <string name="title_activity_word_pager">Words Pager</string>
     <string name="sound_off">sound off</string>
     <string name="sound_on">sound on</string>
+    <string name="increase_speed">increase speed</string>
+    <string name="decrease_speed">decrease speed</string>
 
 </resources>

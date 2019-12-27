@@ -7,4 +7,10 @@
     <item android:id="@+id/sound_on" android:title="@string/sound_on"
         android:visible="false"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/increase_speed" android:title="@string/increase_speed"
+        android:visible="false"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/decrease_speed" android:title="@string/decrease_speed"
+        android:visible="false"
+        android:orderInCategory="100" app:showAsAction="never" />
 </menu>
