@@ -94,10 +94,16 @@ public class WordPagerActivity extends AppCompatActivity implements TextToSpeech
                 sound = true;
                 break;
             case R.id.increase_speed:
-                speed++;
+                if (speed != 0) {
+                    speed--;
+                    timer.cancel();
+                    pageSwitcher(speed);
+                }
                 break;
             case R.id.decrease_speed:
-                speed--;
+                speed++;
+                timer.cancel();
+                pageSwitcher(speed);
                 break;
         }
 
