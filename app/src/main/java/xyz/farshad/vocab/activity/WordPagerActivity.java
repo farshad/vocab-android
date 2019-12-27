@@ -93,6 +93,12 @@ public class WordPagerActivity extends AppCompatActivity implements TextToSpeech
                 soundOff.setVisible(true);
                 sound = true;
                 break;
+            case R.id.increase_speed:
+                speed++;
+                break;
+            case R.id.decrease_speed:
+                speed--;
+                break;
         }
 
         return super.onOptionsItemSelected(item);
