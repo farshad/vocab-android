@@ -36,35 +36,12 @@ public class LevelListActivity extends AppCompatActivity {
         }
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_level_list, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     private void showLevelList(boolean reload){
-        if (reload == true){
+        if (reload){
             levels = Level.listAll(Level.class);
         }
-        ArrayAdapter<Level> adapter = new LevelListAdapter(LevelListActivity.this, R.layout.level_list_view, levels);
-        ListView list = (ListView) findViewById(R.id.levelListView);
+        ArrayAdapter<Level> adapter = new LevelListAdapter(this, R.layout.level_list_view, levels);
+        ListView list = findViewById(R.id.levelListView);
         list.setAdapter(adapter);
         list.setItemsCanFocus(true);
     }

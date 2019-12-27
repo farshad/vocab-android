@@ -34,24 +34,22 @@ public class LevelListAdapter extends ArrayAdapter<Level> {
 
         Level currentLevel = getItem(position);
 
-        TextView levelText = (TextView) itemView.findViewById(R.id.level_name_txt);
+        TextView levelText = itemView.findViewById(R.id.level_name_txt);
         levelText.setText(currentLevel.getName());
 
         Typeface font = Typeface.createFromAsset(getContext().getAssets(), "font/fontawesome.ttf");
-        final Button listButton = (Button) itemView.findViewById(R.id.listBtn);
+        final Button listButton = itemView.findViewById(R.id.listBtn);
         listButton.setTypeface(font);
 
         // item click listener
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Level clickedLevel = getItem(position);
+        itemView.setOnClickListener(view -> {
+            Level clickedLevel = getItem(position);
 
-                //start word list activity
-                Intent wordListIntent = new Intent(getContext(), WordListActivity.class);
-                wordListIntent.putExtra("levelId", clickedLevel.getId());
-                getContext().startActivity(wordListIntent);
-            }
+            //start word list activity
+            Intent wordListIntent = new Intent(getContext(), WordListActivity.class);
+            wordListIntent.putExtra("levelId", clickedLevel.getId());
+            wordListIntent.putExtra("levelName", clickedLevel.getName());
+            getContext().startActivity(wordListIntent);
         });
 
         return itemView;

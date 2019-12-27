@@ -5,18 +5,21 @@ import android.speech.tts.TextToSpeech;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toolbar;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.ViewPager;
 import xyz.farshad.vocab.R;
 import xyz.farshad.vocab.component.DataAdapter.WordSwipeAdapter;
 import xyz.farshad.vocab.databinding.ActivityWordPagerBinding;
+import xyz.farshad.vocab.model.Level;
 import xyz.farshad.vocab.model.Word;
 
 public class WordPagerActivity extends AppCompatActivity implements TextToSpeech.OnInitListener, View.OnClickListener {
@@ -24,6 +27,7 @@ public class WordPagerActivity extends AppCompatActivity implements TextToSpeech
     private ActivityWordPagerBinding binding;
     private TextToSpeech textToSpeech;
     private List<Word> words;
+    private Level level;
     private Integer currentItem;
     private boolean sound = true;
     private int speed = 3;
@@ -46,9 +50,12 @@ public class WordPagerActivity extends AppCompatActivity implements TextToSpeech
             int wordId = b.getInt("wordId");
             int levelId = b.getInt("levelId");
             words = Word.find(Word.class, "level_id = ?", Integer.toString(levelId));
+            level = Level.findById(Level.class, levelId);
 
             setPageAdopter(wordId);
         }
+
+        setToolBar();
         pageSwitcher(speed);
         setViewPagerChangeListener();
         binding.hideTranslateButton.setOnClickListener(this);
@@ -57,6 +64,11 @@ public class WordPagerActivity extends AppCompatActivity implements TextToSpeech
         binding.pause.setOnClickListener(this);
         binding.play.setOnClickListener(this);
 
+    }
+
+    private void setToolBar(){
+        ActionBar toolbar = getSupportActionBar();
+        toolbar.setTitle("Words of " + level.getName());
     }
 
     private void setPageAdopter(int wordId) {
