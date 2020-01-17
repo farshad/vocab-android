@@ -2,12 +2,10 @@ package xyz.farshad.vocab.component.DataAdapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -28,7 +26,7 @@ public class LevelListAdapter extends ArrayAdapter<Level> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View itemView = convertView;
-        if(itemView == null){
+        if (itemView == null) {
             itemView = LayoutInflater.from(getContext()).inflate(R.layout.level_list_view, parent, false);
         }
 
@@ -36,10 +34,6 @@ public class LevelListAdapter extends ArrayAdapter<Level> {
 
         TextView levelText = itemView.findViewById(R.id.level_name_txt);
         levelText.setText(currentLevel.getName());
-
-        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "font/fontawesome.ttf");
-        final Button listButton = itemView.findViewById(R.id.listBtn);
-        listButton.setTypeface(font);
 
         // item click listener
         itemView.setOnClickListener(view -> {
