@@ -38,14 +38,6 @@ public class WordListAdapter extends ArrayAdapter<Word> {
         TextView word_name_txt = itemView.findViewById(R.id.word_name_txt);
         word_name_txt.setText(currentWord.getName());
 
-        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "font/fontawesome.ttf");
-        TextView starBtn = itemView.findViewById(R.id.starBtn);
-
-        if (currentWord.isFavorite()){
-            starBtn.setText(Html.fromHtml("&#xf005;"));
-        }
-        starBtn.setTypeface(font);
-
         itemView.setOnClickListener(view -> {
             Word clickedWord = getItem(position);
 
