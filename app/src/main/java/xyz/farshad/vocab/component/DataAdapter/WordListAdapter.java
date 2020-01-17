@@ -2,21 +2,16 @@ package xyz.farshad.vocab.component.DataAdapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
 
 import xyz.farshad.vocab.R;
-import xyz.farshad.vocab.activity.WordListActivity;
 import xyz.farshad.vocab.activity.WordPagerActivity;
-import xyz.farshad.vocab.model.Level;
 import xyz.farshad.vocab.model.Word;
 
 /**
@@ -30,7 +25,7 @@ public class WordListAdapter extends ArrayAdapter<Word> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View itemView = convertView;
-        if (itemView == null){
+        if (itemView == null) {
             itemView = LayoutInflater.from(getContext()).inflate(R.layout.word_list_view, parent, false);
         }
         Word currentWord = getItem(position);

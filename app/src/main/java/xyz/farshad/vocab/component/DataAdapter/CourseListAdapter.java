@@ -2,7 +2,6 @@ package xyz.farshad.vocab.component.DataAdapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ import xyz.farshad.vocab.model.Course;
 /**
  * Created by farshad on 9/29/15.
  */
-public class CourseListAdapter extends ArrayAdapter<Course>{
+public class CourseListAdapter extends ArrayAdapter<Course> {
 
     public CourseListAdapter(Context context, int resource, List<Course> categories) {
         super(context, resource, categories);
@@ -29,83 +28,46 @@ public class CourseListAdapter extends ArrayAdapter<Course>{
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View itemView = convertView;
-        if (itemView == null){
+        if (itemView == null) {
             itemView = LayoutInflater.from(getContext()).inflate(R.layout.cuorse_list_view, parent, false);
         }
         Course currentCourse = getItem(position);
 
-        TextView categoryText = (TextView) itemView.findViewById(R.id.catTextView);
+        TextView categoryText = itemView.findViewById(R.id.catTextView);
         categoryText.setText(currentCourse.getName());
-        TextView countText = (TextView) itemView.findViewById(R.id.countTextView);
+        TextView countText = itemView.findViewById(R.id.countTextView);
         countText.setText("" + currentCourse.getWordCount() + "");
 
-        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "font/fontawesome.ttf");
-        final Button editButton = (Button) itemView.findViewById(R.id.edit);
-        final Button submitEditButton = (Button) itemView.findViewById(R.id.submitEditButton);
-        TextView bookTextView = (TextView) itemView.findViewById(R.id.bookTextView);
-        editButton.setTypeface(font);
-        bookTextView.setTypeface(font);
-        submitEditButton.setTypeface(font);
+        final Button editButton = itemView.findViewById(R.id.edit);
+        final Button submitEditButton = itemView.findViewById(R.id.submitEditButton);
+        TextView bookTextView = itemView.findViewById(R.id.bookTextView);
 
-       // item click listener
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Course clickedCourse = getItem(position);
+        // item click listener
+        itemView.setOnClickListener(view -> {
+            Course clickedCourse = getItem(position);
 
-                //start Level list activity
-                Intent levelListIntent = new Intent(getContext(), LevelListActivity.class);
-                levelListIntent.putExtra("courseId", clickedCourse.getId());
-                getContext().startActivity(levelListIntent);
-            }
+            //start Level list activity
+            Intent levelListIntent = new Intent(getContext(), LevelListActivity.class);
+            levelListIntent.putExtra("courseId", clickedCourse.getId());
+            getContext().startActivity(levelListIntent);
         });
 
         //edit button click listener
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Course editCourse = getItem(position);
-                View parentView = (View) view.getParent().getParent();
+        editButton.setOnClickListener(view -> {
+            Course editCourse = getItem(position);
+            View parentView = (View) view.getParent().getParent();
 
-                // hide textView and edit button
-                TextView clickedCatTextView = (TextView) parentView.findViewById(R.id.catTextView);
-                clickedCatTextView.setVisibility(View.GONE);
-                editButton.setVisibility(View.GONE);
+            // hide textView and edit button
+            TextView clickedCatTextView = (TextView) parentView.findViewById(R.id.catTextView);
+            clickedCatTextView.setVisibility(View.GONE);
+            editButton.setVisibility(View.GONE);
 
-                //show editText and submit button
-                submitEditButton.setVisibility(View.VISIBLE);
-                EditText clickedCategoryEditText = (EditText) parentView.findViewById(R.id.categoryEditText);
-                clickedCategoryEditText.setVisibility(View.VISIBLE);
-                clickedCategoryEditText.setText(editCourse.getName());
-                clickedCategoryEditText.requestFocus();
-            }
-        });
-
-        //submit button click listener
-        submitEditButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Category procCategory = getItem(position);
-//                View parentView = (View) view.getParent().getParent();
-//
-//                // hide editText and submit button
-//                submitEditButton.setVisibility(View.GONE);
-//                EditText clickedCategoryEditText = (EditText) parentView.findViewById(R.id.categoryEditText);
-//                procCategory.setName(clickedCategoryEditText.getText().toString());
-//                clickedCategoryEditText.setVisibility(View.GONE);
-//
-//                // update category
-//                CategoryRepository categoryRepository = new CategoryRepository(getContext());
-//                categoryRepository.open();
-//                categoryRepository.update(procCategory);
-//
-//                // show textView and edit button
-//                editButton.setVisibility(View.VISIBLE);
-//                TextView clickedCatTextView = (TextView) parentView.findViewById(R.id.catTextView);
-//                clickedCatTextView.setVisibility(View.VISIBLE);
-//                clickedCatTextView.setText(procCategory.getName());
-
-            }
+            //show editText and submit button
+            submitEditButton.setVisibility(View.VISIBLE);
+            EditText clickedCategoryEditText = (EditText) parentView.findViewById(R.id.categoryEditText);
+            clickedCategoryEditText.setVisibility(View.VISIBLE);
+            clickedCategoryEditText.setText(editCourse.getName());
+            clickedCategoryEditText.requestFocus();
         });
 
         return itemView;
