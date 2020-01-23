@@ -1,5 +1,6 @@
 package xyz.farshad.vocab.data.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -10,5 +11,5 @@ import androidx.room.PrimaryKey
 data class Level(
         @PrimaryKey val id: Int,
         var name: String,
-        var courseId: Int = 0
+        @ColumnInfo(name = "course_id") var courseId: Int = 0
 )

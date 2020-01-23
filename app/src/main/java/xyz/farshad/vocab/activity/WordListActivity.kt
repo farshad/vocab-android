@@ -6,11 +6,16 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.WordListAdapter
+import xyz.farshad.vocab.data.dao.WordDao
 import xyz.farshad.vocab.data.model.Word
+import javax.inject.Inject
 
 class WordListActivity : AppCompatActivity() {
 
-    internal var words: List<Word>
+    @Inject
+    lateinit var wordDao: WordDao
+
+    lateinit var words: List<Word>
     private var levelId: Long? = null
     private var levelName: String? = null
 
@@ -23,7 +28,7 @@ class WordListActivity : AppCompatActivity() {
         if (b != null && b.containsKey("levelId")) {
             levelName = b.getString("levelName")
             levelId = b.getLong("levelId")
-            words = Word.find(Word::class.java!!, "level_id = ?", levelId!!.toString())
+            words = wordDao.findByLevelId(levelId!!.toInt())
 
             showWordList(false)
         }
@@ -37,7 +42,7 @@ class WordListActivity : AppCompatActivity() {
 
     private fun showWordList(reload: Boolean) {
         if (reload) {
-            words = Word.find(Word::class.java!!, "level_id = ?", levelId!!.toString())
+            words = wordDao.findByLevelId(levelId!!.toInt())
         }
         val adapter = WordListAdapter(this@WordListActivity, R.layout.word_list_view, words)
         val list = findViewById<ListView>(R.id.wordMainListView)

@@ -1,5 +1,6 @@
 package xyz.farshad.vocab.data.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -14,7 +15,7 @@ data class Word(
         val meaning: String,
         val example: String,
         val translate: String,
-        val levelId: Int,
-        val viewCount: Int,
-        val isFavorite: Boolean
+        @ColumnInfo(name = "level_id") val levelId: Int,
+        @ColumnInfo(name = "view_count") val viewCount: Int,
+        @ColumnInfo(name = "is_favorite") val isFavorite: Boolean
 )

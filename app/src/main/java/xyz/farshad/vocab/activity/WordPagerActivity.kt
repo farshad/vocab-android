@@ -12,13 +12,18 @@ import java.util.TimerTask
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.viewpager.widget.ViewPager
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.WordSwipeAdapter
-import xyz.farshad.vocab.databinding.ActivityWordPagerBinding
+import xyz.farshad.vocab.data.dao.WordDao
 import xyz.farshad.vocab.data.model.Word
+import javax.inject.Inject
 
 class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View.OnClickListener {
+
+    @Inject
+    lateinit var wordDao: WordDao
 
     private var binding: ActivityWordPagerBinding? = null
     private var textToSpeech: TextToSpeech? = null
@@ -42,7 +47,7 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
         if (b != null && b.containsKey("wordId") && b.containsKey("levelId")) {
             val wordId = b.getInt("wordId")
             val levelId = b.getInt("levelId")
-            words = Word.find(Word::class.java!!, "level_id = ?", Integer.toString(levelId))
+            words = wordDao.findByLevelId(levelId!!.toInt())
 
             setPageAdopter(wordId)
         }

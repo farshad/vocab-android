@@ -11,6 +11,9 @@ interface LevelDao {
     @Query("SELECT * FROM level")
     fun getAll(): List<Level>
 
+    @Query("SELECT * FROM level where course_id = :courseId")
+    fun findByCourseId(courseId: Int): List<Level>
+
     @Insert
     fun insertAll(vararg level: Level)
 
