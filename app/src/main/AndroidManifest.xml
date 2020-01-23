@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="xyz.farshad.vocab" >
+    package="xyz.farshad.vocab">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="false"
-        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
-        tools:targetApi="m"
-        android:fullBackupContent="true"
-        tools:ignore="GoogleAppIndexingWarning">
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:targetApi="m">
 
         <meta-data
             android:name="DATABASE"
@@ -29,11 +29,15 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="xyz.farshad.vocab.model" />
-        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -41,18 +45,16 @@
         </activity>
         <activity
             android:name=".activity.WordListActivity"
-            android:launchMode="singleTop"
-            android:label="@string/title_activity_word" >
-        </activity>
+            android:label="@string/title_activity_word"
+            android:launchMode="singleTop"></activity>
         <activity
             android:name=".activity.LevelListActivity"
-            android:launchMode="singleTop"
-            android:label="@string/title_activity_level_list" >
-        </activity>
+            android:label="@string/title_activity_level_list"
+            android:launchMode="singleTop"></activity>
         <activity
             android:name=".activity.WordPagerActivity"
-            android:launchMode="singleTop"
-            android:label="@string/title_activity_word_pager" />
+            android:label="@string/title_activity_word_pager"
+            android:launchMode="singleTop" />
 
         <service
             android:name=".component$Server$DataTransfer"
