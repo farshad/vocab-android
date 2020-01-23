@@ -9,7 +9,6 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.CourseListAdapter
-import xyz.farshad.vocab.component.Server.DataTransfer
 import xyz.farshad.vocab.data.dao.CourseDao
 import xyz.farshad.vocab.data.model.Course
 import javax.inject.Inject
@@ -46,7 +45,6 @@ class MainActivity : AppCompatActivity() {
 
 
         if (id == R.id.action_settings) {
-            DataTransfer(this).execute()
             showCategoryList(true)
             return true
         }

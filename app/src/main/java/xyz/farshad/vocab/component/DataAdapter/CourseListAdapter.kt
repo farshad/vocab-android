@@ -29,7 +29,6 @@ class CourseListAdapter(context: Context, resource: Int, categories: List<Course
         val categoryText = itemView!!.findViewById<TextView>(R.id.catTextView)
         categoryText.text = currentCourse!!.name
         val countText = itemView.findViewById<TextView>(R.id.countTextView)
-        countText.text = "" + currentCourse.wordCount + ""
 
         val editButton = itemView.findViewById<Button>(R.id.edit)
         val submitEditButton = itemView.findViewById<Button>(R.id.submitEditButton)

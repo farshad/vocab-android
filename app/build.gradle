@@ -28,10 +28,6 @@ android {
     lintOptions {
         checkReleaseBuilds false
     }
-    compileOptions {
-        sourceCompatibility kotlin_version
-        targetCompatibility kotlin_version
-    }
 }
 
 dependencies {
