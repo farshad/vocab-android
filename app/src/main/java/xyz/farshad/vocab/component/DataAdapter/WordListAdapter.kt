@@ -10,7 +10,7 @@ import android.widget.TextView
 
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.activity.WordPagerActivity
-import xyz.farshad.vocab.model.Word
+import xyz.farshad.vocab.data.model.Word
 
 /**
  * Created by farshad on 10/2/15.

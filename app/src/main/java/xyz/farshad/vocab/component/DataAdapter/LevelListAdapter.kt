@@ -10,7 +10,7 @@ import android.widget.TextView
 
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.activity.WordListActivity
-import xyz.farshad.vocab.model.Level
+import xyz.farshad.vocab.data.model.Level
 
 /**
  * Created by farshad on 7/15/16.

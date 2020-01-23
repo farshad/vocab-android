@@ -16,7 +16,7 @@ import androidx.viewpager.widget.ViewPager
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.WordSwipeAdapter
 import xyz.farshad.vocab.databinding.ActivityWordPagerBinding
-import xyz.farshad.vocab.model.Word
+import xyz.farshad.vocab.data.model.Word
 
 class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View.OnClickListener {
 

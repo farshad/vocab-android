@@ -10,9 +10,9 @@ import org.json.JSONException
 import org.json.JSONObject
 
 import xyz.farshad.vocab.component.DataService.Import
-import xyz.farshad.vocab.model.Course
-import xyz.farshad.vocab.model.Level
-import xyz.farshad.vocab.model.Word
+import xyz.farshad.vocab.data.model.Course
+import xyz.farshad.vocab.data.model.Level
+import xyz.farshad.vocab.data.model.Word
 
 class DataTransfer(private val context: Context) : AsyncTask<*, *, *>() {
     private var server: RemoteServer? = null

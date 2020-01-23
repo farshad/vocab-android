@@ -1,16 +1,12 @@
 package xyz.farshad.vocab.activity
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.ArrayAdapter
 import android.widget.ListView
 
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.WordListAdapter
-import xyz.farshad.vocab.model.Word
+import xyz.farshad.vocab.data.model.Word
 
 class WordListActivity : AppCompatActivity() {
 

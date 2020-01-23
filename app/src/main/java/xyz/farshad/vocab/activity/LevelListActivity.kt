@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.orm.SugarContext
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.LevelListAdapter
-import xyz.farshad.vocab.model.Level
+import xyz.farshad.vocab.data.model.Level
 
 class LevelListActivity : AppCompatActivity() {
 

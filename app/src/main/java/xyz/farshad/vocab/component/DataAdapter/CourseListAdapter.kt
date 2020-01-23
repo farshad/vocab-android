@@ -12,7 +12,7 @@ import android.widget.TextView
 
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.activity.LevelListActivity
-import xyz.farshad.vocab.model.Course
+import xyz.farshad.vocab.data.model.Course
 
 /**
  * Created by farshad on 9/29/15.

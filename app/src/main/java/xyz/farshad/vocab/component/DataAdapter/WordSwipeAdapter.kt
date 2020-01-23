@@ -2,7 +2,6 @@ package xyz.farshad.vocab.component.DataAdapter
 
 
 import android.content.Context
-import android.speech.tts.TextToSpeech
 import androidx.viewpager.widget.PagerAdapter
 
 import android.view.LayoutInflater
@@ -12,8 +11,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 
 import xyz.farshad.vocab.R
-import xyz.farshad.vocab.activity.WordPagerActivity
-import xyz.farshad.vocab.model.Word
+import xyz.farshad.vocab.data.model.Word
 
 /**
  * Created by farshad on 10/1/15.

@@ -1,10 +1,10 @@
-package xyz.farshad.vocab
+package xyz.farshad.vocabToken
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import xyz.farshad.vocab.model.Course
+import xyz.farshad.vocab.data.model.Course
 
 @Database(entities = [Course::class], version = 1, exportSchema = false)
 abstract class SataDatabase : RoomDatabase() {

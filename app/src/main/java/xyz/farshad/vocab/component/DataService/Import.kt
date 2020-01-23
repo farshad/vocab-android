@@ -4,13 +4,12 @@ import com.orm.SugarRecord
 
 import org.json.JSONArray
 import org.json.JSONException
-import org.json.JSONObject
 
 import java.util.ArrayList
 
-import xyz.farshad.vocab.model.Course
-import xyz.farshad.vocab.model.Level
-import xyz.farshad.vocab.model.Word
+import xyz.farshad.vocab.data.model.Course
+import xyz.farshad.vocab.data.model.Level
+import xyz.farshad.vocab.data.model.Word
 
 class Import {
     @Throws(JSONException::class)

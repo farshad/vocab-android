@@ -3,7 +3,6 @@ package xyz.farshad.vocab.activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ArrayAdapter
 import android.widget.ListView
 
 import com.orm.SugarContext
@@ -12,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.CourseListAdapter
 import xyz.farshad.vocab.component.Server.DataTransfer
-import xyz.farshad.vocab.model.Course
+import xyz.farshad.vocab.data.model.Course
 
 
 class MainActivity : AppCompatActivity() {
