@@ -3,14 +3,14 @@ package xyz.farshad.vocab.di
 import android.app.Application
 import dagger.Module
 import dagger.Provides
+import xyz.farshad.vocab.VocabDatabase
 import xyz.farshad.vocab.data.dao.CourseDao
 import xyz.farshad.vocab.data.dao.LevelDao
 import xyz.farshad.vocab.data.dao.WordDao
-import xyz.farshad.vocabToken.VocabDatabase
 import javax.inject.Singleton
 
 @Module
-object DaoModule {
+class DaoModule {
 
     @Singleton
     @Provides
@@ -32,7 +32,5 @@ object DaoModule {
         val vocabDatabase = VocabDatabase.getInstance(application)
         return vocabDatabase.wordDao()
     }
-
-
 
 }

@@ -10,7 +10,7 @@ import xyz.farshad.vocab.service.util.Constant
 import javax.inject.Singleton
 
 @Module
-object AppModule {
+class AppModule {
 
     @Singleton
     @Provides

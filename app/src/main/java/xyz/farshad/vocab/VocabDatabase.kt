@@ -1,4 +1,4 @@
-package xyz.farshad.vocabToken
+package xyz.farshad.vocab
 
 import android.content.Context
 import androidx.room.Database
