@@ -5,8 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ListView
-
-import androidx.appcompat.app.AppCompatActivity
+import dagger.android.support.DaggerAppCompatActivity
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.CourseListAdapter
 import xyz.farshad.vocab.data.dao.CourseDao
@@ -14,7 +13,7 @@ import xyz.farshad.vocab.data.model.Course
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var courseDao: CourseDao

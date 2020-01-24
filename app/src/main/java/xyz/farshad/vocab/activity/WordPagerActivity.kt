@@ -6,9 +6,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.ViewPager
+import dagger.android.support.DaggerAppCompatActivity
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.WordSwipeAdapter
 import xyz.farshad.vocab.data.dao.WordDao
@@ -17,7 +17,7 @@ import xyz.farshad.vocab.databinding.ActivityWordPagerBinding
 import java.util.*
 import javax.inject.Inject
 
-class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View.OnClickListener {
+class WordPagerActivity : DaggerAppCompatActivity(), TextToSpeech.OnInitListener, View.OnClickListener {
 
     @Inject
     lateinit var wordDao: WordDao

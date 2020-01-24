@@ -2,14 +2,14 @@ package xyz.farshad.vocab.activity
 
 import android.os.Bundle
 import android.widget.ListView
-import androidx.appcompat.app.AppCompatActivity
+import dagger.android.support.DaggerAppCompatActivity
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.LevelListAdapter
 import xyz.farshad.vocab.data.dao.LevelDao
 import xyz.farshad.vocab.data.model.Level
 import javax.inject.Inject
 
-class LevelListActivity : AppCompatActivity() {
+class LevelListActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var levelDao: LevelDao

@@ -2,15 +2,14 @@ package xyz.farshad.vocab.activity
 
 import android.os.Bundle
 import android.widget.ListView
-
-import androidx.appcompat.app.AppCompatActivity
+import dagger.android.support.DaggerAppCompatActivity
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.WordListAdapter
 import xyz.farshad.vocab.data.dao.WordDao
 import xyz.farshad.vocab.data.model.Word
 import javax.inject.Inject
 
-class WordListActivity : AppCompatActivity() {
+class WordListActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var wordDao: WordDao
