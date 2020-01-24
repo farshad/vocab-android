@@ -9,7 +9,7 @@ import xyz.farshad.vocab.BaseApplication
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AndroidSupportInjectionModule::class, ActivityBuildersModule::class, DaoModule::class, ViewModelFactoryModule::class])
+@Component(modules = [AndroidSupportInjectionModule::class, ActivityBuildersModule::class, AppModule::class,  DaoModule::class, ViewModelFactoryModule::class])
 interface AppComponent : AndroidInjector<BaseApplication> {
 
     @Component.Builder
