@@ -5,7 +5,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ListView
+import androidx.lifecycle.lifecycleScope
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.CourseListAdapter
 import xyz.farshad.vocab.data.dao.CourseDao
@@ -18,19 +22,20 @@ class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var courseDao: CourseDao
 
-    lateinit var courses: List<Course>
+    private lateinit var courses: List<Course>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         title = "Courses"
-        courses = courseDao.getAll()
-
-        // create default courses if not exist
-        if (courses.size == 0) {
+        lifecycleScope.launch {
             courses = courseDao.getAll()
+            // create default courses if not exist
+            if (courses.isEmpty()) {
+                courses = courseDao.getAll()
+            }
+            showCategoryList(false)
         }
-        showCategoryList(false)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -52,8 +57,10 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun showCategoryList(reload: Boolean = false) {
-        if (reload == true) {
-            courses = courseDao.getAll()
+        if (reload) {
+            lifecycleScope.launch {
+                courses = courseDao.getAll()
+            }
         }
 
         val adapter = CourseListAdapter(this@MainActivity, R.layout.cuorse_list_view, courses)

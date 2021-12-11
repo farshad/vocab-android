@@ -38,7 +38,8 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -47,11 +48,11 @@
         <activity
             android:name=".activity.WordListActivity"
             android:label="@string/title_activity_word"
-            android:launchMode="singleTop"></activity>
+            android:launchMode="singleTop" />
         <activity
             android:name=".activity.LevelListActivity"
             android:label="@string/title_activity_level_list"
-            android:launchMode="singleTop"></activity>
+            android:launchMode="singleTop" />
         <activity
             android:name=".activity.WordPagerActivity"
             android:label="@string/title_activity_word_pager"
