@@ -1,11 +1,31 @@
 package xyz.farshad.vocab
 
-import dagger.android.AndroidInjector
-import dagger.android.support.DaggerApplication
-import xyz.farshad.vocab.di.DaggerAppComponent
+import android.app.Application
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
+import xyz.farshad.vocab.di.databaseModule
+import xyz.farshad.vocab.di.networkModule
+import xyz.farshad.vocab.di.repositoryModule
+import xyz.farshad.vocab.di.viewModelModule
 
-class BaseApplication : DaggerApplication() {
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerAppComponent.builder().application(this).build()
+class BaseApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        startKoin {
+            androidContext(this@BaseApplication)
+            modules(
+                listOf(
+                    databaseModule,
+                    networkModule,
+                    repositoryModule,
+                    viewModelModule
+                )
+            )
+        }
     }
+
+//    override fun attachBaseContext(base: Context?) {
+//        super.attachBaseContext(base)
+//        MultiDex.install(this)
+//    }
 }

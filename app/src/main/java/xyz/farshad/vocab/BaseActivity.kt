@@ -1,5 +1,5 @@
 package xyz.farshad.vocab
 
-import dagger.android.support.DaggerAppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 
-class BaseActivity : DaggerAppCompatActivity()
+class BaseActivity : AppCompatActivity()

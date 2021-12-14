@@ -4,38 +4,42 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.ListView
-import androidx.lifecycle.lifecycleScope
-import dagger.android.support.DaggerAppCompatActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.CourseListAdapter
-import xyz.farshad.vocab.data.dao.CourseDao
 import xyz.farshad.vocab.data.model.Course
-import javax.inject.Inject
+import xyz.farshad.vocab.viewmodel.CourseViewModel
+import xyz.farshad.vocab.viewmodel.SyncViewModel
 
-
-class MainActivity : DaggerAppCompatActivity() {
-
-    @Inject
-    lateinit var courseDao: CourseDao
-
-    private lateinit var courses: List<Course>
+class MainActivity : AppCompatActivity() {
+    private val courseViewModel: CourseViewModel by viewModel()
+    private val syncViewModel: SyncViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         title = "Courses"
-        lifecycleScope.launch {
-            courses = courseDao.getAll()
-            // create default courses if not exist
-            if (courses.isEmpty()) {
-                courses = courseDao.getAll()
-            }
-            showCategoryList(false)
+
+        courseViewModel.fetchAll()
+        setObserver()
+        val sync = findViewById<View>(R.id.sync) as Button
+        sync.setOnClickListener {
+            syncViewModel.get()
         }
+    }
+
+    private fun setObserver() {
+        courseViewModel.watchCourse()?.observe(this, Observer {
+            showCategoryList(it)
+        })
+
+        syncViewModel.watchSync().observe(this, {
+            courseViewModel.fetchAll()
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -49,20 +53,14 @@ class MainActivity : DaggerAppCompatActivity() {
 
 
         if (id == R.id.action_settings) {
-            showCategoryList(true)
+            courseViewModel.fetchAll()
             return true
         }
 
         return super.onOptionsItemSelected(item)
     }
 
-    private fun showCategoryList(reload: Boolean = false) {
-        if (reload) {
-            lifecycleScope.launch {
-                courses = courseDao.getAll()
-            }
-        }
-
+    private fun showCategoryList(courses: List<Course>) {
         val adapter = CourseListAdapter(this@MainActivity, R.layout.cuorse_list_view, courses)
         val list = findViewById<View>(R.id.catMainListView) as ListView
         list.adapter = adapter

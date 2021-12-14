@@ -6,25 +6,23 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.ViewPager
-import dagger.android.support.DaggerAppCompatActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.WordSwipeAdapter
-import xyz.farshad.vocab.data.dao.WordDao
 import xyz.farshad.vocab.data.model.Word
 import xyz.farshad.vocab.databinding.ActivityWordPagerBinding
+import xyz.farshad.vocab.viewmodel.WordViewModel
 import java.util.*
-import javax.inject.Inject
 
-class WordPagerActivity : DaggerAppCompatActivity(), TextToSpeech.OnInitListener, View.OnClickListener {
-
-    @Inject
-    lateinit var wordDao: WordDao
-
+class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View.OnClickListener {
+    private val wordViewModel: WordViewModel by viewModel()
     private lateinit var binding: ActivityWordPagerBinding
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var words: List<Word>
+    private var wordId: Int? = null
     private var currentItem: Int = 0
     private var sound = true
     private var speed = 3
@@ -42,11 +40,10 @@ class WordPagerActivity : DaggerAppCompatActivity(), TextToSpeech.OnInitListener
 
         val b = intent.extras
         if (b != null && b.containsKey("wordId") && b.containsKey("levelId")) {
-            val wordId = b.getInt("wordId")
+            wordId = b.getInt("wordId")
             val levelId = b.getInt("levelId")
-            words = wordDao.findByLevelId(levelId!!.toInt())
-
-            setPageAdopter(wordId)
+            wordViewModel.findByLevelId(levelId!!.toInt())
+            setObserver()
         }
 
         pageSwitcher(speed)
@@ -58,6 +55,13 @@ class WordPagerActivity : DaggerAppCompatActivity(), TextToSpeech.OnInitListener
         binding.play.setOnClickListener(this)
 
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+    }
+
+    private fun setObserver() {
+        wordViewModel.watchWord()?.observe(this, {
+            words = it
+            wordId?.let { it1 -> setPageAdopter(it1) }
+        })
     }
 
     private fun setPageAdopter(wordId: Int) {

@@ -12,11 +12,14 @@ interface LevelDao {
     fun getAll(): List<Level>
 
     @Query("SELECT * FROM level where course_id = :courseId")
-    fun findByCourseId(courseId: Int): List<Level>
+    suspend fun findByCourseId(courseId: Int): List<Level>
 
     @Insert
-    fun insertAll(vararg level: Level)
+    suspend fun insertAll(level: List<Level>)
 
     @Delete
     fun delete(level: Level)
+
+    @Query("delete from level")
+    suspend fun deleteAll()
 }

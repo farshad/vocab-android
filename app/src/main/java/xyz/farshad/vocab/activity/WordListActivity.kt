@@ -2,20 +2,16 @@ package xyz.farshad.vocab.activity
 
 import android.os.Bundle
 import android.widget.ListView
-import dagger.android.support.DaggerAppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.DataAdapter.WordListAdapter
-import xyz.farshad.vocab.data.dao.WordDao
 import xyz.farshad.vocab.data.model.Word
-import javax.inject.Inject
+import xyz.farshad.vocab.viewmodel.WordViewModel
 
-class WordListActivity : DaggerAppCompatActivity() {
-
-    @Inject
-    lateinit var wordDao: WordDao
-
-    lateinit var words: List<Word>
-    private var levelId: Long? = null
+class WordListActivity : AppCompatActivity() {
+    private val wordViewModel: WordViewModel by viewModel()
+    private var levelId: Int? = null
     private var levelName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,12 +22,17 @@ class WordListActivity : DaggerAppCompatActivity() {
         val b = intent.extras
         if (b != null && b.containsKey("levelId")) {
             levelName = b.getString("levelName")
-            levelId = b.getLong("levelId")
-            words = wordDao.findByLevelId(levelId!!.toInt())
-
-            showWordList(false)
+            levelId = b.get("levelId").toString().toInt()
+            wordViewModel.findByLevelId(levelId!!)
         }
         setToolBar()
+        setObserver()
+    }
+
+    private fun setObserver() {
+        wordViewModel.watchWord()?.observe(this, {
+            showWordList(it)
+        })
     }
 
     private fun setToolBar() {
@@ -39,10 +40,7 @@ class WordListActivity : DaggerAppCompatActivity() {
         toolbar!!.title = "Words of " + levelName!!
     }
 
-    private fun showWordList(reload: Boolean) {
-        if (reload) {
-            words = wordDao.findByLevelId(levelId!!.toInt())
-        }
+    private fun showWordList(words: List<Word>) {
         val adapter = WordListAdapter(this@WordListActivity, R.layout.word_list_view, words)
         val list = findViewById<ListView>(R.id.wordMainListView)
         list.adapter = adapter

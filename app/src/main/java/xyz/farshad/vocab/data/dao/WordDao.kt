@@ -9,14 +9,17 @@ import xyz.farshad.vocab.data.model.Word
 @Dao
 interface WordDao {
     @Query("SELECT * FROM word")
-    fun getAll(): List<Word>
+    suspend fun getAll(): List<Word>
 
     @Query("SELECT * FROM word where level_id = :levelId")
-    fun findByLevelId(levelId : Int): List<Word>
+    suspend fun findByLevelId(levelId : Int): List<Word>
 
     @Insert
-    fun insertAll(vararg word: Word)
+    suspend fun insertAll(word: List<Word>)
 
     @Delete
     fun delete(word: Word)
+
+    @Query("delete from word")
+    suspend fun deleteAll()
 }

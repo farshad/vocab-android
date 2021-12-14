@@ -35,7 +35,7 @@ class CourseListAdapter(context: Context, resource: Int, categories: List<Course
         val bookTextView = itemView.findViewById<TextView>(R.id.bookTextView)
 
         // item click listener
-        itemView.setOnClickListener { view ->
+        itemView.setOnClickListener {
             val clickedCourse = getItem(position)
 
             //start Level list activity

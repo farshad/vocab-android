@@ -9,11 +9,14 @@ import xyz.farshad.vocab.data.model.Course
 @Dao
 interface CourseDao {
     @Query("SELECT * FROM Course")
-    suspend fun getAll(): List<Course>
+    suspend fun fetchAll(): List<Course>
 
     @Insert
-    suspend fun insertAll(vararg courses: Course)
+    suspend fun insertAll(courses: List<Course>)
 
     @Delete
     suspend fun delete(course: Course)
+
+    @Query("delete from course")
+    suspend fun deleteAll()
 }

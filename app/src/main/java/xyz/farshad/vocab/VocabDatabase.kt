@@ -23,7 +23,7 @@ abstract class VocabDatabase : RoomDatabase() {
         private var instance: VocabDatabase? = null
 
         @Synchronized
-        fun getInstance(context: Context): VocabDatabase {
+        fun getDatabase(context: Context): VocabDatabase {
             if (instance == null) {
                 instance = Room.databaseBuilder(context.applicationContext,
                         VocabDatabase::class.java, "vocab_db")
