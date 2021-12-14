@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent" android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:weightSum="1"
     android:padding="0dp"
     android:orientation="vertical">
@@ -49,12 +50,12 @@
                 android:id="@+id/wordPagerMeaning"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_vertical"
-                android:textSize="15dp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:gravity="center_horizontal">
@@ -83,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Examples:"
+                    android:text="@string/examples"
                     android:id="@+id/textView" />
             </LinearLayout>
 
@@ -102,6 +103,14 @@
             </LinearLayout>
         </LinearLayout>
 
+        <Button
+            android:id="@+id/addToFav"
+            app:drawableTint="#FDD835"
+            android:layout_width="30dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:drawableStart="@drawable/ic_baseline_star_border_24" />
     </LinearLayout>
 
 </RelativeLayout>
