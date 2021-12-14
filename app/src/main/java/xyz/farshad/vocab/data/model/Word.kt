@@ -17,5 +17,5 @@ data class Word(
         val translate: String,
         @ColumnInfo(name = "level_id") val levelId: Int,
         @ColumnInfo(name = "view_count") val viewCount: Int,
-        @ColumnInfo(name = "is_favorite") val isFavorite: Boolean
+        @ColumnInfo(name = "is_favorite") var isFavorite: Boolean
 )

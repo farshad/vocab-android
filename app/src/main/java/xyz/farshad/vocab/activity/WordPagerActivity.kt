@@ -70,6 +70,9 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
         })
     }
 
+    fun addToFavorite(word: Word){
+        wordViewModel.update(word)
+    }
     private fun setPageAdopter(wordId: Int) {
         viewPager = findViewById(R.id.word_view_page)
         val wordSwipeAdapter = WordSwipeAdapter(this, words)
@@ -78,7 +81,6 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
         viewPager!!.currentItem = currentItem
         textToSpeech.speak(words[currentItem].name, TextToSpeech.QUEUE_FLUSH, null)
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -121,7 +123,7 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
 
     }
 
-    fun pageSwitcher(seconds: Int) {
+    private fun pageSwitcher(seconds: Int) {
         timer = Timer()
         timer!!.scheduleAtFixedRate(RemindTask(), 0, (seconds * 1000).toLong())
     }

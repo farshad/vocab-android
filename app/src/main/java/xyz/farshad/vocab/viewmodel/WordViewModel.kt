@@ -4,10 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import xyz.farshad.vocab.data.model.Course
-import xyz.farshad.vocab.data.model.Level
 import xyz.farshad.vocab.data.model.Word
-import xyz.farshad.vocab.data.repository.LevelRepository
 import xyz.farshad.vocab.data.repository.WordRepository
 
 /**
@@ -25,6 +22,7 @@ class WordViewModel(
             words?.value = repository.findByLevelId(levelId)
         }
     }
+
     fun fetchReviewWords() {
         viewModelScope.launch {
             words?.value = repository.fetchReviewWords()
@@ -33,5 +31,11 @@ class WordViewModel(
 
     fun watchWord(): LiveData<List<Word>>? {
         return words
+    }
+
+    fun update(word: Word) {
+        viewModelScope.launch {
+            repository.update(word)
+        }
     }
 }

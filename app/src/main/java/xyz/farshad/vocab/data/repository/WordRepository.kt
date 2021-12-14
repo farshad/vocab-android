@@ -26,4 +26,8 @@ class WordRepository(
     suspend fun fetchReviewWords(): List<Word>? {
         return dao.fetchReviewWords(true)
     }
+
+    suspend fun update(word: Word) {
+        dao.update(word)
+    }
 }

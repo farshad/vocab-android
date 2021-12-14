@@ -1,9 +1,6 @@
 package xyz.farshad.vocab.data.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import xyz.farshad.vocab.data.model.Word
 
 @Dao
@@ -20,8 +17,12 @@ interface WordDao {
     @Insert
     suspend fun insertAll(word: List<Word>)
 
+    @Update
+    suspend fun update(word: Word)
+
     @Delete
     fun delete(word: Word)
+
     @Query("delete from word")
     suspend fun deleteAll()
 }
