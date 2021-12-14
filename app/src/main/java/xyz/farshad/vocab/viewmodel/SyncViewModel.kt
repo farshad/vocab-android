@@ -30,7 +30,7 @@ class SyncViewModel(
 
     fun get() {
         viewModelScope.launch {
-            sync.postValue(Resource.Loading())
+            //sync.postValue(Resource.Loading())
             try {
                 val response = repository.get()
                 if (response.courses != null){

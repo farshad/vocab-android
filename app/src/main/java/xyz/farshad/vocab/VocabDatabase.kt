@@ -11,7 +11,7 @@ import xyz.farshad.vocab.data.model.Course
 import xyz.farshad.vocab.data.model.Level
 import xyz.farshad.vocab.data.model.Word
 
-@Database(entities = [Course::class, Level::class, Word::class], version = 1, exportSchema = false)
+@Database(entities = [Course::class, Level::class, Word::class], version = 2, exportSchema = false)
 abstract class VocabDatabase : RoomDatabase() {
 
     abstract fun courseDao(): CourseDao

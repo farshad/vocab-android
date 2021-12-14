@@ -5,7 +5,7 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.R
-import xyz.farshad.vocab.component.DataAdapter.LevelListAdapter
+import xyz.farshad.vocab.component.adapter.LevelListAdapter
 import xyz.farshad.vocab.data.model.Level
 import xyz.farshad.vocab.viewmodel.LevelViewModel
 

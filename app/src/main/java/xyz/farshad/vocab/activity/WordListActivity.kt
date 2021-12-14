@@ -5,7 +5,7 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.R
-import xyz.farshad.vocab.component.DataAdapter.WordListAdapter
+import xyz.farshad.vocab.component.adapter.WordListAdapter
 import xyz.farshad.vocab.data.model.Word
 import xyz.farshad.vocab.viewmodel.WordViewModel
 
@@ -20,10 +20,16 @@ class WordListActivity : AppCompatActivity() {
         title = "Words"
 
         val b = intent.extras
-        if (b != null && b.containsKey("levelId")) {
+        if (b != null) {
             levelName = b.getString("levelName")
-            levelId = b.get("levelId").toString().toInt()
-            wordViewModel.findByLevelId(levelId!!)
+            val isReview: Boolean = b.getBoolean("isReview")
+
+            if (isReview){
+                wordViewModel.fetchReviewWords()
+            }else{
+                levelId = b.get("levelId").toString().toInt()
+                wordViewModel.findByLevelId(levelId!!)
+            }
         }
         setToolBar()
         setObserver()

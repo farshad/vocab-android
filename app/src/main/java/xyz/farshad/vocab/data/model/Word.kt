@@ -12,8 +12,8 @@ import androidx.room.PrimaryKey
 data class Word(
         @PrimaryKey val id: Int,
         val name: String,
-        val meaning: String,
-        val example: String,
+        val meaning: String? = null,
+        val example: String? = null,
         val translate: String,
         @ColumnInfo(name = "level_id") val levelId: Int,
         @ColumnInfo(name = "view_count") val viewCount: Int,

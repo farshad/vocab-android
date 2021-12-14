@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.ViewPager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.R
-import xyz.farshad.vocab.component.DataAdapter.WordSwipeAdapter
+import xyz.farshad.vocab.component.adapter.WordSwipeAdapter
 import xyz.farshad.vocab.data.model.Word
 import xyz.farshad.vocab.databinding.ActivityWordPagerBinding
 import xyz.farshad.vocab.viewmodel.WordViewModel
@@ -21,7 +21,7 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
     private val wordViewModel: WordViewModel by viewModel()
     private lateinit var binding: ActivityWordPagerBinding
     private lateinit var textToSpeech: TextToSpeech
-    private lateinit var words: List<Word>
+    private var words: List<Word> = arrayListOf()
     private var wordId: Int? = null
     private var currentItem: Int = 0
     private var sound = true
@@ -39,10 +39,16 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
         textToSpeech.language = Locale.US
 
         val b = intent.extras
-        if (b != null && b.containsKey("wordId") && b.containsKey("levelId")) {
+        if (b != null) {
             wordId = b.getInt("wordId")
-            val levelId = b.getInt("levelId")
-            wordViewModel.findByLevelId(levelId!!.toInt())
+            val isReview: Boolean = b.getBoolean("isReview")
+
+            if (isReview){
+                wordViewModel.fetchReviewWords()
+            }else{
+                val levelId = b.getInt("levelId")
+                wordViewModel.findByLevelId(levelId!!)
+            }
             setObserver()
         }
 

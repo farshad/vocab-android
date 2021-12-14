@@ -25,6 +25,11 @@ class WordViewModel(
             words?.value = repository.findByLevelId(levelId)
         }
     }
+    fun fetchReviewWords() {
+        viewModelScope.launch {
+            words?.value = repository.fetchReviewWords()
+        }
+    }
 
     fun watchWord(): LiveData<List<Word>>? {
         return words

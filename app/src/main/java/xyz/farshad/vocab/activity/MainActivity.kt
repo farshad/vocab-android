@@ -1,5 +1,6 @@
 package xyz.farshad.vocab.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -10,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.R
-import xyz.farshad.vocab.component.DataAdapter.CourseListAdapter
+import xyz.farshad.vocab.component.adapter.CourseListAdapter
 import xyz.farshad.vocab.data.model.Course
 import xyz.farshad.vocab.viewmodel.CourseViewModel
 import xyz.farshad.vocab.viewmodel.SyncViewModel
@@ -50,10 +51,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-
-
-        if (id == R.id.action_settings) {
-            courseViewModel.fetchAll()
+        if (id == R.id.review) {
+            //start word list activity
+            val wordListIntent = Intent(this, WordListActivity::class.java)
+            wordListIntent.putExtra("isReview", true)
+            wordListIntent.putExtra("levelName", "Review word list")
+            startActivity(wordListIntent)
             return true
         }
 

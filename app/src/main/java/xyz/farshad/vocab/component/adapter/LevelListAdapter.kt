@@ -1,4 +1,4 @@
-package xyz.farshad.vocab.component.DataAdapter
+package xyz.farshad.vocab.component.adapter
 
 import android.content.Context
 import android.content.Intent

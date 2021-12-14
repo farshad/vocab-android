@@ -22,4 +22,8 @@ class WordRepository(
     suspend fun deleteAll() {
         dao.deleteAll()
     }
+
+    suspend fun fetchReviewWords(): List<Word>? {
+        return dao.fetchReviewWords(true)
+    }
 }
