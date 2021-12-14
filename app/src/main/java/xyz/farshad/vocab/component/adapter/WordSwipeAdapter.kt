@@ -48,15 +48,13 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
         val favButton = itemView.findViewById<View>(xyz.farshad.vocab.R.id.addToFav) as Button
 
         if (currentWord.isFavorite) {
-            val unwrappedDrawable = AppCompatResources.getDrawable(
+            val drawableCompat = AppCompatResources.getDrawable(
                 context,
-                xyz.farshad.vocab.R.drawable.ic_baseline_star_24
+                R.drawable.ic_baseline_star_24
             )
 
-            val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable!!)
-            wrappedDrawable.setTint(context.resources.getColor(R.color.design_default_color_error))
-            favButton.setCompoundDrawables(
-                wrappedDrawable, null, null, null
+            favButton.setCompoundDrawablesWithIntrinsicBounds(
+                drawableCompat, null, null, null
             )
         }
         wordPagerName.text = currentWord.name

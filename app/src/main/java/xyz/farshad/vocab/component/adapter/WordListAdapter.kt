@@ -15,8 +15,9 @@ import xyz.farshad.vocab.data.model.Word
 /**
  * Created by farshad on 10/2/15.
  */
-class WordListAdapter(context: Context, resource: Int, words: List<Word>) : ArrayAdapter<Word>(context, resource, words) {
-
+class WordListAdapter(context: Context, resource: Int, words: List<Word>,
+                      private val isReview: Boolean
+) : ArrayAdapter<Word>(context, resource, words) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var itemView = convertView
         if (itemView == null) {
@@ -32,6 +33,7 @@ class WordListAdapter(context: Context, resource: Int, words: List<Word>) : Arra
 
             //start word pager activity
             val wordPageIntent = Intent(context, WordPagerActivity::class.java)
+            wordPageIntent.putExtra("isReview", isReview)
             wordPageIntent.putExtra("wordId", position)
             wordPageIntent.putExtra("levelId", clickedWord!!.levelId)
             context.startActivity(wordPageIntent)

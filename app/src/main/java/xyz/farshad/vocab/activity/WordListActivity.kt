@@ -12,6 +12,7 @@ import xyz.farshad.vocab.viewmodel.WordViewModel
 class WordListActivity : AppCompatActivity() {
     private val wordViewModel: WordViewModel by viewModel()
     private var levelId: Int? = null
+    var isReview: Boolean = false
     private var levelName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,11 +23,11 @@ class WordListActivity : AppCompatActivity() {
         val b = intent.extras
         if (b != null) {
             levelName = b.getString("levelName")
-            val isReview: Boolean = b.getBoolean("isReview")
+            isReview = b.getBoolean("isReview")
 
-            if (isReview){
+            if (isReview) {
                 wordViewModel.fetchReviewWords()
-            }else{
+            } else {
                 levelId = b.get("levelId").toString().toInt()
                 wordViewModel.findByLevelId(levelId!!)
             }
@@ -47,7 +48,8 @@ class WordListActivity : AppCompatActivity() {
     }
 
     private fun showWordList(words: List<Word>) {
-        val adapter = WordListAdapter(this@WordListActivity, R.layout.word_list_view, words)
+        val adapter =
+            WordListAdapter(this@WordListActivity, R.layout.word_list_view, words, isReview)
         val list = findViewById<ListView>(R.id.wordMainListView)
         list.adapter = adapter
         list.itemsCanFocus = true
