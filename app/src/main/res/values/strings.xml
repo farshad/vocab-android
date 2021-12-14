@@ -14,8 +14,8 @@
     <string name="icon_volume_up">&#xf028;</string>
     <string name="icon_volume_off">&#xf026;</string>
     <string name="words">word(s)</string>
-    <string name="icon_star"></string>
-    <string name="icon_star_o"></string>
+    <string name="icon_star">&#xf005;</string>
+    <string name="icon_star_o">&#xf006;</string>
     <string name="title_activity_level_list">Levels List</string>
     <string name="title_activity_word_pager">Words Pager</string>
     <string name="sound_off">sound off</string>

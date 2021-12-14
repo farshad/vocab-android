@@ -30,10 +30,6 @@ class CourseListAdapter(context: Context, resource: Int, categories: List<Course
         categoryText.text = currentCourse!!.name
         val countText = itemView.findViewById<TextView>(R.id.countTextView)
 
-        val editButton = itemView.findViewById<Button>(R.id.edit)
-        val submitEditButton = itemView.findViewById<Button>(R.id.submitEditButton)
-        val bookTextView = itemView.findViewById<TextView>(R.id.bookTextView)
-
         // item click listener
         itemView.setOnClickListener {
             val clickedCourse = getItem(position)
@@ -42,24 +38,6 @@ class CourseListAdapter(context: Context, resource: Int, categories: List<Course
             val levelListIntent = Intent(context, LevelListActivity::class.java)
             levelListIntent.putExtra("courseId", clickedCourse!!.id)
             context.startActivity(levelListIntent)
-        }
-
-        //edit button click listener
-        editButton.setOnClickListener { view ->
-            val editCourse = getItem(position)
-            val parentView = view.parent.parent as View
-
-            // hide textView and edit button
-            val clickedCatTextView = parentView.findViewById<View>(R.id.catTextView) as TextView
-            clickedCatTextView.visibility = View.GONE
-            editButton.visibility = View.GONE
-
-            //show editText and submit button
-            submitEditButton.visibility = View.VISIBLE
-            val clickedCategoryEditText = parentView.findViewById<View>(R.id.categoryEditText) as EditText
-            clickedCategoryEditText.visibility = View.VISIBLE
-            clickedCategoryEditText.setText(editCourse!!.name)
-            clickedCategoryEditText.requestFocus()
         }
 
         return itemView
