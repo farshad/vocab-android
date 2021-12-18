@@ -21,6 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="12dp"
         android:drawablePadding="4dp"
         android:layout_gravity="center"
         android:drawableStart="@drawable/ic_baseline_sync_24"
