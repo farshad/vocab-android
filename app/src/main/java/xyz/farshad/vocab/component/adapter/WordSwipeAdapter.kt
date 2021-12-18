@@ -36,7 +36,7 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
 
         layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val itemView =
-            layoutInflater!!.inflate(xyz.farshad.vocab.R.layout.word_swipe_layer, container, false)
+            layoutInflater!!.inflate(R.layout.word_swipe_layer, container, false)
         val wordPagerName =
             itemView.findViewById<View>(xyz.farshad.vocab.R.id.wordPagerName) as TextView
         val wordPagerMeaning =
@@ -45,7 +45,7 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
             itemView.findViewById<View>(xyz.farshad.vocab.R.id.wordPagerTranslate) as TextView
         val wordPagerExample =
             itemView.findViewById<View>(xyz.farshad.vocab.R.id.wordPagerExample) as TextView
-        val favButton = itemView.findViewById<View>(xyz.farshad.vocab.R.id.addToFav) as Button
+        val favButton = itemView.findViewById<View>(R.id.addToFav) as Button
 
         if (currentWord.isFavorite) {
             val drawableCompat = AppCompatResources.getDrawable(

@@ -16,6 +16,10 @@ import xyz.farshad.vocab.data.model.Word
 import xyz.farshad.vocab.databinding.ActivityWordPagerBinding
 import xyz.farshad.vocab.viewmodel.WordViewModel
 import java.util.*
+import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+
+
+
 
 class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View.OnClickListener {
     private val wordViewModel: WordViewModel by viewModel()
@@ -27,7 +31,6 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
     private var sound = true
     private var speed = 3
     private lateinit var optionsMenu: Menu
-
     private var timer: Timer? = null
     private var viewPager: ViewPager? = null
 
@@ -53,7 +56,6 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
         }
 
         pageSwitcher(speed)
-        setViewPagerChangeListener()
         binding.hideTranslateButton.setOnClickListener(this)
         binding.showTranslateButton.setOnClickListener(this)
         binding.volumeUp.setOnClickListener(this)
@@ -73,13 +75,15 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
     fun addToFavorite(word: Word){
         wordViewModel.update(word)
     }
+
     private fun setPageAdopter(wordId: Int) {
+        currentItem = wordId
         viewPager = findViewById(R.id.word_view_page)
         val wordSwipeAdapter = WordSwipeAdapter(this, words)
         viewPager!!.adapter = wordSwipeAdapter
-        currentItem = wordId
         viewPager!!.currentItem = currentItem
-        textToSpeech.speak(words[currentItem].name, TextToSpeech.QUEUE_FLUSH, null)
+        setViewPagerChangeListener()
+        textToSpeech.speak(words[currentItem].name, TextToSpeech.QUEUE_FLUSH, null, null)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -119,9 +123,7 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onInit(i: Int) {
-
-    }
+    override fun onInit(i: Int) {}
 
     private fun pageSwitcher(seconds: Int) {
         timer = Timer()
@@ -141,34 +143,32 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
                 binding.showTranslateButton.setVisibility(View.VISIBLE)
                 binding.hideTranslateButton.setVisibility(View.GONE)
             }
-            R.id.volumeUp -> textToSpeech.speak(words[viewPager!!.currentItem].name, TextToSpeech.QUEUE_FLUSH, null)
+            R.id.volumeUp -> textToSpeech.speak(words[viewPager!!.currentItem].name, TextToSpeech.QUEUE_FLUSH, null, null)
             R.id.pause -> {
-                binding.play.setVisibility(View.VISIBLE)
-                binding.pause.setVisibility(View.GONE)
+                binding.play.visibility = View.VISIBLE
+                binding.pause.visibility = View.GONE
                 timer!!.cancel()
             }
             R.id.play -> {
-                binding.play.setVisibility(View.GONE)
-                binding.pause.setVisibility(View.VISIBLE)
+                binding.play.visibility = View.GONE
+                binding.pause.visibility = View.VISIBLE
                 pageSwitcher(speed)
             }
         }
     }
 
     private fun setViewPagerChangeListener() {
-        viewPager?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        viewPager?.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
                 currentItem = position
                 if (sound) {
-                    textToSpeech.speak(words[position].name, TextToSpeech.QUEUE_FLUSH, null)
+                    textToSpeech.speak(words[position].name, TextToSpeech.QUEUE_FLUSH, null, null)
                 }
             }
 
-            override fun onPageScrollStateChanged(state: Int) {
-
-            }
+            override fun onPageScrollStateChanged(state: Int) {}
         })
     }
 
@@ -182,7 +182,6 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
                     viewPager!!.currentItem = currentItem++
                 }
             }
-
         }
     }
 
