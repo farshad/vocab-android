@@ -16,10 +16,6 @@ import xyz.farshad.vocab.data.model.Word
 import xyz.farshad.vocab.databinding.ActivityWordPagerBinding
 import xyz.farshad.vocab.viewmodel.WordViewModel
 import java.util.*
-import androidx.viewpager.widget.ViewPager.OnPageChangeListener
-
-
-
 
 class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View.OnClickListener {
     private val wordViewModel: WordViewModel by viewModel()
@@ -42,6 +38,7 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
         textToSpeech.language = Locale.US
 
         val b = intent.extras
+
         if (b != null) {
             wordId = b.getInt("wordId")
             val isReview: Boolean = b.getBoolean("isReview")
@@ -50,12 +47,11 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
                 wordViewModel.fetchReviewWords()
             }else{
                 val levelId = b.getInt("levelId")
-                wordViewModel.findByLevelId(levelId!!)
+                wordViewModel.findByLevelId(levelId)
             }
             setObserver()
         }
 
-        pageSwitcher(speed)
         binding.hideTranslateButton.setOnClickListener(this)
         binding.showTranslateButton.setOnClickListener(this)
         binding.volumeUp.setOnClickListener(this)
@@ -84,6 +80,7 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
         viewPager!!.currentItem = currentItem
         setViewPagerChangeListener()
         textToSpeech.speak(words[currentItem].name, TextToSpeech.QUEUE_FLUSH, null, null)
+        pageSwitcher(speed)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
