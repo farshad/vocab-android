@@ -2,7 +2,7 @@ package xyz.farshad.vocab.component.adapter
 
 
 import android.content.Context
-import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,16 +47,8 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
             itemView.findViewById<View>(xyz.farshad.vocab.R.id.wordPagerExample) as TextView
         val favButton = itemView.findViewById<View>(R.id.addToFav) as Button
 
-        if (currentWord.isFavorite) {
-            val drawableCompat = AppCompatResources.getDrawable(
-                context,
-                R.drawable.ic_baseline_star_24
-            )
+        setStarIcon(currentWord.isFavorite, favButton)
 
-            favButton.setCompoundDrawablesWithIntrinsicBounds(
-                drawableCompat, null, null, null
-            )
-        }
         wordPagerName.text = currentWord.name
         wordPagerMeaning.text = currentWord.meaning
         wordPagerTranslate.text = currentWord.translate
@@ -65,11 +57,29 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
         favButton.setOnClickListener {
             currentWord.isFavorite = !currentWord.isFavorite
             (context as WordPagerActivity).addToFavorite(currentWord)
+            setStarIcon(currentWord.isFavorite, favButton)
         }
         itemView.tag = "word_pager$position"
         container.addView(itemView)
 
         return itemView
+    }
+
+    private fun setStarIcon(isFavorite: Boolean, favButton: Button) {
+        val drawableCompat: Drawable? = if (isFavorite) {
+            AppCompatResources.getDrawable(
+                context,
+                R.drawable.ic_baseline_star_24
+            )
+        } else {
+            AppCompatResources.getDrawable(
+                context,
+                R.drawable.ic_baseline_star_border_24
+            )
+        }
+        favButton.setCompoundDrawablesWithIntrinsicBounds(
+            drawableCompat, null, null, null
+        )
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
