@@ -21,7 +21,7 @@ class RetrofitClient() {
                 //.addHeader("Authorization", "Bearer " + getToken())
                 .build()
 
-            val auth = request.headers()["remove-token"]
+            val auth = request.headers["remove-token"]
             if (auth != null) {
                 request = request.newBuilder().removeHeader("Authorization").build()
                 request = request.newBuilder().removeHeader("remove-token").build()
