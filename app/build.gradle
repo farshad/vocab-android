@@ -10,7 +10,7 @@ android {
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-        applicationId "xyz.farshad.vocab"
+        applicationId "app.vocab"
         minSdkVersion 21
         targetSdkVersion 34
         versionCode 1
