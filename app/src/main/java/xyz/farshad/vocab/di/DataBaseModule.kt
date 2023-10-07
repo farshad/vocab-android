@@ -5,7 +5,7 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 import xyz.farshad.vocab.VocabDatabase
 import xyz.farshad.vocab.data.dao.CourseDao
-import xyz.farshad.vocab.data.dao.LevelDao
+import xyz.farshad.vocab.data.dao.ChapterDao
 import xyz.farshad.vocab.data.dao.WordDao
 
 val databaseModule = module {
@@ -13,7 +13,7 @@ val databaseModule = module {
         VocabDatabase.getDatabase(application)
 
     fun provideTokenDao(database: VocabDatabase): CourseDao = database.courseDao()
-    fun provideTagDao(database: VocabDatabase): LevelDao = database.levelDao()
+    fun provideTagDao(database: VocabDatabase): ChapterDao = database.levelDao()
     fun provideRepeatDao(database: VocabDatabase): WordDao = database.wordDao()
 
     single { provideDatabase(androidApplication()) }

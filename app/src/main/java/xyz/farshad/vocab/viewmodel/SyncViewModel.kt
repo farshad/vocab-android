@@ -1,17 +1,12 @@
 package xyz.farshad.vocab.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import io.neoattitude.defio.util.Resource
 import kotlinx.coroutines.launch
-import okhttp3.Challenge
-import xyz.farshad.vocab.data.model.Course
-import xyz.farshad.vocab.data.model.Level
 import xyz.farshad.vocab.data.model.Sync
-import xyz.farshad.vocab.data.model.Word
 import xyz.farshad.vocab.data.repository.CourseRepository
-import xyz.farshad.vocab.data.repository.LevelRepository
+import xyz.farshad.vocab.data.repository.ChapterRepository
 import xyz.farshad.vocab.data.repository.SyncRepository
 import xyz.farshad.vocab.data.repository.WordRepository
 
@@ -22,7 +17,7 @@ import xyz.farshad.vocab.data.repository.WordRepository
 class SyncViewModel(
     private val repository: SyncRepository,
     private val courseRepository: CourseRepository,
-    private val levelRepository: LevelRepository,
+    private val chapterRepository: ChapterRepository,
     private val wordRepository: WordRepository
 ) : BaseViewModel() {
 
@@ -37,9 +32,9 @@ class SyncViewModel(
                     courseRepository.deleteAll()
                     courseRepository.insertAll(response.courses!!)
                 }
-                if (response.levels != null){
-                    levelRepository.deleteAll()
-                    levelRepository.insertAll(response.levels!!)
+                if (response.chapters != null){
+                    chapterRepository.deleteAll()
+                    chapterRepository.insertAll(response.chapters!!)
                 }
                 if (response.words != null){
                     wordRepository.deleteAll()

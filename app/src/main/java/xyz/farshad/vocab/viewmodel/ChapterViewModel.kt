@@ -4,27 +4,26 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import xyz.farshad.vocab.data.model.Course
-import xyz.farshad.vocab.data.model.Level
-import xyz.farshad.vocab.data.repository.LevelRepository
+import xyz.farshad.vocab.data.model.Chapter
+import xyz.farshad.vocab.data.repository.ChapterRepository
 
 /**
  * Created by Farshad Ahangari on 8/12/21.
  * farshad.ahg@gmail.com
  */
-class LevelViewModel(
-    private val repository: LevelRepository
+class ChapterViewModel(
+    private val repository: ChapterRepository
 ) : BaseViewModel() {
 
-    private var levels: MutableLiveData<List<Level>>? = MutableLiveData()
+    private var levels: MutableLiveData<List<Chapter>>? = MutableLiveData()
 
-    fun findByCourseId(courseId: Int) {
+    fun findByCourseId(courseId: String) {
         viewModelScope.launch {
             levels?.value = repository.findByCourseId(courseId)
         }
     }
 
-    fun watchLevel(): LiveData<List<Level>>? {
+    fun watchLevel(): LiveData<List<Chapter>>? {
         return levels
     }
 }

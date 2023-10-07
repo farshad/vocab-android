@@ -5,6 +5,6 @@ package xyz.farshad.vocab.data.model
  */
 data class Sync(
     var courses: List<Course>?,
-    var levels: List<Level>?,
+    var chapters: List<Chapter>?,
     var words: List<Word>?
 )

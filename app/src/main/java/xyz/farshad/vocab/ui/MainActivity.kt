@@ -16,9 +16,9 @@ class MainActivity : BaseActivity() {
     }
 
     override fun businessLogic() {
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController: NavController = navHostFragment.navController
+//        val navHostFragment =
+//            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+//        val navController: NavController = navHostFragment.navController
 
 //        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavMenu)
 //        bottomNavigationView.setupWithNavController(navController)

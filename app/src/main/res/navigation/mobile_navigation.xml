@@ -9,5 +9,19 @@
         android:id="@+id/homeFragment"
         android:name="xyz.farshad.vocab.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_chapterFragment"
+            app:destination="@id/chapterFragment"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/chapterFragment"
+        android:name="xyz.farshad.vocab.ui.chapter.ChapterFragment"
+        android:label="fragment_chapter"
+        tools:layout="@layout/fragment_chapter" >
+        <argument
+            android:name="courseId"
+            app:argType="string" />
+    </fragment>
 </navigation>

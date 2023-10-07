@@ -1,4 +1,4 @@
-package xyz.farshad.vocab.component.adapter
+package xyz.farshad.vocab.ui.chapter
 
 import android.content.Context
 import android.content.Intent
@@ -10,12 +10,12 @@ import android.widget.TextView
 
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.activity.WordListActivity
-import xyz.farshad.vocab.data.model.Level
+import xyz.farshad.vocab.data.model.Chapter
 
 /**
  * Created by farshad on 7/15/16.
  */
-class LevelListAdapter(context: Context, textViewResourceId: Int, objects: List<Level>) : ArrayAdapter<Level>(context, textViewResourceId, objects) {
+class ChapterListAdapter(context: Context, textViewResourceId: Int, objects: List<Chapter>) : ArrayAdapter<Chapter>(context, textViewResourceId, objects) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var itemView = convertView

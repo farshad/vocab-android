@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
  * Created by farshad on 7/14/16.
  */
 @Entity
-data class Level(
-        @PrimaryKey val id: Int,
+data class Chapter(
+        @PrimaryKey val id: String,
         var name: String,
         @ColumnInfo(name = "course_id") var courseId: Int = 0
 )

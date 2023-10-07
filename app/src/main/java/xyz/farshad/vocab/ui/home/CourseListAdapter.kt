@@ -1,23 +1,18 @@
-package xyz.farshad.vocab.component.adapter
+package xyz.farshad.vocab.ui.home
 
-import android.content.Context
-import android.content.Intent
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
-
 import xyz.farshad.vocab.R
-import xyz.farshad.vocab.activity.LevelListActivity
 import xyz.farshad.vocab.data.model.Course
 
 /**
  * Created by farshad on 9/29/15.
  */
-class CourseListAdapter(context: Context, resource: Int, categories: List<Course>) : ArrayAdapter<Course>(context, resource, categories) {
+class CourseListAdapter(context: Activity, resource: Int, categories: List<Course>) : ArrayAdapter<Course>(context, resource, categories) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var itemView = convertView
@@ -34,10 +29,8 @@ class CourseListAdapter(context: Context, resource: Int, categories: List<Course
         itemView.setOnClickListener {
             val clickedCourse = getItem(position)
 
-            //start Level list activity
-            val levelListIntent = Intent(context, LevelListActivity::class.java)
-            levelListIntent.putExtra("courseId", clickedCourse!!.id)
-            context.startActivity(levelListIntent)
+//            val action = HomeFragmentDirections.actionHomeFragmentToChapterFragment(clickedCourse!!.id)
+//            Navigation.findNavController(context, R.id.nav_host_fragment).navigate(action)
         }
 
         return itemView
