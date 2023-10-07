@@ -25,7 +25,7 @@ MERGED from com.android.support:support-v4:20.0.0:17:5
 		ADDED from AndroidManifest.xml:7:9
 	android:theme
 		ADDED from AndroidManifest.xml:9:9
-activity#xyz.farshad.vocab.activity.MainActivity
+activity#xyz.farshad.vocab.ui.MainActivity
 ADDED from AndroidManifest.xml:10:9
 	android:label
 		ADDED from AndroidManifest.xml:13:13
