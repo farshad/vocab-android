@@ -8,10 +8,10 @@ import xyz.farshad.vocab.data.model.Chapter
 
 @Dao
 interface ChapterDao {
-    @Query("SELECT * FROM level")
+    @Query("SELECT * FROM chapter")
     fun getAll(): List<Chapter>
 
-    @Query("SELECT * FROM level where course_id = :courseId")
+    @Query("SELECT * FROM chapter where course_id = :courseId")
     suspend fun findByCourseId(courseId: String): List<Chapter>
 
     @Insert
@@ -20,6 +20,6 @@ interface ChapterDao {
     @Delete
     fun delete(chapter: Chapter)
 
-    @Query("delete from level")
+    @Query("delete from chapter")
     suspend fun deleteAll()
 }

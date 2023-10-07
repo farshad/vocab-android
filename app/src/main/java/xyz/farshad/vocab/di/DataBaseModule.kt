@@ -13,7 +13,7 @@ val databaseModule = module {
         VocabDatabase.getDatabase(application)
 
     fun provideTokenDao(database: VocabDatabase): CourseDao = database.courseDao()
-    fun provideTagDao(database: VocabDatabase): ChapterDao = database.levelDao()
+    fun provideTagDao(database: VocabDatabase): ChapterDao = database.chapterDao()
     fun provideRepeatDao(database: VocabDatabase): WordDao = database.wordDao()
 
     single { provideDatabase(androidApplication()) }
