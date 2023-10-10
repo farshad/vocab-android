@@ -23,11 +23,9 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>() {
     }
 
     override fun businessLogic() {
-        courseViewModel.fetchAll()
+        setExploreAdopter()
         setObserver()
-//        binding.explore.setOnClickListener {
-//
-//        }
+        courseViewModel.getCourses()
     }
 
     private fun setObserver() {
