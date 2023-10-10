@@ -6,5 +6,5 @@ import xyz.farshad.vocab.data.dto.CourseResponse
 
 interface CourseApi {
     @GET("v1/courses/")
-    suspend fun getCountries(): Response<List<CourseResponse>>
+    suspend fun getCourses(): Response<List<CourseResponse>>
 }

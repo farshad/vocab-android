@@ -1,5 +1,6 @@
 package xyz.farshad.vocab.data.repository
 
+import xyz.farshad.vocab.data.api.CourseApi
 import xyz.farshad.vocab.data.dao.CourseDao
 import xyz.farshad.vocab.data.entity.Course
 
@@ -8,12 +9,13 @@ import xyz.farshad.vocab.data.entity.Course
  * farshad.ahg@gmail.com
  */
 class CourseRepository(
-    private val dao: CourseDao
+    private val api: CourseApi,
+    private val dao: CourseDao,
 ) {
 
-    suspend fun fetchAll(): List<Course> {
-        return dao.fetchAll()
-    }
+    suspend fun getCourses() = api.getCourses()
+
+    suspend fun fetchAll() = dao.fetchAll()
 
     suspend fun insertAll(courses: List<Course>) {
         dao.insertAll(courses)

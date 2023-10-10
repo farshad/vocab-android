@@ -2,6 +2,8 @@ package xyz.farshad.vocab.ui.explore
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import io.neoattitude.defio.util.Helper.snack
+import io.neoattitude.defio.util.Resource
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.databinding.FragmentExploreBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
@@ -29,8 +31,24 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>() {
     }
 
     private fun setObserver() {
-        courseViewModel.watchCourse()?.observe(this) {
-            //showCategoryList(it)
+        courseViewModel.watchCourseResponses().observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    hideProgressBar()
+                    it.data?.let {
+                        exploreAdopter.differ.submitList(it)
+                    }
+                }
+                is Resource.Error -> {
+                    hideProgressBar()
+                    it.message?.let { message ->
+                        view?.snack(message)
+                    }
+                }
+                is Resource.Loading -> {
+                    showProgressBar()
+                }
+            }
         }
     }
 

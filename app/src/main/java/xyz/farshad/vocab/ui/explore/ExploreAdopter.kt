@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import xyz.farshad.vocab.data.entity.Course
+import xyz.farshad.vocab.data.dto.CourseResponse
 import xyz.farshad.vocab.databinding.ExploreItemBinding
 
 class ExploreAdopter : RecyclerView.Adapter<ExploreAdopter.IconViewHolder>() {
@@ -15,12 +15,12 @@ class ExploreAdopter : RecyclerView.Adapter<ExploreAdopter.IconViewHolder>() {
     inner class IconViewHolder(val binding: ExploreItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    private val differCallback = object : DiffUtil.ItemCallback<Course>() {
-        override fun areItemsTheSame(oldItem: Course, newItem: Course): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<CourseResponse>() {
+        override fun areItemsTheSame(oldItem: CourseResponse, newItem: CourseResponse): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean {
+        override fun areContentsTheSame(oldItem: CourseResponse, newItem: CourseResponse): Boolean {
             return oldItem.equals(newItem)
         }
     }
@@ -42,19 +42,19 @@ class ExploreAdopter : RecyclerView.Adapter<ExploreAdopter.IconViewHolder>() {
         return differ.currentList.size
     }
 
-    private var onItemClickListener: ((Course) -> Unit)? = null
+    private var onItemClickListener: ((CourseResponse) -> Unit)? = null
 
     override fun onBindViewHolder(holder: IconViewHolder, position: Int) {
         val item = differ.currentList[position]
         holder.binding.apply {
-            catTextView.text = item.name
+            title.text = item.title
         }
         holder.binding.courseLy.setOnClickListener {
             onItemClickListener?.let { it(item) }
         }
     }
 
-    fun setOnItemClickListener(listener: (Course) -> Unit) {
+    fun setOnItemClickListener(listener: (CourseResponse) -> Unit) {
         onItemClickListener = listener
     }
 }
