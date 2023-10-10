@@ -1,4 +1,4 @@
-package xyz.farshad.vocab.data.model
+package xyz.farshad.vocab.data.entity
 
 /**
  * Created by farshad on 9/29/15.

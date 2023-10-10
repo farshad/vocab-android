@@ -10,11 +10,10 @@ import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.viewpager.widget.PagerAdapter
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.activity.WordPagerActivity
-import xyz.farshad.vocab.data.model.Word
+import xyz.farshad.vocab.data.entity.Word
 
 
 /**

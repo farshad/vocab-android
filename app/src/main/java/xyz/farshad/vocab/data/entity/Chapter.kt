@@ -1,4 +1,4 @@
-package xyz.farshad.vocab.data.model
+package xyz.farshad.vocab.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

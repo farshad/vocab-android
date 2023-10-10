@@ -1,7 +1,7 @@
 package xyz.farshad.vocab.data.repository
 
 import xyz.farshad.vocab.data.dao.ChapterDao
-import xyz.farshad.vocab.data.model.Chapter
+import xyz.farshad.vocab.data.entity.Chapter
 
 /**
  * Created by Farshad Ahangari on 8/12/21.

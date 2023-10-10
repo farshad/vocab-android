@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.R
-import xyz.farshad.vocab.data.model.Chapter
+import xyz.farshad.vocab.data.entity.Chapter
 import xyz.farshad.vocab.databinding.FragmentChapterBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.ChapterViewModel

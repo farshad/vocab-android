@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import xyz.farshad.vocab.data.model.Course
+import xyz.farshad.vocab.data.entity.Course
 import xyz.farshad.vocab.databinding.CourseItemBinding
 
 class CourseAdopter : RecyclerView.Adapter<CourseAdopter.IconViewHolder>() {

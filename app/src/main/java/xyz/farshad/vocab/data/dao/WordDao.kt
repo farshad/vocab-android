@@ -1,7 +1,7 @@
 package xyz.farshad.vocab.data.dao
 
 import androidx.room.*
-import xyz.farshad.vocab.data.model.Word
+import xyz.farshad.vocab.data.entity.Word
 
 @Dao
 interface WordDao {

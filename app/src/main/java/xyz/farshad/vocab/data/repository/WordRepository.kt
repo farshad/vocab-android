@@ -1,7 +1,7 @@
 package xyz.farshad.vocab.data.repository
 
 import xyz.farshad.vocab.data.dao.WordDao
-import xyz.farshad.vocab.data.model.Word
+import xyz.farshad.vocab.data.entity.Word
 
 /**
  * Created by Farshad Ahangari on 8/12/21.

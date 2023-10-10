@@ -1,7 +1,7 @@
 package xyz.farshad.vocab.data.repository
 
 import xyz.farshad.vocab.data.dao.CourseDao
-import xyz.farshad.vocab.data.model.Course
+import xyz.farshad.vocab.data.entity.Course
 
 /**
  * Created by Farshad Ahangari on 8/12/21.

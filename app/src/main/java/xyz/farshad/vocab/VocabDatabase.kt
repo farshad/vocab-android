@@ -7,9 +7,9 @@ import androidx.room.RoomDatabase
 import xyz.farshad.vocab.data.dao.ChapterDao
 import xyz.farshad.vocab.data.dao.CourseDao
 import xyz.farshad.vocab.data.dao.WordDao
-import xyz.farshad.vocab.data.model.Chapter
-import xyz.farshad.vocab.data.model.Course
-import xyz.farshad.vocab.data.model.Word
+import xyz.farshad.vocab.data.entity.Chapter
+import xyz.farshad.vocab.data.entity.Course
+import xyz.farshad.vocab.data.entity.Word
 
 @Database(entities = [Course::class, Chapter::class, Word::class], version = 3, exportSchema = false)
 abstract class VocabDatabase : RoomDatabase() {

@@ -10,6 +10,7 @@ import xyz.farshad.vocab.viewmodel.CourseViewModel
 class ExploreFragment : BaseFragment<FragmentExploreBinding>() {
 
     private val courseViewModel: CourseViewModel by viewModel()
+    private lateinit var exploreAdopter: ExploreAdopter
 
     override fun setViewBinding(
         inflater: LayoutInflater,
@@ -31,6 +32,20 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>() {
         courseViewModel.watchCourse()?.observe(this) {
             //showCategoryList(it)
         }
+    }
+
+    private fun setExploreAdopter() {
+        exploreAdopter = ExploreAdopter()
+        binding.rvExplore.apply {
+            adapter = exploreAdopter
+        }
+
+//        countryAdopter.bookmark {
+//            val newIndex = countryPairs.indexOf(it)
+//            countryPairs[newIndex].country.bookmarked = !it.country.bookmarked!!
+//            countryAdopter.notifyItemChanged(newIndex)
+//            countryViewModel.update(countryPairs[newIndex].country)
+//        }
     }
 
 }

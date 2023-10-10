@@ -12,7 +12,7 @@ import androidx.viewpager.widget.ViewPager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.component.adapter.WordSwipeAdapter
-import xyz.farshad.vocab.data.model.Word
+import xyz.farshad.vocab.data.entity.Word
 import xyz.farshad.vocab.databinding.ActivityWordPagerBinding
 import xyz.farshad.vocab.viewmodel.WordViewModel
 import java.util.*

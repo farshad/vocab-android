@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import xyz.farshad.vocab.data.model.Chapter
+import xyz.farshad.vocab.data.entity.Chapter
 import xyz.farshad.vocab.data.repository.ChapterRepository
 
 /**
