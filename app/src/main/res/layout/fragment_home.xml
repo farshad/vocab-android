@@ -17,7 +17,7 @@
         android:descendantFocusability="afterDescendants" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/import_file"
+        android:id="@+id/explore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cornerRadius="24dp"

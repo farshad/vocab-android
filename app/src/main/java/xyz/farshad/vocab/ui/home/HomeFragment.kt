@@ -2,6 +2,7 @@ package xyz.farshad.vocab.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.NavHostFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.databinding.FragmentHomeBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
@@ -24,9 +25,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun businessLogic() {
         courseViewModel.fetchAll()
         setObserver()
-//        binding.explore.setOnClickListener {
-//
-//        }
+        binding.explore.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToExploreFragment()
+            NavHostFragment.findNavController(this).navigate(action)
+        }
     }
 
     private fun setObserver() {

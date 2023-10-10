@@ -14,6 +14,9 @@
             android:id="@+id/action_homeFragment_to_chapterFragment"
             app:destination="@id/chapterFragment"
             app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
     </fragment>
     <fragment
         android:id="@+id/chapterFragment"
@@ -24,4 +27,9 @@
             android:name="courseId"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="xyz.farshad.vocab.ui.explore.ExploreFragment"
+        android:label="fragment_explore"
+        tools:layout="@layout/fragment_explore" />
 </navigation>
