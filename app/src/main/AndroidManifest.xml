@@ -9,14 +9,15 @@
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
-        android:fullBackupContent="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="false"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:targetApi="m">
+        android:theme="@style/Theme.Vocab"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="34">
 
         <meta-data
             android:name="DATABASE"
@@ -31,10 +32,6 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="xyz.farshad.vocab.model" />
 
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
-
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
@@ -48,10 +45,6 @@
         <activity
             android:name=".activity.WordListActivity"
             android:label="@string/title_activity_word"
-            android:launchMode="singleTop" />
-        <activity
-            android:name=".activity.LevelListActivity"
-            android:label="@string/title_activity_level_list"
             android:launchMode="singleTop" />
         <activity
             android:name=".activity.WordPagerActivity"
