@@ -14,7 +14,7 @@ import xyz.farshad.vocab.data.repository.CourseRepository
  * farshad.ahg@gmail.com
  */
 class CourseViewModel(
-    private val repository: CourseRepository
+    private val repository: CourseRepository,
 ) : BaseViewModel() {
 
     private var courses: MutableLiveData<List<Course>>? = MutableLiveData()
@@ -37,15 +37,20 @@ class CourseViewModel(
 
     fun getById(id: String) {
         viewModelScope.launch {
-            viewModelScope.launch {
-                isAdded.postValue(Resource.Loading())
-                try {
-                    val response = repository.getById(id)
+            isAdded.postValue(Resource.Loading())
 
+            try {
+                val response = repository.getById(id)
+                if (response.isSuccessful) {
+                    val courseResponse: CourseResponse = response.body()!!
+                    val course = courseResponse.toEntity(courseResponse)
+                    repository.insertAll(listOf(course))
                     isAdded.postValue(Resource.Success(true))
-                } catch (t: Throwable) {
-                    isAdded.postValue(Resource.Error(t.message!!))
+                } else {
+                    isAdded.postValue(Resource.Error("Failed to get data: ${response.message()}"))
                 }
+            } catch (t: Throwable) {
+                isAdded.postValue(Resource.Error(t.message ?: "Unknown error"))
             }
         }
     }

@@ -1,5 +1,6 @@
 package xyz.farshad.vocab.data.dto
 
+import xyz.farshad.vocab.data.entity.Course
 import java.io.Serializable
 
 data class CourseResponse(
@@ -9,4 +10,14 @@ data class CourseResponse(
     var description: String? = null,
     var courseType: CourseType? = null,
     var chapters: List<ChapterResponse>? = null,
-) : Serializable
+) : Serializable {
+    fun toEntity(dto: CourseResponse): Course {
+        return Course(
+           null,
+            dto.id!!,
+            dto.version!!,
+            dto.title!!,
+            dto.description!!
+        )
+    }
+}

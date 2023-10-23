@@ -8,6 +8,9 @@ import androidx.room.PrimaryKey
  */
 @Entity
 data class Course(
-        @PrimaryKey val id: Int,
-        var name: String
+        @PrimaryKey val id: Int?,
+        var serverId: String,
+        var version: Int,
+        var title: String,
+        var description: String,
 )
