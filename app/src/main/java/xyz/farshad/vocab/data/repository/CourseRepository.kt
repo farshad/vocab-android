@@ -13,7 +13,8 @@ class CourseRepository(
     private val dao: CourseDao,
 ) {
 
-    suspend fun getCourses() = api.getCourses()
+    suspend fun getById(id: String) = api.getById(id)
+    suspend fun getAll() = api.getAll()
 
     suspend fun fetchAll() = dao.fetchAll()
 

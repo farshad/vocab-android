@@ -19,27 +19,32 @@ class CourseViewModel(
 
     private var courses: MutableLiveData<List<Course>>? = MutableLiveData()
     private val courseResponses: MutableLiveData<Resource<List<CourseResponse>>> = MutableLiveData()
-    private var isAdded: MutableLiveData<Boolean> = MutableLiveData()
+    private var isAdded: MutableLiveData<Resource<Boolean>> = MutableLiveData()
 
-//    fun insert(goalPair: GoalPair) = viewModelScope.launch {
-//        val id = repository.insert(goalPair.goal)
-//
-//        if (goalPair.tasks != null) {
-//            goalPair.tasks.forEach { it.goalId = id }
-//            taskRepository.insert(goalPair.tasks)
-//        }
-//        isAdded.postValue(true)
-//    }
-
-    fun getCourses() {
+    fun getAll() {
         viewModelScope.launch {
             viewModelScope.launch {
                 courseResponses.postValue(Resource.Loading())
                 try {
-                    val response = repository.getCourses()
+                    val response = repository.getAll()
                     courseResponses.postValue(handleResponse(response))
                 } catch (t: Throwable) {
                     courseResponses.postValue(Resource.Error(t.message!!))
+                }
+            }
+        }
+    }
+
+    fun getById(id: String) {
+        viewModelScope.launch {
+            viewModelScope.launch {
+                isAdded.postValue(Resource.Loading())
+                try {
+                    val response = repository.getById(id)
+
+                    isAdded.postValue(Resource.Success(true))
+                } catch (t: Throwable) {
+                    isAdded.postValue(Resource.Error(t.message!!))
                 }
             }
         }
@@ -51,7 +56,7 @@ class CourseViewModel(
         }
     }
 
-    fun watchCourse(): LiveData<List<Course>>? {
+    fun watchCourses(): LiveData<List<Course>>? {
         return courses
     }
 
@@ -59,7 +64,7 @@ class CourseViewModel(
         return courseResponses
     }
 
-    fun watchIsAdded(): MutableLiveData<Boolean> {
+    fun watchIsAdded(): MutableLiveData<Resource<Boolean>> {
         return isAdded
     }
 }

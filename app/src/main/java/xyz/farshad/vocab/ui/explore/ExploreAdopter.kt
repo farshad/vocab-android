@@ -43,6 +43,7 @@ class ExploreAdopter : RecyclerView.Adapter<ExploreAdopter.IconViewHolder>() {
     }
 
     private var onItemClickListener: ((CourseResponse) -> Unit)? = null
+    private var onDownloadClickListener: ((String) -> Unit)? = null
 
     override fun onBindViewHolder(holder: IconViewHolder, position: Int) {
         val item = differ.currentList[position]
@@ -52,10 +53,17 @@ class ExploreAdopter : RecyclerView.Adapter<ExploreAdopter.IconViewHolder>() {
         holder.binding.courseLy.setOnClickListener {
             onItemClickListener?.let { it(item) }
         }
+        holder.binding.download.setOnClickListener {
+            onDownloadClickListener?.let { it(item.id!!) }
+        }
     }
 
     fun setOnItemClickListener(listener: (CourseResponse) -> Unit) {
         onItemClickListener = listener
+    }
+
+    fun setOnDownloadClickListener(listener: (String) -> Unit) {
+        onDownloadClickListener = listener
     }
 }
 

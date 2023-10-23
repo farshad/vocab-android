@@ -20,12 +20,13 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>() {
     ): FragmentExploreBinding = FragmentExploreBinding.inflate(inflater, container, false)
 
     override fun bindView() {
+        progressLoading = binding.progressBar
     }
 
     override fun businessLogic() {
         setExploreAdopter()
         setObserver()
-        courseViewModel.getCourses()
+        courseViewModel.getAll()
     }
 
     private fun setObserver() {
@@ -48,6 +49,23 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>() {
                 }
             }
         }
+
+        courseViewModel.watchIsAdded().observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    hideProgressBar()
+                }
+                is Resource.Error -> {
+                    hideProgressBar()
+                    it.message?.let { message ->
+                        view?.snack(message)
+                    }
+                }
+                is Resource.Loading -> {
+                    showProgressBar()
+                }
+            }
+        }
     }
 
     private fun setExploreAdopter() {
@@ -56,12 +74,8 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>() {
             adapter = exploreAdopter
         }
 
-//        countryAdopter.bookmark {
-//            val newIndex = countryPairs.indexOf(it)
-//            countryPairs[newIndex].country.bookmarked = !it.country.bookmarked!!
-//            countryAdopter.notifyItemChanged(newIndex)
-//            countryViewModel.update(countryPairs[newIndex].country)
-//        }
+        exploreAdopter.setOnDownloadClickListener {
+            courseViewModel.getById(it)
+        }
     }
-
 }

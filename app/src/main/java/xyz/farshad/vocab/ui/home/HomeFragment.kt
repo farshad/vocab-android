@@ -32,7 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun setObserver() {
-        courseViewModel.watchCourse()?.observe(this) {
+        courseViewModel.watchCourses()?.observe(this) {
             //showCategoryList(it)
         }
 
