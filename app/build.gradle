@@ -26,7 +26,7 @@ android {
             multiDexEnabled true
         }
         debug {
-            buildConfigField "String", "BASE_URL", "\"http://192.168.119.55:8080/api/\""
+            buildConfigField "String", "BASE_URL", "\"http://192.168.91.55:8080/api/\""
             matchingFallbacks = ['release']
         }
     }
@@ -53,7 +53,7 @@ repositories {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

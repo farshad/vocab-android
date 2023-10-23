@@ -21,7 +21,7 @@ class ExploreAdopter : RecyclerView.Adapter<ExploreAdopter.IconViewHolder>() {
         }
 
         override fun areContentsTheSame(oldItem: CourseResponse, newItem: CourseResponse): Boolean {
-            return oldItem.equals(newItem)
+            return oldItem == newItem
         }
     }
 

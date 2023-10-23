@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/courseLy"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:layout_marginBottom="16dp">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="8dp"
         android:layout_weight="1"
         android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/title"
@@ -22,7 +25,7 @@
             android:layout_marginTop="0dp"
             android:drawablePadding="5dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="17sp"
+            android:textSize="16sp"
             app:drawableLeftCompat="@drawable/ic_baseline_library_books_24"
             tools:text="Category" />
 
@@ -34,9 +37,19 @@
             android:layout_marginTop="8dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/text_color"
-            android:textSize="14sp"
+            android:textSize="12sp"
+            android:visibility="gone"
             tools:text="description ..." />
 
     </LinearLayout>
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:contentDescription="@string/image_desc"
+        android:src="@drawable/baseline_cloud_download_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
