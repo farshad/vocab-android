@@ -7,12 +7,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 import xyz.farshad.vocab.BuildConfig
 import xyz.farshad.vocab.data.api.CourseApi
 import xyz.farshad.vocab.data.api.RetrofitClient
+import xyz.farshad.vocab.data.api.SelectionApi
 import xyz.farshad.vocab.data.api.SyncApi
 
 val networkModule = module {
     single { provideRetrofit() }
     single { createApiService<SyncApi>(get()) }
     single { createApiService<CourseApi>(get()) }
+    single { createApiService<SelectionApi>(get()) }
 }
 
 private fun provideRetrofit(): Retrofit {

@@ -75,7 +75,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>() {
         }
 
         exploreAdopter.setOnDownloadClickListener {
-            courseViewModel.getById(it)
+            courseViewModel.addToSelection(it)
         }
     }
 }

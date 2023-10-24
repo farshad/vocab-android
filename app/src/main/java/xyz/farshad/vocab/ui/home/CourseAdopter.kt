@@ -47,7 +47,7 @@ class CourseAdopter : RecyclerView.Adapter<CourseAdopter.IconViewHolder>() {
     override fun onBindViewHolder(holder: IconViewHolder, position: Int) {
         val item = differ.currentList[position]
         holder.binding.apply {
-            catTextView.text = item.name
+            catTextView.text = item.title
         }
         holder.binding.courseLy.setOnClickListener {
             onItemClickListener?.let { it(item) }

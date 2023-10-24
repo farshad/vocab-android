@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import xyz.farshad.vocab.data.dto.CourseResponse
 import xyz.farshad.vocab.data.entity.Course
 import xyz.farshad.vocab.data.repository.CourseRepository
+import xyz.farshad.vocab.data.repository.SelectionRepository
 
 /**
  * Created by Farshad Ahangari on 8/12/21.
@@ -15,6 +16,7 @@ import xyz.farshad.vocab.data.repository.CourseRepository
  */
 class CourseViewModel(
     private val repository: CourseRepository,
+    private val selectionRepository: SelectionRepository,
 ) : BaseViewModel() {
 
     private var courses: MutableLiveData<List<Course>>? = MutableLiveData()
@@ -35,12 +37,12 @@ class CourseViewModel(
         }
     }
 
-    fun getById(id: String) {
+    fun addToSelection(courseId: String) {
         viewModelScope.launch {
             isAdded.postValue(Resource.Loading())
 
             try {
-                val response = repository.getById(id)
+                val response = selectionRepository.add(courseId)
                 if (response.isSuccessful) {
                     val courseResponse: CourseResponse = response.body()!!
                     val course = courseResponse.toEntity(courseResponse)
