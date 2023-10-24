@@ -10,12 +10,12 @@ import androidx.room.PrimaryKey
  */
 @Entity
 data class Word(
-        @PrimaryKey val id: Int,
-        val name: String,
-        val meaning: String? = null,
-        val example: String? = null,
-        val translate: String,
-        @ColumnInfo(name = "level_id") val levelId: Int,
-        @ColumnInfo(name = "view_count") val viewCount: Int,
-        @ColumnInfo(name = "is_favorite") var isFavorite: Boolean
+    @PrimaryKey val id: Int?,
+    var serverId: String?,
+    var version: Int?,
+    val title: String,
+    val translate: String,
+    val example: String? = null,
+    @ColumnInfo(name = "chapter_id") val chapterId: Int,
+    @ColumnInfo(name = "view_count") val viewCount: Int?,
 )

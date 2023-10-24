@@ -1,9 +1,6 @@
 package xyz.farshad.vocab.data.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import xyz.farshad.vocab.data.entity.Chapter
 
 @Dao
@@ -16,6 +13,9 @@ interface ChapterDao {
 
     @Insert
     suspend fun insertAll(chapter: List<Chapter>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(chapter: Chapter): Long
 
     @Delete
     fun delete(chapter: Chapter)

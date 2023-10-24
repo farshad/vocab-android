@@ -26,7 +26,7 @@ class ChapterListAdapter(context: Context, textViewResourceId: Int, objects: Lis
         val currentLevel = getItem(position)
 
         val levelText = itemView!!.findViewById<TextView>(R.id.level_name_txt)
-        levelText.text = currentLevel!!.name
+        levelText.text = currentLevel!!.title
 
         // item click listener
         itemView.setOnClickListener { view ->
@@ -35,7 +35,7 @@ class ChapterListAdapter(context: Context, textViewResourceId: Int, objects: Lis
             //start word list activity
             val wordListIntent = Intent(context, WordListActivity::class.java)
             wordListIntent.putExtra("levelId", clickedLevel!!.id)
-            wordListIntent.putExtra("levelName", clickedLevel.name)
+            wordListIntent.putExtra("levelName", clickedLevel.title)
             context.startActivity(wordListIntent)
         }
 

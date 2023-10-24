@@ -9,7 +9,9 @@ import androidx.room.PrimaryKey
  */
 @Entity
 data class Chapter(
-        @PrimaryKey val id: String,
-        var name: String,
-        @ColumnInfo(name = "course_id") var courseId: Int = 0
+        @PrimaryKey val id: Int?,
+        var serverId: String?,
+        var version: Int?,
+        var title: String,
+        @ColumnInfo(name = "course_id") var courseId: Int = 0,
 )

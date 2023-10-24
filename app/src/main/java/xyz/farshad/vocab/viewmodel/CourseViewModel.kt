@@ -7,15 +7,20 @@ import io.neoattitude.defio.util.Resource
 import kotlinx.coroutines.launch
 import xyz.farshad.vocab.data.dto.CourseResponse
 import xyz.farshad.vocab.data.entity.Course
+import xyz.farshad.vocab.data.repository.ChapterRepository
 import xyz.farshad.vocab.data.repository.CourseRepository
 import xyz.farshad.vocab.data.repository.SelectionRepository
+import xyz.farshad.vocab.data.repository.WordRepository
 
 /**
  * Created by Farshad Ahangari on 8/12/21.
  * farshad.ahg@gmail.com
  */
+@Suppress("NAME_SHADOWING")
 class CourseViewModel(
     private val repository: CourseRepository,
+    private val chapterRepository: ChapterRepository,
+    private val wordRepository: WordRepository,
     private val selectionRepository: SelectionRepository,
 ) : BaseViewModel() {
 
@@ -46,7 +51,16 @@ class CourseViewModel(
                 if (response.isSuccessful) {
                     val courseResponse: CourseResponse = response.body()!!
                     val course = courseResponse.toEntity(courseResponse)
-                    repository.insertAll(listOf(course))
+                    val courseId = repository.insert(course)
+                    courseResponse.chapters?.forEach {
+                        val chapter = it.toEntity(it, courseId)
+                        val chapterId = chapterRepository.insert(chapter)
+                        it.words?.forEach { w ->
+                            val word = w.toEntity(w, chapterId)
+                            wordRepository.insert(word)
+                        }
+                    }
+
                     isAdded.postValue(Resource.Success(true))
                 } else {
                     isAdded.postValue(Resource.Error("Failed to get data: ${response.message()}"))

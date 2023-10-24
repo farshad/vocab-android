@@ -1,9 +1,6 @@
 package xyz.farshad.vocab.data.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import xyz.farshad.vocab.data.entity.Course
 
 @Dao
@@ -13,6 +10,9 @@ interface CourseDao {
 
     @Insert
     suspend fun insertAll(courses: List<Course>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(course: Course): Long
 
     @Delete
     suspend fun delete(course: Course)

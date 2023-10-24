@@ -26,7 +26,7 @@ class WordListAdapter(context: Context, resource: Int, words: List<Word>,
         val currentWord = getItem(position)
 
         val word_name_txt = itemView!!.findViewById<TextView>(R.id.word_name_txt)
-        word_name_txt.text = currentWord!!.name
+        word_name_txt.text = currentWord!!.title
 
         itemView.setOnClickListener { view ->
             val clickedWord = getItem(position)
@@ -35,7 +35,7 @@ class WordListAdapter(context: Context, resource: Int, words: List<Word>,
             val wordPageIntent = Intent(context, WordPagerActivity::class.java)
             wordPageIntent.putExtra("isReview", isReview)
             wordPageIntent.putExtra("wordId", position)
-            wordPageIntent.putExtra("levelId", clickedWord!!.levelId)
+            wordPageIntent.putExtra("levelId", clickedWord!!.chapterId)
             context.startActivity(wordPageIntent)
         }
 

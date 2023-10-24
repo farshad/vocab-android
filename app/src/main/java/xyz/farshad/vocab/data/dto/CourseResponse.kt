@@ -15,9 +15,9 @@ data class CourseResponse(
         return Course(
            null,
             dto.id!!,
-            dto.version!!,
+            dto.version,
             dto.title!!,
-            dto.description!!
+            dto.description
         )
     }
 }

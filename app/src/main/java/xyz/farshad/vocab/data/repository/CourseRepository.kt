@@ -14,9 +14,12 @@ class CourseRepository(
 ) {
 
     suspend fun getById(id: String) = api.getById(id)
+
     suspend fun getAll() = api.getAll()
 
     suspend fun fetchAll() = dao.fetchAll()
+
+    suspend fun insert(course: Course) = dao.insert(course)
 
     suspend fun insertAll(courses: List<Course>) {
         dao.insertAll(courses)

@@ -15,6 +15,8 @@ class ChapterRepository(
         return dao.findByCourseId(courseId)
     }
 
+    suspend fun insert(chapter: Chapter) = dao.insert(chapter)
+
     suspend fun insertAll(chapters: List<Chapter>) {
         dao.insertAll(chapters)
     }

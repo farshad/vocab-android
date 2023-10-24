@@ -79,7 +79,7 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
         viewPager!!.adapter = wordSwipeAdapter
         viewPager!!.currentItem = currentItem
         setViewPagerChangeListener()
-        textToSpeech.speak(words[currentItem].name, TextToSpeech.QUEUE_FLUSH, null, null)
+        textToSpeech.speak(words[currentItem].title, TextToSpeech.QUEUE_FLUSH, null, null)
         pageSwitcher(speed)
     }
 
@@ -140,7 +140,7 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
                 binding.showTranslateButton.setVisibility(View.VISIBLE)
                 binding.hideTranslateButton.setVisibility(View.GONE)
             }
-            R.id.volumeUp -> textToSpeech.speak(words[viewPager!!.currentItem].name, TextToSpeech.QUEUE_FLUSH, null, null)
+            R.id.volumeUp -> textToSpeech.speak(words[viewPager!!.currentItem].title, TextToSpeech.QUEUE_FLUSH, null, null)
             R.id.pause -> {
                 binding.play.visibility = View.VISIBLE
                 binding.pause.visibility = View.GONE
@@ -161,7 +161,7 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
             override fun onPageSelected(position: Int) {
                 currentItem = position
                 if (sound) {
-                    textToSpeech.speak(words[position].name, TextToSpeech.QUEUE_FLUSH, null, null)
+                    textToSpeech.speak(words[position].title, TextToSpeech.QUEUE_FLUSH, null, null)
                 }
             }
 

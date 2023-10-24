@@ -46,17 +46,16 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
             itemView.findViewById<View>(xyz.farshad.vocab.R.id.wordPagerExample) as TextView
         val favButton = itemView.findViewById<View>(R.id.addToFav) as Button
 
-        setStarIcon(currentWord.isFavorite, favButton)
+        setStarIcon(false, favButton)
 
-        wordPagerName.text = currentWord.name
-        wordPagerMeaning.text = currentWord.meaning
+        wordPagerName.text = currentWord.title
         wordPagerTranslate.text = currentWord.translate
         wordPagerExample.text = currentWord.example
 
         favButton.setOnClickListener {
-            currentWord.isFavorite = !currentWord.isFavorite
+            //currentWord.isFavorite = !currentWord.isFavorite
             (context as WordPagerActivity).addToFavorite(currentWord)
-            setStarIcon(currentWord.isFavorite, favButton)
+//            setStarIcon(currentWord.isFavorite, favButton)
         }
         itemView.tag = "word_pager$position"
         container.addView(itemView)

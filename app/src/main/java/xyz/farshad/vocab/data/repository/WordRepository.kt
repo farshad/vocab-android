@@ -12,8 +12,10 @@ class WordRepository(
 ) {
 
     suspend fun findByLevelId(levelId: Int): List<Word> {
-        return dao.findByLevelId(levelId)
+        return dao.findByChapterId(levelId)
     }
+
+    suspend fun insert(word: Word) = dao.insert(word)
 
     suspend fun insertAll(words: List<Word>) {
         dao.insertAll(words)
@@ -24,7 +26,7 @@ class WordRepository(
     }
 
     suspend fun fetchReviewWords(): List<Word>? {
-        return dao.fetchReviewWords(true)
+        return dao.fetchReviewWords()
     }
 
     suspend fun update(word: Word) {
