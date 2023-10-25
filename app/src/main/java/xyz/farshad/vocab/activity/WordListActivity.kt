@@ -1,12 +1,9 @@
 package xyz.farshad.vocab.activity
 
 import android.os.Bundle
-import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.R
-import xyz.farshad.vocab.component.adapter.WordListAdapter
-import xyz.farshad.vocab.data.entity.Word
 import xyz.farshad.vocab.viewmodel.WordViewModel
 
 class WordListActivity : AppCompatActivity() {
@@ -37,21 +34,10 @@ class WordListActivity : AppCompatActivity() {
     }
 
     private fun setObserver() {
-        wordViewModel.watchWord()?.observe(this, {
-            showWordList(it)
-        })
     }
 
     private fun setToolBar() {
         val toolbar = supportActionBar
         toolbar!!.title = "Words of " + levelName!!
-    }
-
-    private fun showWordList(words: List<Word>) {
-        val adapter =
-            WordListAdapter(this@WordListActivity, R.layout.word_list_view, words, isReview)
-        val list = findViewById<ListView>(R.id.wordMainListView)
-        list.adapter = adapter
-        list.itemsCanFocus = true
     }
 }

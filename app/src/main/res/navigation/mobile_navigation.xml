@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="xyz.farshad.vocab.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_chapterFragment"
             app:destination="@id/chapterFragment"
@@ -22,14 +22,26 @@
         android:id="@+id/chapterFragment"
         android:name="xyz.farshad.vocab.ui.chapter.ChapterFragment"
         android:label="fragment_chapter"
-        tools:layout="@layout/fragment_chapter" >
+        tools:layout="@layout/fragment_chapter">
         <argument
             android:name="courseId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_chapterFragment_to_wordFragment"
+            app:destination="@id/wordFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
         android:name="xyz.farshad.vocab.ui.explore.ExploreFragment"
         android:label="fragment_explore"
         tools:layout="@layout/fragment_explore" />
+    <fragment
+        android:id="@+id/wordFragment"
+        android:name="xyz.farshad.vocab.ui.word.WordFragment"
+        android:label="fragment_word"
+        tools:layout="@layout/fragment_word">
+        <argument
+            android:name="chapterId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

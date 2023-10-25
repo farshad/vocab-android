@@ -7,7 +7,6 @@ import androidx.navigation.fragment.navArgs
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.databinding.FragmentChapterBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
-import xyz.farshad.vocab.ui.home.HomeFragmentDirections
 import xyz.farshad.vocab.viewmodel.ChapterViewModel
 
 class ChapterFragment : BaseFragment<FragmentChapterBinding>() {
@@ -43,7 +42,7 @@ class ChapterFragment : BaseFragment<FragmentChapterBinding>() {
         }
 
         chapterAdopter.setOnItemClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToChapterFragment(it.id!!)
+            val action = ChapterFragmentDirections.actionChapterFragmentToWordFragment(it.id!!)
             NavHostFragment.findNavController(this).navigate(action)
         }
     }
