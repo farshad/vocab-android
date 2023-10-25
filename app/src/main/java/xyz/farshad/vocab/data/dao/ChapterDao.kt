@@ -9,7 +9,7 @@ interface ChapterDao {
     fun getAll(): List<Chapter>
 
     @Query("SELECT * FROM chapter where course_id = :courseId")
-    suspend fun findByCourseId(courseId: String): List<Chapter>
+    suspend fun findByCourseId(courseId: Int): List<Chapter>
 
     @Insert
     suspend fun insertAll(chapter: List<Chapter>)

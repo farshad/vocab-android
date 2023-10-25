@@ -49,9 +49,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             adapter = courseAdopter
         }
 
-//        courseAdopter.setOnDownloadClickListener {
-//            courseViewModel.addToSelection(it)
-//        }
+        courseAdopter.setOnItemClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToChapterFragment(it.id!!)
+            NavHostFragment.findNavController(this).navigate(action)
+        }
     }
 
 }

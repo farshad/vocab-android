@@ -11,7 +11,7 @@ class ChapterRepository(
     private val dao: ChapterDao
 ) {
 
-    suspend fun findByCourseId(courseId: String): List<Chapter> {
+    suspend fun findByCourseId(courseId: Int): List<Chapter> {
         return dao.findByCourseId(courseId)
     }
 

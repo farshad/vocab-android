@@ -14,7 +14,6 @@ class ChapterFragment : BaseFragment<FragmentChapterBinding>() {
 
     private val levelViewModel: ChapterViewModel by viewModel()
     private val args: ChapterFragmentArgs by navArgs()
-    private var courseId: Long? = null
 
     override fun setViewBinding(
         inflater: LayoutInflater,

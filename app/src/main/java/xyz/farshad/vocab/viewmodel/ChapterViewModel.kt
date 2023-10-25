@@ -17,7 +17,7 @@ class ChapterViewModel(
 
     private var levels: MutableLiveData<List<Chapter>>? = MutableLiveData()
 
-    fun findByCourseId(courseId: String) {
+    fun findByCourseId(courseId: Int) {
         viewModelScope.launch {
             levels?.value = repository.findByCourseId(courseId)
         }
