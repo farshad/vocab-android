@@ -46,6 +46,10 @@
         <action
             android:id="@+id/action_wordFragment_to_wordPagerFragment"
             app:destination="@id/wordPagerFragment" />
+        <argument
+            android:name="chapterTitle"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/wordPagerFragment"

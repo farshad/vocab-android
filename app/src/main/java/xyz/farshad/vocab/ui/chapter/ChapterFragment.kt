@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import xyz.farshad.vocab.R
 import xyz.farshad.vocab.databinding.FragmentChapterBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.ChapterViewModel
@@ -21,6 +22,11 @@ class ChapterFragment : BaseFragment<FragmentChapterBinding>() {
     ): FragmentChapterBinding = FragmentChapterBinding.inflate(inflater, container, false)
 
     override fun bindView() {
+        setupToolbar(
+            getString(R.string.chapters),
+            binding.includeToolbarInner.innerToolbarTitle,
+            binding.includeToolbarInner.backIcon
+        )
     }
 
     override fun businessLogic() {
@@ -42,7 +48,7 @@ class ChapterFragment : BaseFragment<FragmentChapterBinding>() {
         }
 
         chapterAdopter.setOnItemClickListener {
-            val action = ChapterFragmentDirections.actionChapterFragmentToWordFragment(it.id!!)
+            val action = ChapterFragmentDirections.actionChapterFragmentToWordFragment(it.id!!, it.title)
             NavHostFragment.findNavController(this).navigate(action)
         }
     }

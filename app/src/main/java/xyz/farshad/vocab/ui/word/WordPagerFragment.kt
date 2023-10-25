@@ -33,6 +33,11 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     ): FragmentWordPagerBinding = FragmentWordPagerBinding.inflate(inflater, container, false)
 
     override fun bindView() {
+        setupToolbar(
+            getString(R.string.words),
+            binding.includeToolbarInner.innerToolbarTitle,
+            binding.includeToolbarInner.backIcon
+        )
     }
 
     override fun businessLogic() {
@@ -133,6 +138,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
                 binding.play.visibility = View.VISIBLE
                 binding.pause.visibility = View.GONE
                 timer!!.cancel()
+                timer!!.purge()
             }
             R.id.play -> {
                 binding.play.visibility = View.GONE

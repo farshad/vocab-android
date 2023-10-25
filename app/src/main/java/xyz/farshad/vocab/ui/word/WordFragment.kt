@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import xyz.farshad.vocab.R
 import xyz.farshad.vocab.databinding.FragmentWordBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.WordViewModel
@@ -20,6 +21,11 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
     ): FragmentWordBinding = FragmentWordBinding.inflate(inflater, container, false)
 
     override fun bindView() {
+        setupToolbar(
+            getString(R.string.chapter) + " " + args.chapterTitle,
+            binding.includeToolbarInner.innerToolbarTitle,
+            binding.includeToolbarInner.backIcon
+        )
     }
 
     override fun businessLogic() {
@@ -41,7 +47,10 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
         }
 
         wordAdopter.setOnItemClickListener {
-            val action = WordFragmentDirections.actionWordFragmentToWordPagerFragment(it.id!!, args.chapterId)
+            val action = WordFragmentDirections.actionWordFragmentToWordPagerFragment(
+                it.id!!,
+                args.chapterId
+            )
             NavHostFragment.findNavController(this).navigate(action)
         }
     }
