@@ -20,7 +20,7 @@ class ChapterListAdapter(context: Context, textViewResourceId: Int, objects: Lis
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var itemView = convertView
         if (itemView == null) {
-            itemView = LayoutInflater.from(context).inflate(R.layout.level_list_view, parent, false)
+            itemView = LayoutInflater.from(context).inflate(R.layout.chapter_item, parent, false)
         }
 
         val currentLevel = getItem(position)
