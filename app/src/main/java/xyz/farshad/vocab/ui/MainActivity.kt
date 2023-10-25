@@ -3,10 +3,7 @@ package xyz.farshad.vocab.ui
 import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 import xyz.farshad.vocab.R
-import xyz.farshad.vocab.activity.WordListActivity
 import xyz.farshad.vocab.ui.base.BaseActivity
 
 class MainActivity : BaseActivity() {

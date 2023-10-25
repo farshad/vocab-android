@@ -1,4 +1,4 @@
-package xyz.farshad.vocab.component.adapter
+package xyz.farshad.vocab.ui.word
 
 
 import android.content.Context
