@@ -1,8 +1,6 @@
 package xyz.farshad.vocab.ui
 
-import android.content.Intent
 import android.view.Menu
-import android.view.MenuItem
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.ui.base.BaseActivity
 
@@ -33,20 +31,6 @@ class MainActivity : BaseActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        if (id == R.id.review) {
-            //start word list activity
-            val wordListIntent = Intent(this, WordListActivity::class.java)
-            wordListIntent.putExtra("isReview", true)
-            wordListIntent.putExtra("levelName", "Review word list")
-            startActivity(wordListIntent)
-            return true
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 
 }

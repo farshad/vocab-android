@@ -7,7 +7,6 @@ import androidx.navigation.fragment.navArgs
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.databinding.FragmentWordBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
-import xyz.farshad.vocab.ui.home.HomeFragmentDirections
 import xyz.farshad.vocab.viewmodel.WordViewModel
 
 class WordFragment : BaseFragment<FragmentWordBinding>() {
@@ -30,9 +29,9 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
     }
 
     private fun setObserver() {
-        wordViewModel.watchWord()?.observe(this, {
+        wordViewModel.watchWord()?.observe(viewLifecycleOwner) {
             wordAdopter.differ.submitList(it)
-        })
+        }
     }
 
     private fun setChapterAdopter() {
@@ -42,7 +41,7 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
         }
 
         wordAdopter.setOnItemClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToChapterFragment(it.id!!)
+            val action = WordFragmentDirections.actionWordFragmentToWordPagerFragment(it.id!!, args.chapterId)
             NavHostFragment.findNavController(this).navigate(action)
         }
     }

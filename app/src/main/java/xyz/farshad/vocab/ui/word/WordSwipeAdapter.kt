@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
@@ -44,7 +43,7 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
             itemView.findViewById<View>(xyz.farshad.vocab.R.id.wordPagerTranslate) as TextView
         val wordPagerExample =
             itemView.findViewById<View>(xyz.farshad.vocab.R.id.wordPagerExample) as TextView
-        val favButton = itemView.findViewById<View>(R.id.addToFav) as Button
+        val favButton = itemView.findViewById<View>(R.id.addToFav) as TextView
 
         setStarIcon(false, favButton)
 
@@ -63,7 +62,7 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
         return itemView
     }
 
-    private fun setStarIcon(isFavorite: Boolean, favButton: Button) {
+    private fun setStarIcon(isFavorite: Boolean, favButton: TextView) {
         val drawableCompat: Drawable? = if (isFavorite) {
             AppCompatResources.getDrawable(
                 context,

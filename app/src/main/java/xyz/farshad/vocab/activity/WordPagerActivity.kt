@@ -11,9 +11,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.ViewPager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.R
-import xyz.farshad.vocab.ui.word.WordSwipeAdapter
 import xyz.farshad.vocab.data.entity.Word
 import xyz.farshad.vocab.databinding.ActivityWordPagerBinding
+import xyz.farshad.vocab.ui.word.WordSwipeAdapter
 import xyz.farshad.vocab.viewmodel.WordViewModel
 import java.util.*
 
@@ -43,9 +43,9 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
             wordId = b.getInt("wordId")
             val isReview: Boolean = b.getBoolean("isReview")
 
-            if (isReview){
+            if (isReview) {
                 wordViewModel.fetchReviewWords()
-            }else{
+            } else {
                 val levelId = b.getInt("levelId")
                 wordViewModel.findByLevelId(levelId)
             }
@@ -68,7 +68,7 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
         })
     }
 
-    fun addToFavorite(word: Word){
+    fun addToFavorite(word: Word) {
         wordViewModel.update(word)
     }
 
@@ -140,7 +140,12 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
                 binding.showTranslateButton.setVisibility(View.VISIBLE)
                 binding.hideTranslateButton.setVisibility(View.GONE)
             }
-            R.id.volumeUp -> textToSpeech.speak(words[viewPager!!.currentItem].title, TextToSpeech.QUEUE_FLUSH, null, null)
+            R.id.volumeUp -> textToSpeech.speak(
+                words[viewPager!!.currentItem].title,
+                TextToSpeech.QUEUE_FLUSH,
+                null,
+                null
+            )
             R.id.pause -> {
                 binding.play.visibility = View.VISIBLE
                 binding.pause.visibility = View.GONE
@@ -156,7 +161,12 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
 
     private fun setViewPagerChangeListener() {
         viewPager?.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int,
+            ) {
+            }
 
             override fun onPageSelected(position: Int) {
                 currentItem = position

@@ -43,5 +43,24 @@
         <argument
             android:name="chapterId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_wordFragment_to_wordPagerFragment"
+            app:destination="@id/wordPagerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wordPagerFragment"
+        android:name="xyz.farshad.vocab.ui.word.WordPagerFragment"
+        android:label="fragment_word_pager"
+        tools:layout="@layout/fragment_word_pager" >
+        <argument
+            android:name="wordId"
+            app:argType="integer" />
+        <argument
+            android:name="chapterId"
+            app:argType="integer" />
+        <argument
+            android:name="isReview"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
 </navigation>
