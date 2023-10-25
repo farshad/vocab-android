@@ -21,7 +21,7 @@ class CourseAdopter : RecyclerView.Adapter<CourseAdopter.IconViewHolder>() {
         }
 
         override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean {
-            return oldItem.equals(newItem)
+            return oldItem == newItem
         }
     }
 

@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -11,21 +11,22 @@
     tools:context=".ui.home.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/catMainListView"
+        android:id="@+id/rvCourse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:descendantFocusability="afterDescendants" />
+        android:descendantFocusability="afterDescendants"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/explore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cornerRadius="24dp"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:icon="@drawable/ic_baseline_sync_24"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        android:text="@string/explore"/>
+        android:text="@string/explore"
+        app:cornerRadius="24dp"
+        app:icon="@drawable/ic_baseline_sync_24" />
 </LinearLayout>

@@ -13,6 +13,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val courseViewModel: CourseViewModel by viewModel()
     private val syncViewModel: SyncViewModel by viewModel()
+    private lateinit var courseAdopter: CourseAdopter
 
     override fun setViewBinding(
         inflater: LayoutInflater,
@@ -23,6 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun businessLogic() {
+        setCourseAdopter()
         courseViewModel.fetchAll()
         setObserver()
         binding.explore.setOnClickListener {
@@ -33,7 +35,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun setObserver() {
         courseViewModel.watchCourses()?.observe(this) {
-            //showCategoryList(it)
+            courseAdopter.differ.submitList(it)
         }
 
         syncViewModel.watchSync().observe(this) {
@@ -41,10 +43,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-//    private fun showCategoryList(courses: List<Course>) {
-//        val adapter = CourseListAdapter(requireActivity(), R.layout.cuorse_list_view, courses)
-//        binding.catMainListView.adapter = adapter
-//        binding.catMainListView.itemsCanFocus = true
-//    }
+    private fun setCourseAdopter() {
+        courseAdopter = CourseAdopter()
+        binding.rvCourse.apply {
+            adapter = courseAdopter
+        }
+
+//        courseAdopter.setOnDownloadClickListener {
+//            courseViewModel.addToSelection(it)
+//        }
+    }
 
 }
