@@ -1,4 +1,4 @@
-package io.neoattitude.defio.util
+package xyz.farshad.vocab.viewmodel.util
 
 import android.content.Context
 import android.content.res.ColorStateList

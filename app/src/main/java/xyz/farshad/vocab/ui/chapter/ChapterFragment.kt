@@ -9,6 +9,7 @@ import xyz.farshad.vocab.R
 import xyz.farshad.vocab.databinding.FragmentChapterBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.ChapterViewModel
+import xyz.farshad.vocab.viewmodel.util.Helper
 
 class ChapterFragment : BaseFragment<FragmentChapterBinding>() {
 
@@ -42,13 +43,17 @@ class ChapterFragment : BaseFragment<FragmentChapterBinding>() {
     }
 
     private fun setChapterAdopter() {
+        binding.rvChapter.addItemDecoration(
+            Helper.decorator(requireContext())
+        )
         chapterAdopter = ChapterAdopter()
         binding.rvChapter.apply {
             adapter = chapterAdopter
         }
 
         chapterAdopter.setOnItemClickListener {
-            val action = ChapterFragmentDirections.actionChapterFragmentToWordFragment(it.id!!, it.title)
+            val action =
+                ChapterFragmentDirections.actionChapterFragmentToWordFragment(it.id!!, it.title)
             NavHostFragment.findNavController(this).navigate(action)
         }
     }

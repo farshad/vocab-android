@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/wordLy"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -8,8 +10,11 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:padding="16dp"
+        android:drawablePadding="8dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:drawableEndCompat="@drawable/baseline_arrow_forward_ios_24"
+        app:drawableStartCompat="@drawable/noun_translate"
+        tools:text="Medium Text" />
 
 </LinearLayout>

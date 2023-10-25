@@ -2,7 +2,7 @@ package xyz.farshad.vocab.ui.explore
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import io.neoattitude.defio.util.Helper.snack
+import xyz.farshad.vocab.viewmodel.util.Helper.snack
 import io.neoattitude.defio.util.Resource
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.databinding.FragmentExploreBinding

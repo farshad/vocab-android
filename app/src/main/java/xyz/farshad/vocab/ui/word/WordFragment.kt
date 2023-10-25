@@ -9,6 +9,7 @@ import xyz.farshad.vocab.R
 import xyz.farshad.vocab.databinding.FragmentWordBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.WordViewModel
+import xyz.farshad.vocab.viewmodel.util.Helper
 
 class WordFragment : BaseFragment<FragmentWordBinding>() {
     private val wordViewModel: WordViewModel by viewModel()
@@ -41,6 +42,9 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
     }
 
     private fun setChapterAdopter() {
+        binding.rvWord.addItemDecoration(
+            Helper.decorator(requireContext())
+        )
         wordAdopter = WordAdopter()
         binding.rvWord.apply {
             adapter = wordAdopter
