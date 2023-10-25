@@ -48,6 +48,11 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
             wordViewModel.findByLevelId(args.chapterId)
         }
 
+        binding.hideTranslateButton.setOnClickListener(this)
+        binding.showTranslateButton.setOnClickListener(this)
+        binding.volumeUp.setOnClickListener(this)
+        binding.pause.setOnClickListener(this)
+        binding.play.setOnClickListener(this)
     }
 
     private fun setObserver() {
@@ -103,12 +108,6 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
                 }
             }
         }
-    }
-
-    override fun onDestroy() {
-        timer?.cancel()
-        timer?.purge()
-        super.onDestroy()
     }
 
     override fun onClick(view: View) {
@@ -181,4 +180,20 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     }
 
     override fun onInit(status: Int) {}
+    override fun onResume() {
+        pageSwitcher(speed)
+        super.onResume()
+    }
+
+    override fun onPause() {
+        timer?.cancel()
+        timer?.purge()
+        super.onPause()
+    }
+
+    override fun onDestroy() {
+        timer?.cancel()
+        timer?.purge()
+        super.onDestroy()
+    }
 }

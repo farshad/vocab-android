@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.viewpager.widget.PagerAdapter
@@ -25,7 +25,7 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
     }
 
     override fun isViewFromObject(view: View, o: Any): Boolean {
-        return view === o as RelativeLayout
+        return view === o as LinearLayout
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
@@ -37,8 +37,6 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
             layoutInflater!!.inflate(R.layout.word_swipe_layer, container, false)
         val wordPagerName =
             itemView.findViewById<View>(xyz.farshad.vocab.R.id.wordPagerName) as TextView
-        val wordPagerMeaning =
-            itemView.findViewById<View>(xyz.farshad.vocab.R.id.wordPagerMeaning) as TextView
         val wordPagerTranslate =
             itemView.findViewById<View>(xyz.farshad.vocab.R.id.wordPagerTranslate) as TextView
         val wordPagerExample =
