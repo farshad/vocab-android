@@ -57,7 +57,7 @@
         android:label="fragment_word_pager"
         tools:layout="@layout/fragment_word_pager" >
         <argument
-            android:name="wordId"
+            android:name="wordIndex"
             app:argType="integer" />
         <argument
             android:name="chapterId"

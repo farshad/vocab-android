@@ -18,7 +18,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     private val wordViewModel: WordViewModel by viewModel()
     private val args: WordPagerFragmentArgs by navArgs()
     private var words: List<Word> = arrayListOf()
-    private var wordId: Int? = null
+    private var wordIndex: Int? = null
     private var currentItem: Int = 0
     private lateinit var textToSpeech: TextToSpeech
     private var sound = true
@@ -45,7 +45,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
         textToSpeech = TextToSpeech(requireContext(), this)
         textToSpeech.language = Locale.US
 
-        wordId = args.wordId
+        wordIndex = args.wordIndex
 
         if (args.isReview) {
             wordViewModel.fetchReviewWords()
@@ -63,7 +63,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     private fun setObserver() {
         wordViewModel.watchWord()?.observe(this) {
             words = it
-            wordId?.let { it1 -> setPageAdopter(it1) }
+            wordIndex?.let { it1 -> setPageAdopter(it1) }
         }
     }
 
@@ -138,7 +138,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
                 binding.play.visibility = View.VISIBLE
                 binding.pause.visibility = View.GONE
                 timer!!.cancel()
-                timer!!.purge()
+                //timer!!.purge()
             }
             R.id.play -> {
                 binding.play.visibility = View.GONE

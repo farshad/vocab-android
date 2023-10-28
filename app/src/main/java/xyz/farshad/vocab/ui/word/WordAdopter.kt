@@ -42,7 +42,7 @@ class WordAdopter : RecyclerView.Adapter<WordAdopter.IconViewHolder>() {
         return differ.currentList.size
     }
 
-    private var onItemClickListener: ((Word) -> Unit)? = null
+    private var onItemClickListener: ((Int) -> Unit)? = null
 
     override fun onBindViewHolder(holder: IconViewHolder, position: Int) {
         val item = differ.currentList[position]
@@ -50,11 +50,11 @@ class WordAdopter : RecyclerView.Adapter<WordAdopter.IconViewHolder>() {
             title.text = item.title
         }
         holder.binding.wordLy.setOnClickListener {
-            onItemClickListener?.let { it(item) }
+            onItemClickListener?.let { it(position) }
         }
     }
 
-    fun setOnItemClickListener(listener: (Word) -> Unit) {
+    fun setOnItemClickListener(listener: (Int) -> Unit) {
         onItemClickListener = listener
     }
 }
