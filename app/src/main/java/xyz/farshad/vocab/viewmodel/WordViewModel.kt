@@ -17,9 +17,9 @@ class WordViewModel(
 
     private var words: MutableLiveData<List<Word>>? = MutableLiveData()
 
-    fun findByLevelId(levelId: Int) {
+    fun findByChapterId(levelId: Int) {
         viewModelScope.launch {
-            words?.value = repository.findByLevelId(levelId)
+            words?.value = repository.findByChapterId(levelId)
         }
     }
 

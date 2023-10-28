@@ -11,7 +11,7 @@ class WordRepository(
     private val dao: WordDao
 ) {
 
-    suspend fun findByLevelId(levelId: Int): List<Word> {
+    suspend fun findByChapterId(levelId: Int): List<Word> {
         return dao.findByChapterId(levelId)
     }
 

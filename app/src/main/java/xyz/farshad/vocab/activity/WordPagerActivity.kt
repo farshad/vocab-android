@@ -47,7 +47,7 @@ class WordPagerActivity : AppCompatActivity(), TextToSpeech.OnInitListener, View
                 wordViewModel.fetchReviewWords()
             } else {
                 val levelId = b.getInt("levelId")
-                wordViewModel.findByLevelId(levelId)
+                wordViewModel.findByChapterId(levelId)
             }
             setObserver()
         }

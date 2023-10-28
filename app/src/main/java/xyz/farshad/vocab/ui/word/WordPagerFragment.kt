@@ -50,7 +50,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
         if (args.isReview) {
             wordViewModel.fetchReviewWords()
         } else {
-            wordViewModel.findByLevelId(args.chapterId)
+            wordViewModel.findByChapterId(args.chapterId)
         }
 
         binding.hideTranslateButton.setOnClickListener(this)

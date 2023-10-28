@@ -31,7 +31,7 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
 
     override fun businessLogic() {
         setChapterAdopter()
-        wordViewModel.findByLevelId(args.chapterId)
+        wordViewModel.findByChapterId(args.chapterId)
         setObserver()
     }
 
