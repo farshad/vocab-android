@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.viewpager.widget.PagerAdapter
 import xyz.farshad.vocab.R
-import xyz.farshad.vocab.activity.WordPagerActivity
 import xyz.farshad.vocab.data.entity.Word
 
 
@@ -51,7 +50,7 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
 
         favButton.setOnClickListener {
             //currentWord.isFavorite = !currentWord.isFavorite
-            (context as WordPagerActivity).addToFavorite(currentWord)
+           // (context as WordPagerActivity).addToFavorite(currentWord)
 //            setStarIcon(currentWord.isFavorite, favButton)
         }
         itemView.tag = "word_pager$position"

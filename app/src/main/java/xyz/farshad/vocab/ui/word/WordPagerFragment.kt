@@ -1,5 +1,7 @@
 package xyz.farshad.vocab.ui.word
 
+import android.os.Handler
+import android.os.Looper
 import android.speech.tts.TextToSpeech
 import android.view.*
 import androidx.navigation.fragment.navArgs
@@ -11,6 +13,7 @@ import xyz.farshad.vocab.databinding.FragmentWordPagerBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.WordViewModel
 import java.util.*
+
 
 class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech.OnInitListener,
     View.OnClickListener {
@@ -103,18 +106,6 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
         })
     }
 
-    internal inner class RemindTask : TimerTask() {
-        override fun run() {
-            activity?.runOnUiThread {
-                if (currentItem == words.size) {
-                    timer!!.cancel()
-                } else {
-                    viewPager!!.currentItem = currentItem++
-                }
-            }
-        }
-    }
-
     override fun onClick(view: View) {
         val currentView = viewPager!!.findViewWithTag<View>("word_pager" + viewPager!!.currentItem)
         when (view.id) {
@@ -138,7 +129,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
                 binding.play.visibility = View.VISIBLE
                 binding.pause.visibility = View.GONE
                 timer!!.cancel()
-                //timer!!.purge()
+                timer!!.purge()
             }
             R.id.play -> {
                 binding.play.visibility = View.GONE
@@ -186,6 +177,19 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     }
 
     override fun onInit(status: Int) {}
+
+    internal inner class RemindTask : TimerTask() {
+        override fun run() {
+            Handler(Looper.getMainLooper()).post {
+                if (currentItem == words.size) {
+                    timer!!.cancel()
+                } else {
+                    viewPager!!.currentItem = currentItem++
+                }
+            }
+        }
+    }
+
     override fun onResume() {
         pageSwitcher(speed)
         super.onResume()
