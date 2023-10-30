@@ -9,4 +9,5 @@ val repositoryModule = module {
     single { ChapterRepository(get()) }
     single { WordRepository(get()) }
     single { SyncRepository(get()) }
+    single { CacheRepository(get()) }
 }
