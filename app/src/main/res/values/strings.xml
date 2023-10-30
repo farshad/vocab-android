@@ -29,5 +29,7 @@
     <string name="image_desc">Image not loaded</string>
     <string name="chapters">Chapters</string>
     <string name="chapter">Chapter</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
