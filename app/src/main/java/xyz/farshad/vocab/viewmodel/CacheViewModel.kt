@@ -1,6 +1,7 @@
 package xyz.farshad.vocab.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import io.neoattitude.defio.util.SingleLiveEvent
 import kotlinx.coroutines.launch
@@ -16,9 +17,11 @@ class CacheViewModel(
 ) : BaseViewModel() {
 
     private var cacheValue: SingleLiveEvent<Cache>? = SingleLiveEvent()
+    private var isAdded: MutableLiveData<Boolean> = MutableLiveData()
 
     fun insert(cache: Cache) = viewModelScope.launch {
         repository.insert(cache)
+        isAdded.postValue(true)
     }
 
     fun delete(key: String) = viewModelScope.launch {
@@ -33,5 +36,9 @@ class CacheViewModel(
 
     fun getCacheValue(): LiveData<Cache>? {
         return cacheValue
+    }
+
+    fun watchIsAdded(): MutableLiveData<Boolean> {
+        return isAdded
     }
 }

@@ -54,6 +54,12 @@ object Helper {
         return result
     }
 
+    fun clearError(vararg lys: TextInputLayout) {
+        for (ly in lys) {
+            ly.error = null
+        }
+    }
+
     fun createColorStateList(colors: IntArray): ColorStateList {
         val states = arrayOf(
             intArrayOf(android.R.attr.state_enabled),

@@ -9,5 +9,6 @@ val viewModelModule = module {
     viewModel { ChapterViewModel(get()) }
     viewModel { WordViewModel(get()) }
     viewModel { CacheViewModel(get()) }
+    viewModel { AuthViewModel(get()) }
     viewModel { SyncViewModel(get(), get(), get(), get()) }
 }
