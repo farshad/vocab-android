@@ -31,5 +31,10 @@
     <string name="chapter">Chapter</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="emailOrUsername">Email/Username</string>
+    <string name="password">Password</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="login_footer_motto">Learn, Grow, Succeed</string>
 
 </resources>
