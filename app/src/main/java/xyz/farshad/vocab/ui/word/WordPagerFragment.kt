@@ -14,7 +14,6 @@ import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.WordViewModel
 import java.util.*
 
-
 class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech.OnInitListener,
     View.OnClickListener {
 
@@ -66,7 +65,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     private fun setObserver() {
         wordViewModel.watchWord()?.observe(this) {
             words = it
-            wordIndex?.let { it1 -> setPageAdopter(it1) }
+            wordIndex?.let { wi -> setPageAdopter(wi) }
         }
     }
 
