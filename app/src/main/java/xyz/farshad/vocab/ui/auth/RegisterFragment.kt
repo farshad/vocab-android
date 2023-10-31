@@ -2,13 +2,17 @@ package xyz.farshad.vocab.ui.auth
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.NavHostFragment
+import io.neoattitude.defio.util.Resource
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.data.dto.RegisterRequest
+import xyz.farshad.vocab.data.entity.Cache
 import xyz.farshad.vocab.databinding.FragmentRegisterBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.AuthViewModel
 import xyz.farshad.vocab.viewmodel.CacheViewModel
 import xyz.farshad.vocab.viewmodel.util.Helper
+import xyz.farshad.vocab.viewmodel.util.Helper.snack
 
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
 
@@ -19,8 +23,11 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         inflater: LayoutInflater, container: ViewGroup?,
     ): FragmentRegisterBinding = FragmentRegisterBinding.inflate(inflater, container, false)
 
+    override fun bindView() {
+    }
+
     override fun businessLogic() {
-        //setObserver()
+        setObserver()
         binding.signup.setOnClickListener {
             Helper.clearError(binding.nameLy, binding.usernameLy, binding.passwordLy)
             if (Helper.checkEmptyField(binding.username, binding.usernameLy) ||
@@ -44,6 +51,35 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         }
     }
 
-    override fun bindView() {
+    private fun setObserver() {
+        authViewModel.watchLoginResponse().observe(viewLifecycleOwner) {
+            binding.signup.isEnabled = true
+
+            when (it) {
+                is Resource.Success -> {
+                    hideProgressBar()
+                    it.data?.let { registerResponse ->
+                        cacheViewModel.insert(Cache("token", registerResponse.token))
+                    }
+                }
+                is Resource.Error -> {
+                    hideProgressBar()
+                    it.message?.let { message ->
+                        view?.snack(message)
+                    }
+                }
+                is Resource.Loading -> {
+                    showProgressBar()
+                }
+            }
+        }
+
+        cacheViewModel.watchIsAdded().observe(viewLifecycleOwner) {
+            if (it) {
+                val action = RegisterFragmentDirections.actionRegisterFragmentToHomeFragment()
+                NavHostFragment.findNavController(this).navigate(action)
+            }
+        }
     }
+
 }
