@@ -43,4 +43,8 @@ class AuthViewModel(
     fun watchLoginResponse(): MutableLiveData<Resource<LoginResponse>> {
         return loginResponse
     }
+
+    fun watchRegisterResponse(): MutableLiveData<Resource<RegisterResponse>> {
+        return registerResponse
+    }
 }

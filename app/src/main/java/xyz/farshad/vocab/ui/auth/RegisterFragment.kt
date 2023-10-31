@@ -44,7 +44,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
                     RegisterRequest(
                         name,
                         username,
-                        password
+                        password,
                     )
                 )
             }
@@ -52,7 +52,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
     }
 
     private fun setObserver() {
-        authViewModel.watchLoginResponse().observe(viewLifecycleOwner) {
+        authViewModel.watchRegisterResponse().observe(viewLifecycleOwner) {
             binding.signup.isEnabled = true
 
             when (it) {

@@ -26,7 +26,7 @@ android {
             multiDexEnabled true
         }
         debug {
-            buildConfigField "String", "BASE_URL", "\"http://192.168.223.55:8080/api/\""
+            buildConfigField "String", "BASE_URL", "\"http://192.168.77.55:8080/api/\""
             matchingFallbacks = ['release']
         }
     }
