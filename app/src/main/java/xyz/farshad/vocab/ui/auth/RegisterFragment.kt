@@ -11,6 +11,7 @@ import xyz.farshad.vocab.databinding.FragmentRegisterBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.AuthViewModel
 import xyz.farshad.vocab.viewmodel.CacheViewModel
+import xyz.farshad.vocab.viewmodel.util.Constants
 import xyz.farshad.vocab.viewmodel.util.Helper
 import xyz.farshad.vocab.viewmodel.util.Helper.snack
 
@@ -30,9 +31,12 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         setObserver()
         binding.signup.setOnClickListener {
             Helper.clearError(binding.nameLy, binding.usernameLy, binding.passwordLy)
-            if (Helper.checkEmptyField(binding.username, binding.usernameLy) ||
-                Helper.checkEmptyField(binding.password, binding.passwordLy) ||
-                Helper.checkEmptyField(binding.name, binding.nameLy)
+
+            if (Helper.checkEmptyField(binding.name, binding.nameLy) &&
+                Helper.checkEmptyField(binding.username, binding.usernameLy) &&
+                Helper.checkEmptyField(binding.password, binding.passwordLy) &&
+                Helper.isValidEmail(binding.username, binding.usernameLy) &&
+                Helper.checkFieldMinLength(binding.password, binding.passwordLy, Constants.PASSWORD_MIN_LENGTH)
             ) {
 
                 val name = binding.name.text.toString()

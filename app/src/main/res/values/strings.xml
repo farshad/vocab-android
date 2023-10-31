@@ -39,5 +39,6 @@
     <string name="signup">Sign up</string>
     <string name="email">Email</string>
     <string name="name">Name</string>
+    <string name="pass_min_chars">Minimum 6 characters</string>
 
 </resources>

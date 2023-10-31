@@ -3,6 +3,7 @@ package xyz.farshad.vocab.viewmodel.util
 import android.content.Context
 import android.content.res.ColorStateList
 import android.text.TextUtils
+import android.util.Patterns
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -49,6 +50,24 @@ object Helper {
         var result = true
         if (TextUtils.isEmpty(tv.text)) {
             ly.error = "This field is required"
+            result = false
+        }
+        return result
+    }
+
+    fun checkFieldMinLength(tv: TextInputEditText, ly: TextInputLayout, length: Int): Boolean {
+        var result = true
+        if (tv.text.toString().length < length) {
+            ly.error = "The field must be at least $length characters long"
+            result = false
+        }
+        return result
+    }
+
+    fun isValidEmail(tv: TextInputEditText, ly: TextInputLayout): Boolean {
+        var result = true
+        if (tv.text.toString().isNotEmpty() && !Patterns.EMAIL_ADDRESS.matcher(tv.text.toString()).matches()) {
+            ly.error = "Invalid email format"
             result = false
         }
         return result

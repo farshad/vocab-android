@@ -31,9 +31,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         setObserver()
         binding.login.setOnClickListener {
             Helper.clearError(binding.usernameLy, binding.passwordLy)
-            if (Helper.checkEmptyField(
-                    binding.username, binding.usernameLy
-                ) || Helper.checkEmptyField(binding.password, binding.passwordLy)
+            if (Helper.checkEmptyField(binding.username, binding.usernameLy) &&
+                Helper.checkEmptyField(binding.password, binding.passwordLy)
             ) {
 
                 val username = binding.username.text.toString()
