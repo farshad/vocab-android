@@ -2,9 +2,9 @@ package xyz.farshad.vocab.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
-import xyz.farshad.vocab.data.api.exception.ServerError
 import io.neoattitude.defio.util.Resource
 import retrofit2.Response
+import xyz.farshad.vocab.data.api.exception.ServerError
 
 open class BaseViewModel : ViewModel() {
     inline fun <reified T> handleResponse(response: Response<T>): Resource<T>? {

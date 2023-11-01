@@ -2,12 +2,12 @@ package xyz.farshad.vocab.ui.explore
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import xyz.farshad.vocab.viewmodel.util.Helper.snack
 import io.neoattitude.defio.util.Resource
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.databinding.FragmentExploreBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.CourseViewModel
+import xyz.farshad.vocab.viewmodel.util.Helper.snack
 
 class ExploreFragment : BaseFragment<FragmentExploreBinding>() {
 

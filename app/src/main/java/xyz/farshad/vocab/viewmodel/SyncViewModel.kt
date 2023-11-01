@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import io.neoattitude.defio.util.Resource
 import kotlinx.coroutines.launch
 import xyz.farshad.vocab.data.entity.Sync
-import xyz.farshad.vocab.data.repository.CourseRepository
 import xyz.farshad.vocab.data.repository.ChapterRepository
+import xyz.farshad.vocab.data.repository.CourseRepository
 import xyz.farshad.vocab.data.repository.SyncRepository
 import xyz.farshad.vocab.data.repository.WordRepository
 
