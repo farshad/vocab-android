@@ -42,10 +42,15 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
         )
     }
 
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            textToSpeech.language = Locale.FRENCH
+        }
+    }
+
     override fun businessLogic() {
         setObserver()
         textToSpeech = TextToSpeech(requireContext(), this)
-        textToSpeech.language = Locale.US
 
         wordIndex = args.wordIndex
 
@@ -167,8 +172,6 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
 
         return super.onOptionsItemSelected(item)
     }
-
-    override fun onInit(status: Int) {}
 
     internal inner class RemindTask : TimerTask() {
         override fun run() {

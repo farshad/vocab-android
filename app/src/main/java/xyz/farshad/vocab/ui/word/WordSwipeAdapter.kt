@@ -1,6 +1,5 @@
 package xyz.farshad.vocab.ui.word
 
-
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
@@ -12,7 +11,6 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.viewpager.widget.PagerAdapter
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.data.entity.Word
-
 
 /**
  * Created by farshad on 10/1/15.
