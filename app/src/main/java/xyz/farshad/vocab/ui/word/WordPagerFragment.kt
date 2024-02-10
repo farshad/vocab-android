@@ -44,6 +44,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
+            textToSpeech.setEngineByPackageName("com.google.android.tts")
             textToSpeech.language = Locale.FRENCH
         }
     }
@@ -183,7 +184,6 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
             Handler(Looper.getMainLooper()).post {
                 if (currentItem == words.size) {
                     timer!!.cancel()
-                    timer = null
                 } else {
                     viewPager!!.currentItem = currentItem++
                 }
