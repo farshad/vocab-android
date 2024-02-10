@@ -133,6 +133,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
                 binding.play.visibility = View.VISIBLE
                 binding.pause.visibility = View.GONE
                 timer!!.cancel()
+                timer!!.purge()
             }
             R.id.play -> {
                 binding.play.visibility = View.GONE
@@ -174,7 +175,6 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
 
     internal inner class RemindTask : TimerTask() {
         override fun cancel(): Boolean {
-            timer?.purge()
             timer = null
             return super.cancel()
         }
@@ -198,11 +198,13 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
 
     override fun onPause() {
         timer?.cancel()
+        timer?.purge()
         super.onPause()
     }
 
     override fun onDestroy() {
         timer?.cancel()
+        timer?.purge()
         super.onDestroy()
     }
 }
