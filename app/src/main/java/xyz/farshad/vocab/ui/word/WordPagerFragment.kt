@@ -44,14 +44,13 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            textToSpeech.setEngineByPackageName("com.google.android.tts")
             textToSpeech.language = Locale.FRENCH
         }
     }
 
     override fun businessLogic() {
         setObserver()
-        textToSpeech = TextToSpeech(requireContext(), this)
+        textToSpeech = TextToSpeech(requireContext(), this, "com.google.android.tts")
 
         wordIndex = args.wordIndex
 
