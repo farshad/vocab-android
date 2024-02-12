@@ -175,17 +175,22 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     }
 
     internal inner class RemindTask : TimerTask() {
+        private var isCanceled = false
         override fun cancel(): Boolean {
+            isCanceled = true
             timer = null
+            textToSpeech.stop()
             return super.cancel()
         }
 
         override fun run() {
             Handler(Looper.getMainLooper()).post {
-                if (currentItem == words.size) {
-                    timer!!.cancel()
-                } else {
-                    viewPager!!.currentItem = currentItem++
+                if (!isCanceled) {
+                    if (currentItem == words.size) {
+                        timer!!.cancel()
+                    } else {
+                        viewPager!!.currentItem = currentItem++
+                    }
                 }
             }
         }
