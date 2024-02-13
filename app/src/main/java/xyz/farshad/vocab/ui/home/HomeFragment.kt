@@ -61,7 +61,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
 
         courseAdopter.setOnItemClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToChapterFragment(it.id!!)
+            val action = HomeFragmentDirections.actionHomeFragmentToChapterFragment(it.id!!, it.locale!!.language)
             NavHostFragment.findNavController(this).navigate(action)
         }
     }

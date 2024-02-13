@@ -53,7 +53,7 @@ class ChapterFragment : BaseFragment<FragmentChapterBinding>() {
 
         chapterAdopter.setOnItemClickListener {
             val action =
-                ChapterFragmentDirections.actionChapterFragmentToWordFragment(it.id!!, it.title)
+                ChapterFragmentDirections.actionChapterFragmentToWordFragment(it.id!!, it.title, args.lang)
             NavHostFragment.findNavController(this).navigate(action)
         }
     }

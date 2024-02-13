@@ -44,7 +44,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            textToSpeech.language = Locale.FRENCH
+            textToSpeech.language = Locale.forLanguageTag(args.lang)
         }
     }
 

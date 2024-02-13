@@ -53,7 +53,8 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
         wordAdopter.setOnItemClickListener {
             val action = WordFragmentDirections.actionWordFragmentToWordPagerFragment(
                 it,
-                args.chapterId
+                args.chapterId,
+                args.lang,
             )
             NavHostFragment.findNavController(this).navigate(action)
         }

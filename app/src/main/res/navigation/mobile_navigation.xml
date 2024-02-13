@@ -32,6 +32,10 @@
         <action
             android:id="@+id/action_chapterFragment_to_wordFragment"
             app:destination="@id/wordFragment" />
+        <argument
+            android:name="lang"
+            app:argType="string"
+            android:defaultValue="en" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
@@ -53,6 +57,9 @@
             android:name="chapterTitle"
             app:argType="string"
             app:nullable="true" />
+        <argument
+            android:name="lang"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/wordPagerFragment"
@@ -69,6 +76,9 @@
             android:name="isReview"
             app:argType="boolean"
             android:defaultValue="false" />
+        <argument
+            android:name="lang"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
