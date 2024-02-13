@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import xyz.farshad.vocab.data.dao.CacheDao
 import xyz.farshad.vocab.data.dao.ChapterDao
 import xyz.farshad.vocab.data.dao.CourseDao
@@ -12,8 +13,10 @@ import xyz.farshad.vocab.data.entity.Cache
 import xyz.farshad.vocab.data.entity.Chapter
 import xyz.farshad.vocab.data.entity.Course
 import xyz.farshad.vocab.data.entity.Word
+import xyz.farshad.vocab.data.utils.LocaleConverter
 
-@Database(entities = [Course::class, Chapter::class, Word::class, Cache::class], version = 8, exportSchema = false)
+@Database(entities = [Course::class, Chapter::class, Word::class, Cache::class], version = 9, exportSchema = false)
+@TypeConverters(LocaleConverter::class)
 abstract class VocabDatabase : RoomDatabase() {
 
     abstract fun courseDao(): CourseDao
