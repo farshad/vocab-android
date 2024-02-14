@@ -12,6 +12,7 @@ import xyz.farshad.vocab.data.entity.Word
 import xyz.farshad.vocab.databinding.FragmentWordPagerBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.WordViewModel
+import xyz.farshad.vocab.viewmodel.util.Constants.Companion.DEFAULT_PAGE_SWITCHER_TIMER
 import java.util.*
 
 class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech.OnInitListener,
@@ -24,10 +25,11 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     private var currentItem: Int = 0
     private lateinit var textToSpeech: TextToSpeech
     private var sound = true
-    private var speed = 3
+    private var speed = DEFAULT_PAGE_SWITCHER_TIMER
     private lateinit var optionsMenu: Menu
-    private var timer: Timer? = null
     private var viewPager: ViewPager? = null
+    private val handler = Handler(Looper.getMainLooper())
+    private lateinit var runnable: Runnable
 
     override fun setViewBinding(
         inflater: LayoutInflater,
@@ -82,31 +84,36 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
         viewPager!!.currentItem = currentItem
         setViewPagerChangeListener()
         textToSpeech.speak(words[currentItem].title, TextToSpeech.QUEUE_FLUSH, null, null)
-        pageSwitcher(speed)
+        startPageSwitcher(speed)
     }
 
-    private fun pageSwitcher(seconds: Int) {
-        timer = Timer()
-        timer!!.scheduleAtFixedRate(this.RemindTask(), 0, (seconds * 1000).toLong())
+    private fun startPageSwitcher(seconds: Long) {
+        runnable = object : Runnable {
+            override fun run() {
+                if (currentItem == words.size) {
+                    stopPageSwitcher()
+                } else {
+                    viewPager?.currentItem = currentItem++
+                }
+                handler.postDelayed(this, seconds * 1000)
+            }
+        }
+        handler.postDelayed(runnable, seconds * 1000)
+    }
+
+    private fun stopPageSwitcher(){
+        handler.removeCallbacks(runnable)
+        handler.removeCallbacksAndMessages(null)
     }
 
     private fun setViewPagerChangeListener() {
         viewPager?.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int,
-            ) {
-            }
-
             override fun onPageSelected(position: Int) {
                 currentItem = position
                 if (sound) {
                     textToSpeech.speak(words[position].title, TextToSpeech.QUEUE_FLUSH, null, null)
                 }
             }
-
-            override fun onPageScrollStateChanged(state: Int) {}
         })
     }
 
@@ -132,13 +139,12 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
             R.id.pause -> {
                 binding.play.visibility = View.VISIBLE
                 binding.pause.visibility = View.GONE
-                timer!!.cancel()
-                timer!!.purge()
+                stopPageSwitcher()
             }
             R.id.play -> {
                 binding.play.visibility = View.GONE
                 binding.pause.visibility = View.VISIBLE
-                pageSwitcher(speed)
+                startPageSwitcher(speed)
             }
         }
     }
@@ -158,57 +164,33 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
                 soundOff.isVisible = true
                 sound = true
             }
-            R.id.increase_speed -> if (speed != 0) {
+            R.id.increase_speed -> if (speed != 0L) {
                 speed--
-                timer!!.cancel()
-                pageSwitcher(speed)
+                stopPageSwitcher()
+                startPageSwitcher(speed)
             }
             R.id.decrease_speed -> {
                 speed++
-                timer!!.cancel()
-                pageSwitcher(speed)
+                stopPageSwitcher()
+                startPageSwitcher(speed)
             }
         }
 
         return super.onOptionsItemSelected(item)
     }
 
-    internal inner class RemindTask : TimerTask() {
-        private var isCanceled = false
-        override fun cancel(): Boolean {
-            isCanceled = true
-            timer = null
-            textToSpeech.stop()
-            return super.cancel()
-        }
-
-        override fun run() {
-            Handler(Looper.getMainLooper()).post {
-                if (!isCanceled) {
-                    if (currentItem == words.size) {
-                        timer!!.cancel()
-                    } else {
-                        viewPager!!.currentItem = currentItem++
-                    }
-                }
-            }
-        }
-    }
-
     override fun onResume() {
-        pageSwitcher(speed)
+        startPageSwitcher(speed)
         super.onResume()
     }
 
     override fun onPause() {
-        timer?.cancel()
-        timer?.purge()
+        stopPageSwitcher()
         super.onPause()
     }
 
     override fun onDestroy() {
-        timer?.cancel()
-        timer?.purge()
+        stopPageSwitcher()
         super.onDestroy()
     }
 }
