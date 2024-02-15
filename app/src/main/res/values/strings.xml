@@ -40,5 +40,9 @@
     <string name="email">Email</string>
     <string name="name">Name</string>
     <string name="pass_min_chars">Minimum 6 characters</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="sound">Sound</string>
+    <string name="velocity">Velocity</string>
 
 </resources>

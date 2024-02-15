@@ -20,4 +20,5 @@
     <color name="map_bg">#AACFDD</color>
     <color name="text_layout_border">#bbc1ce</color>
     <color name="error_text">#f22222</color>
+    <color name="modal_bottom">#f4f4f7</color>
 </resources>
