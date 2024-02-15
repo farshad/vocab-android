@@ -13,6 +13,7 @@ import xyz.farshad.vocab.databinding.FragmentWordPagerBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.WordViewModel
 import xyz.farshad.vocab.viewmodel.util.Constants.Companion.DEFAULT_PAGE_SWITCHER_TIMER
+import xyz.farshad.vocab.viewmodel.util.Constants.Companion.ONE_MILLISECOND
 import java.util.*
 
 class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech.OnInitListener,
@@ -30,6 +31,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     private var viewPager: ViewPager? = null
     private val handler = Handler(Looper.getMainLooper())
     private lateinit var runnable: Runnable
+    private lateinit var pagerControllerBottomSheet: PagerControllerBottomSheet
 
     override fun setViewBinding(
         inflater: LayoutInflater,
@@ -39,8 +41,8 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     override fun bindView() {
         setupToolbar(
             getString(R.string.words),
-            binding.includeToolbarInner.innerToolbarTitle,
-            binding.includeToolbarInner.backIcon
+            binding.innerToolbarTitle,
+            binding.backIcon
         )
     }
 
@@ -67,6 +69,9 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
         binding.volumeUp.setOnClickListener(this)
         binding.pause.setOnClickListener(this)
         binding.play.setOnClickListener(this)
+        binding.pagerController.setOnClickListener(this)
+
+        pagerControllerBottomSheet = PagerControllerBottomSheet()
     }
 
     private fun setObserver() {
@@ -95,10 +100,10 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
                 } else {
                     viewPager?.currentItem = currentItem++
                 }
-                handler.postDelayed(this, seconds * 1000)
+                handler.postDelayed(this, seconds * ONE_MILLISECOND)
             }
         }
-        handler.postDelayed(runnable, seconds * 1000)
+        handler.postDelayed(runnable, seconds * ONE_MILLISECOND)
     }
 
     private fun stopPageSwitcher(){
@@ -146,6 +151,9 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
                 binding.pause.visibility = View.VISIBLE
                 startPageSwitcher(speed)
             }
+            R.id.pager_controller -> {
+                showPagerController(speed)
+            }
         }
     }
 
@@ -177,6 +185,16 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showPagerController(speed: Long) {
+        if (!pagerControllerBottomSheet.isAdded) {
+            pagerControllerBottomSheet.setDefaultVelocity(speed)
+            pagerControllerBottomSheet.show(
+                requireActivity().supportFragmentManager,
+                PagerControllerBottomSheet.TAG
+            )
+        }
     }
 
     override fun onResume() {
