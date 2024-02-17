@@ -9,15 +9,22 @@
 
     <TextView
         android:id="@+id/wordPagerName"
-        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:enabled="true"
-        android:gravity="center_horizontal"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp" />
+        android:textColor="@color/text_color"
+        android:textSize="32sp"
+        tools:text="Large Text " />
+
+    <TextView
+        android:id="@+id/wordPagerNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="2dp"
+        android:textColor="@color/icon_color"
+        android:textSize="12sp"
+        tools:text="1" />
 
     <TextView
         android:id="@+id/wordPagerTranslate"

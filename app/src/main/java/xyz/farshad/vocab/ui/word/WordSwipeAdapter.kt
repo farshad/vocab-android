@@ -32,16 +32,19 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
         layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val itemView =
             layoutInflater!!.inflate(R.layout.word_swipe_layer, container, false)
+        val wordPagerNumber =
+            itemView.findViewById<View>(R.id.wordPagerNumber) as TextView
         val wordPagerName =
-            itemView.findViewById<View>(xyz.farshad.vocab.R.id.wordPagerName) as TextView
+            itemView.findViewById<View>(R.id.wordPagerName) as TextView
         val wordPagerTranslate =
-            itemView.findViewById<View>(xyz.farshad.vocab.R.id.wordPagerTranslate) as TextView
+            itemView.findViewById<View>(R.id.wordPagerTranslate) as TextView
         val wordPagerExample =
-            itemView.findViewById<View>(xyz.farshad.vocab.R.id.wordPagerExample) as TextView
+            itemView.findViewById<View>(R.id.wordPagerExample) as TextView
         val favButton = itemView.findViewById<View>(R.id.addToFav) as TextView
 
         setStarIcon(false, favButton)
 
+        wordPagerNumber.text = "${position + 1}"
         wordPagerName.text = currentWord.title
         wordPagerTranslate.text = currentWord.translate
         wordPagerExample.text = currentWord.example
