@@ -9,9 +9,9 @@
 
     <TextView
         android:id="@+id/wordPagerName"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:textColor="@color/text_color"
         android:textSize="32sp"
         tools:text="Large Text " />
