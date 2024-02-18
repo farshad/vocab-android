@@ -19,6 +19,7 @@ data class WordResponse(
             dto.title!!,
             dto.translate!!,
             dto.example,
+            false,
             chapterId.toInt(),
             dto.viewCount
         )

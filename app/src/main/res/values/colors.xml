@@ -12,6 +12,7 @@
     <color name="divider">#edf2f7</color>
     <color name="border_gray_200">#E4E4E7</color>
     <color name="icon_color">#9CA3AF</color>
+    <color name="yellow">#FDD835</color>
     <color name="text_color">#374158</color>
     <color name="bg_zinc_100">#F4F4F5</color>
     <color name="bg_red_400">#F87171</color>

@@ -15,7 +15,7 @@ import xyz.farshad.vocab.data.entity.Course
 import xyz.farshad.vocab.data.entity.Word
 import xyz.farshad.vocab.data.utils.LocaleConverter
 
-@Database(entities = [Course::class, Chapter::class, Word::class, Cache::class], version = 9, exportSchema = false)
+@Database(entities = [Course::class, Chapter::class, Word::class, Cache::class], version = 10, exportSchema = false)
 @TypeConverters(LocaleConverter::class)
 abstract class VocabDatabase : RoomDatabase() {
 

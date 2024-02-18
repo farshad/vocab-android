@@ -16,6 +16,7 @@ data class Word(
     val title: String,
     val translate: String,
     val example: String? = null,
+    @ColumnInfo(name = "is_favorite") var isFavorite: Boolean = false,
     @ColumnInfo(name = "chapter_id") val chapterId: Int,
     @ColumnInfo(name = "view_count") val viewCount: Int?,
 )

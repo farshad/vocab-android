@@ -42,7 +42,7 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
             itemView.findViewById<View>(R.id.wordPagerExample) as TextView
         val favButton = itemView.findViewById<View>(R.id.addToFav) as TextView
 
-        setStarIcon(false, favButton)
+        setStarIcon(currentWord.isFavorite, favButton)
 
         wordPagerNumber.text = "${position + 1}"
         wordPagerName.text = currentWord.title
@@ -50,9 +50,9 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
         wordPagerExample.text = currentWord.example
 
         favButton.setOnClickListener {
-            //currentWord.isFavorite = !currentWord.isFavorite
+            currentWord.isFavorite = !currentWord.isFavorite
            // (context as WordPagerActivity).addToFavorite(currentWord)
-//            setStarIcon(currentWord.isFavorite, favButton)
+            setStarIcon(currentWord.isFavorite, favButton)
         }
         itemView.tag = "word_pager$position"
         container.addView(itemView)
@@ -72,6 +72,7 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
                 R.drawable.ic_baseline_star_border_24
             )
         }
+
         favButton.setCompoundDrawablesWithIntrinsicBounds(
             drawableCompat, null, null, null
         )
