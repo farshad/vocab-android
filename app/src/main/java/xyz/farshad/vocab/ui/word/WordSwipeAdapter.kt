@@ -51,14 +51,16 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
 
         favButton.setOnClickListener {
             currentWord.isFavorite = !currentWord.isFavorite
-           // (context as WordPagerActivity).addToFavorite(currentWord)
             setStarIcon(currentWord.isFavorite, favButton)
+            onFavIconClickListener?.let { it(currentWord) }
         }
         itemView.tag = "word_pager$position"
         container.addView(itemView)
 
         return itemView
     }
+
+    private var onFavIconClickListener: ((Word) -> Unit)? = null
 
     private fun setStarIcon(isFavorite: Boolean, favButton: TextView) {
         val drawableCompat: Drawable? = if (isFavorite) {
@@ -80,5 +82,9 @@ class WordSwipeAdapter(private val context: Context, internal var words: List<Wo
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         container.removeView(`object` as View)
+    }
+
+    fun setOnFavIconClickListener(listener: (Word) -> Unit) {
+        onFavIconClickListener = listener
     }
 }

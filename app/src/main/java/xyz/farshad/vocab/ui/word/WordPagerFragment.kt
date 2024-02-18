@@ -85,6 +85,11 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
         currentItem = wordId
         viewPager = binding.wordViewPage
         val wordSwipeAdapter = WordSwipeAdapter(requireContext(), words)
+
+        wordSwipeAdapter.setOnFavIconClickListener {
+            wordViewModel.update(it)
+        }
+
         viewPager!!.adapter = wordSwipeAdapter
         viewPager!!.currentItem = currentItem
         setViewPagerChangeListener()
