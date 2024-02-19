@@ -3,13 +3,19 @@
     <item
         android:id="@+id/starred"
         android:icon="@drawable/ic_baseline_star_24"
-        android:title="@string/starred" />
+        android:title="@string/starred"
+        app:iconTint="@color/icon_color"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/shuffle"
+        android:icon="@drawable/baseline_shuffle_24"
         android:title="@string/shuffle"
-        android:icon="@drawable/baseline_shuffle_24" />
+        app:iconTint="@color/icon_color"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/default_"
+        android:icon="@drawable/baseline_refresh_24"
         android:title="@string/default_"
-        android:icon="@drawable/baseline_shuffle_24" />
+        app:iconTint="@color/icon_color"
+        app:showAsAction="ifRoom" />
 </menu>

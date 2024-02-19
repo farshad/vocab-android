@@ -34,7 +34,8 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
 
         binding.includeToolbarInner.menuIcon.setOnClickListener { view ->
             val popupMenu = PopupMenu(requireContext(), view)
-            popupMenu.inflate(R.menu.menu_word_list) // inflate your menu resource
+            popupMenu.inflate(R.menu.menu_word_list)
+            popupMenu.setForceShowIcon(true)
             popupMenu.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.starred -> {
