@@ -1,5 +1,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/review" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <item
+        android:id="@+id/starred"
+        android:icon="@drawable/ic_baseline_star_24"
+        android:orderInCategory="100"
+        android:title="@string/starred"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/shuffle"
+        android:orderInCategory="200"
+        android:title="@string/shuffle"
+        android:icon="@drawable/baseline_shuffle_24"
+        app:showAsAction="ifRoom" />
 </menu>

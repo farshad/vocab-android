@@ -4,24 +4,8 @@
     <string name="app_name">Vocab</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_word">Words</string>
-    <string name="icon_heart"></string>
-    <string name="icon_book"></string>
-    <string name="icon_edit"></string>
-    <string name="icon_pencil"></string>
-    <string name="icon_check_circle"></string>
-    <string name="icon_open_eye">&#xf06e;</string>
-    <string name="icon_close_eye">&#xf070;</string>
-    <string name="icon_volume_up">&#xf028;</string>
-    <string name="icon_volume_off">&#xf026;</string>
     <string name="words">Words</string>
-    <string name="icon_star">&#xf005;</string>
-    <string name="icon_star_o">&#xf006;</string>
-    <string name="title_activity_level_list">Levels List</string>
     <string name="title_activity_word_pager">Words Pager</string>
-    <string name="sound_off">sound off</string>
-    <string name="sound_on">sound on</string>
-    <string name="increase_speed">increase speed</string>
-    <string name="decrease_speed">decrease speed</string>
     <string name="sync">sync</string>
     <string name="review">Review</string>
     <string name="examples">Examples:</string>
@@ -29,8 +13,6 @@
     <string name="image_desc">Image not loaded</string>
     <string name="chapters">Chapters</string>
     <string name="chapter">Chapter</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login">Login</string>
     <string name="emailOrUsername">Email/Username</string>
     <string name="password">Password</string>
@@ -44,5 +26,7 @@
     <string name="cancel">Cancel</string>
     <string name="sound">Sound</string>
     <string name="velocity">Velocity</string>
+    <string name="starred">Starred</string>
+    <string name="shuffle">Shuffle</string>
 
 </resources>

@@ -3,7 +3,10 @@ package xyz.farshad.vocab.ui.word
 import android.os.Handler
 import android.os.Looper
 import android.speech.tts.TextToSpeech
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager.widget.ViewPager
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -160,36 +163,6 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
                 showPagerController(speed)
             }
         }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        val soundOff = optionsMenu.getItem(0)
-        val soundOn = optionsMenu.getItem(1)
-        when (id) {
-            R.id.sound_off -> {
-                soundOn.isVisible = true
-                soundOff.isVisible = false
-                sound = false
-            }
-            R.id.sound_on -> {
-                soundOn.isVisible = false
-                soundOff.isVisible = true
-                sound = true
-            }
-            R.id.increase_speed -> if (speed != 0L) {
-                speed--
-                stopPageSwitcher()
-                startPageSwitcher(speed)
-            }
-            R.id.decrease_speed -> {
-                speed++
-                stopPageSwitcher()
-                startPageSwitcher(speed)
-            }
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 
     private fun showPagerController(speed: Long) {
