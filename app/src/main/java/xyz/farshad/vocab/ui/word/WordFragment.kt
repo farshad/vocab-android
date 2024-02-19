@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.R
+import xyz.farshad.vocab.data.entity.Word
 import xyz.farshad.vocab.databinding.FragmentWordBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.WordViewModel
@@ -17,6 +18,7 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
     private val wordViewModel: WordViewModel by viewModel()
     private val args: WordFragmentArgs by navArgs()
     private lateinit var wordAdopter: WordAdopter
+    private var words: List<Word> = arrayListOf()
 
     override fun setViewBinding(
         inflater: LayoutInflater,
@@ -35,12 +37,18 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
             popupMenu.inflate(R.menu.menu_word_list) // inflate your menu resource
             popupMenu.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
-                    R.id.standard -> {
-                        // Handle menu item 1 click
+                    R.id.starred -> {
+                        val starredWords = words.filter { w: Word ->  w.isFavorite}
+                        wordAdopter.differ.submitList(starredWords)
                         true
                     }
                     R.id.shuffle -> {
-                        // Handle menu item 2 click
+                        val shuffleWords = words.shuffled()
+                        wordAdopter.differ.submitList(shuffleWords)
+                        true
+                    }
+                    R.id.default_ -> {
+                        wordAdopter.differ.submitList(words)
                         true
                     }
                     else -> false
@@ -51,18 +59,19 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
     }
 
     override fun businessLogic() {
-        setChapterAdopter()
+        setWordAdopter()
         wordViewModel.findByChapterId(args.chapterId)
         setObserver()
     }
 
     private fun setObserver() {
         wordViewModel.watchWord()?.observe(viewLifecycleOwner) {
-            wordAdopter.differ.submitList(it)
+            words = it
+            wordAdopter.differ.submitList(words)
         }
     }
 
-    private fun setChapterAdopter() {
+    private fun setWordAdopter() {
         binding.rvWord.addItemDecoration(
             Helper.decorator(requireContext())
         )

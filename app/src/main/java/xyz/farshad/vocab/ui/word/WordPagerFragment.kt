@@ -4,7 +4,6 @@ import android.os.Handler
 import android.os.Looper
 import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
@@ -30,7 +29,6 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     private lateinit var textToSpeech: TextToSpeech
     private var sound = true
     private var speed = DEFAULT_PAGE_SWITCHER_TIMER
-    private lateinit var optionsMenu: Menu
     private var viewPager: ViewPager? = null
     private val handler = Handler(Looper.getMainLooper())
     private lateinit var runnable: Runnable
