@@ -24,7 +24,6 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     private val wordViewModel: WordViewModel by viewModel()
     private val args: WordPagerFragmentArgs by navArgs()
     private var words: List<Word> = arrayListOf()
-    private var wordIndex: Int? = null
     private var currentItem: Int = 0
     private lateinit var textToSpeech: TextToSpeech
     private var sound = true
@@ -54,16 +53,9 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     }
 
     override fun businessLogic() {
-        setObserver()
         textToSpeech = TextToSpeech(requireContext(), this, "com.google.android.tts")
 
-        wordIndex = args.wordIndex
-
-        if (args.isReview) {
-            wordViewModel.fetchReviewWords()
-        } else {
-            wordViewModel.findByChapterId(args.chapterId)
-        }
+        setWords()
 
         binding.hideTranslateButton.setOnClickListener(this)
         binding.showTranslateButton.setOnClickListener(this)
@@ -75,11 +67,9 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
         pagerControllerBottomSheet = PagerControllerBottomSheet()
     }
 
-    private fun setObserver() {
-        wordViewModel.watchWord()?.observe(this) {
-            words = it
-            wordIndex?.let { wi -> setPageAdopter(wi) }
-        }
+    private fun setWords() {
+        words = args.words.toList()
+        setPageAdopter(args.wordIndex)
     }
 
     private fun setPageAdopter(wordId: Int) {

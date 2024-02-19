@@ -27,7 +27,7 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
 
     override fun bindView() {
         setupToolbar(
-            getString(xyz.farshad.vocab.R.string.chapter) + " " + args.chapterTitle,
+            getString(R.string.chapter) + " " + args.chapterTitle,
             binding.includeToolbarInner.innerToolbarTitle,
             binding.includeToolbarInner.backIcon
         )
@@ -39,17 +39,17 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
             popupMenu.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.starred -> {
-                        val starredWords = words.filter { w: Word ->  w.isFavorite}
-                        wordAdopter.differ.submitList(starredWords)
+                        words = words.filter { w: Word ->  w.isFavorite}
+                        wordAdopter.differ.submitList(words)
                         true
                     }
                     R.id.shuffle -> {
-                        val shuffleWords = words.shuffled()
-                        wordAdopter.differ.submitList(shuffleWords)
+                        words = words.shuffled()
+                        wordAdopter.differ.submitList(words)
                         true
                     }
                     R.id.default_ -> {
-                        wordAdopter.differ.submitList(words)
+                        wordViewModel.findByChapterId(args.chapterId)
                         true
                     }
                     else -> false
@@ -86,6 +86,7 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
                 it,
                 args.chapterId,
                 args.lang,
+                words.toTypedArray()
             )
             NavHostFragment.findNavController(this).navigate(action)
         }

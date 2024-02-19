@@ -73,12 +73,11 @@
             android:name="chapterId"
             app:argType="integer" />
         <argument
-            android:name="isReview"
-            app:argType="boolean"
-            android:defaultValue="false" />
-        <argument
             android:name="lang"
             app:argType="string" />
+        <argument
+            android:name="words"
+            app:argType="xyz.farshad.vocab.data.entity.Word[]" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
