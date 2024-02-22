@@ -29,8 +29,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         setCourseAdopter()
         cacheViewModel.findByKey("token")
         setObserver()
+
         binding.explore.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToExploreFragment()
+            NavHostFragment.findNavController(this).navigate(action)
+        }
+
+        binding.planner.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToPlannerListFragment()
             NavHostFragment.findNavController(this).navigate(action)
         }
     }

@@ -28,4 +28,19 @@
         android:text="@string/explore"
         app:cornerRadius="24dp"
         app:icon="@drawable/ic_baseline_sync_24" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/planner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:text="@string/planner"
+        app:cornerRadius="24dp"
+        app:icon="@drawable/baseline_list_24" />
 </LinearLayout>
