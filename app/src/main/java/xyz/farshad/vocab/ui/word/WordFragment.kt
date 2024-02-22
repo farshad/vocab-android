@@ -13,7 +13,6 @@ import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.WordViewModel
 import xyz.farshad.vocab.viewmodel.util.Helper
 
-
 class WordFragment : BaseFragment<FragmentWordBinding>() {
     private val wordViewModel: WordViewModel by viewModel()
     private val args: WordFragmentArgs by navArgs()
@@ -39,7 +38,7 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
             popupMenu.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.starred -> {
-                        words = words.filter { w: Word ->  w.isFavorite}
+                        words = words.filter { w: Word -> w.isFavorite }
                         wordAdopter.differ.submitList(words)
                         true
                     }
@@ -67,8 +66,8 @@ class WordFragment : BaseFragment<FragmentWordBinding>() {
 
     private fun setObserver() {
         wordViewModel.watchWord()?.observe(viewLifecycleOwner) {
+            wordAdopter.differ.submitList(it)
             words = it
-            wordAdopter.differ.submitList(words)
         }
     }
 
