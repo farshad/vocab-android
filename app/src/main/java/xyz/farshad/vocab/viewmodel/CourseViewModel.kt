@@ -71,6 +71,12 @@ class CourseViewModel(
         }
     }
 
+    fun searchByTitle(query: String) {
+        viewModelScope.launch {
+            courses?.value = repository.searchByTitle(query)
+        }
+    }
+
     fun fetchAll() {
         viewModelScope.launch {
             courses?.value = repository.fetchAll()

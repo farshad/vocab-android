@@ -31,7 +31,7 @@
                 android:hint="@string/Title">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/newBlockTitle"
+                    android:id="@+id/title"
                     style="@style/TextInputEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

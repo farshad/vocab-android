@@ -1,5 +1,7 @@
 package xyz.farshad.vocab.ui.planner
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -8,14 +10,16 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import io.neoattitude.defio.util.DateHelper
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import xyz.farshad.vocab.R
 import xyz.farshad.vocab.databinding.FragmentNewPlanBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
+import xyz.farshad.vocab.viewmodel.CourseViewModel
 import java.util.*
-
 
 class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
 
+    private val courseViewModel: CourseViewModel by viewModel()
     private var startPlanDate: Date? = null
     private lateinit var startTimePicker: MaterialTimePicker
 
@@ -106,4 +110,30 @@ class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
         }
     }
 
+    fun search() {
+        binding.title.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(
+                charSequence: CharSequence,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+                // This method is called before the text is changed.
+            }
+
+            override fun onTextChanged(
+                charSequence: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
+                val searchText = charSequence.toString().trim { it <= ' ' }
+                courseViewModel.searchByTitle(searchText)
+            }
+
+            override fun afterTextChanged(editable: Editable) {
+                // This method is called after the text has been changed.
+            }
+        })
+    }
 }

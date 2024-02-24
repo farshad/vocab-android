@@ -14,6 +14,10 @@ interface CourseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(course: Course): Long
 
+    @Transaction
+    @Query("SELECT * FROM Course WHERE title LIKE '%' || :searchQuery || '%'")
+    suspend fun searchByTitle(searchQuery: String): List<Course>?
+
     @Delete
     suspend fun delete(course: Course)
 

@@ -13,7 +13,7 @@ import xyz.farshad.vocab.viewmodel.util.Helper
 
 class ChapterFragment : BaseFragment<FragmentChapterBinding>() {
 
-    private val levelViewModel: ChapterViewModel by viewModel()
+    private val chapterViewModel: ChapterViewModel by viewModel()
     private val args: ChapterFragmentArgs by navArgs()
     private lateinit var chapterAdopter: ChapterAdopter
 
@@ -32,12 +32,12 @@ class ChapterFragment : BaseFragment<FragmentChapterBinding>() {
 
     override fun businessLogic() {
         setChapterAdopter()
-        levelViewModel.findByCourseId(args.courseId)
+        chapterViewModel.findByCourseId(args.courseId)
         setObserver()
     }
 
     private fun setObserver() {
-        levelViewModel.watchLevel()?.observe(this) {
+        chapterViewModel.watchLevel()?.observe(this) {
             chapterAdopter.differ.submitList(it)
         }
     }

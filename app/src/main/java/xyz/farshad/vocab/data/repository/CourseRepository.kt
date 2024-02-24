@@ -15,6 +15,8 @@ class CourseRepository(
 
     suspend fun getById(id: String) = api.getById(id)
 
+    suspend fun searchByTitle(query: String) = dao.searchByTitle(query)
+
     suspend fun getAll() = api.getAll()
 
     suspend fun fetchAll() = dao.fetchAll()
