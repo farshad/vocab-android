@@ -29,8 +29,6 @@
     <string name="starred">Starred</string>
     <string name="shuffle">Shuffle</string>
     <string name="default_">Default</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="planner">Planner</string>
     <string name="new_plan">New plan</string>
     <string name="Title">Title</string>

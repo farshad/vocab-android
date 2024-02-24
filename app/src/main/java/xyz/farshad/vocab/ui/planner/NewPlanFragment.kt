@@ -1,6 +1,5 @@
 package xyz.farshad.vocab.ui.planner
 
-import android.R
 import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -11,11 +10,11 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import io.neoattitude.defio.util.DateHelper
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import xyz.farshad.vocab.R
 import xyz.farshad.vocab.databinding.FragmentNewPlanBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.CourseViewModel
 import java.util.*
-
 
 class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
 
@@ -30,7 +29,7 @@ class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
 
     override fun bindView() {
         setupToolbar(
-            getString(xyz.farshad.vocab.R.string.new_plan),
+            getString(R.string.new_plan),
             binding.includeToolbarInner.innerToolbarTitle,
             binding.includeToolbarInner.backIcon
         )
@@ -40,7 +39,6 @@ class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
         initializeDatePicker()
         initializeStartTimePicker()
         setObserver()
-        search()
         courseViewModel.fetchAll()
         binding.notificationSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -53,10 +51,14 @@ class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
 
     private fun setObserver() {
         courseViewModel.watchCourses()?.observe(viewLifecycleOwner) {
-            val suggestions = it.map { course ->  course.title }.toCollection(arrayListOf())
+            val suggestions = it.map { course -> course.title }.toCollection(arrayListOf())
 
             val adapter: ArrayAdapter<String> =
-                ArrayAdapter<String>(requireContext(), R.layout.simple_dropdown_item_1line, suggestions)
+                ArrayAdapter<String>(
+                    requireContext(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    suggestions
+                )
 
             binding.title.setAdapter(adapter)
             binding.title.threshold = 1
@@ -67,7 +69,7 @@ class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
 
     private fun initializeDatePicker() {
         val datePicker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText(getString(xyz.farshad.vocab.R.string.select_date))
+            .setTitleText(getString(R.string.select_date))
             .build()
 
         val currentDate = Date()
@@ -105,7 +107,7 @@ class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
                 .setTimeFormat(TimeFormat.CLOCK_12H)
                 .setHour(DateHelper.convertLongToDate(currentDate, "HH").toInt())
                 .setMinute(DateHelper.convertLongToDate(currentDate, "mm").toInt())
-                .setTitleText(getString(xyz.farshad.vocab.R.string.select_notification_time))
+                .setTitleText(getString(R.string.select_notification_time))
                 .build()
 
         startTimePicker.addOnPositiveButtonClickListener {
@@ -125,8 +127,5 @@ class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
                 binding.planStartDate.clearFocus()
             }
         }
-    }
-
-    private fun search() {
     }
 }
