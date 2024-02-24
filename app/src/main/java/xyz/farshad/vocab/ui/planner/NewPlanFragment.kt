@@ -1,21 +1,21 @@
 package xyz.farshad.vocab.ui.planner
 
-import android.text.Editable
-import android.text.TextWatcher
+import android.R
 import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import io.neoattitude.defio.util.DateHelper
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import xyz.farshad.vocab.R
 import xyz.farshad.vocab.databinding.FragmentNewPlanBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.CourseViewModel
 import java.util.*
+
 
 class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
 
@@ -30,7 +30,7 @@ class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
 
     override fun bindView() {
         setupToolbar(
-            getString(R.string.new_plan),
+            getString(xyz.farshad.vocab.R.string.new_plan),
             binding.includeToolbarInner.innerToolbarTitle,
             binding.includeToolbarInner.backIcon
         )
@@ -39,6 +39,9 @@ class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
     override fun businessLogic() {
         initializeDatePicker()
         initializeStartTimePicker()
+        setObserver()
+        search()
+        courseViewModel.fetchAll()
         binding.notificationSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 binding.notificationTimeLy.visibility = VISIBLE
@@ -48,9 +51,23 @@ class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
         }
     }
 
+    private fun setObserver() {
+        courseViewModel.watchCourses()?.observe(viewLifecycleOwner) {
+            val suggestions = it.map { course ->  course.title }.toCollection(arrayListOf())
+
+            val adapter: ArrayAdapter<String> =
+                ArrayAdapter<String>(requireContext(), R.layout.simple_dropdown_item_1line, suggestions)
+
+            binding.title.setAdapter(adapter)
+            binding.title.threshold = 1
+            binding.title.setDropDownBackgroundResource(R.color.white)
+            binding.title.dropDownVerticalOffset = 10
+        }
+    }
+
     private fun initializeDatePicker() {
         val datePicker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText(getString(R.string.select_date))
+            .setTitleText(getString(xyz.farshad.vocab.R.string.select_date))
             .build()
 
         val currentDate = Date()
@@ -88,7 +105,7 @@ class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
                 .setTimeFormat(TimeFormat.CLOCK_12H)
                 .setHour(DateHelper.convertLongToDate(currentDate, "HH").toInt())
                 .setMinute(DateHelper.convertLongToDate(currentDate, "mm").toInt())
-                .setTitleText(getString(R.string.select_notification_time))
+                .setTitleText(getString(xyz.farshad.vocab.R.string.select_notification_time))
                 .build()
 
         startTimePicker.addOnPositiveButtonClickListener {
@@ -110,30 +127,6 @@ class NewPlanFragment : BaseFragment<FragmentNewPlanBinding>() {
         }
     }
 
-    fun search() {
-        binding.title.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(
-                charSequence: CharSequence,
-                start: Int,
-                count: Int,
-                after: Int
-            ) {
-                // This method is called before the text is changed.
-            }
-
-            override fun onTextChanged(
-                charSequence: CharSequence,
-                start: Int,
-                before: Int,
-                count: Int
-            ) {
-                val searchText = charSequence.toString().trim { it <= ' ' }
-                courseViewModel.searchByTitle(searchText)
-            }
-
-            override fun afterTextChanged(editable: Editable) {
-                // This method is called after the text has been changed.
-            }
-        })
+    private fun search() {
     }
 }

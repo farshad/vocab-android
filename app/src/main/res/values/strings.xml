@@ -39,5 +39,6 @@
     <string name="notification">Notification</string>
     <string name="select_date">Select Date</string>
     <string name="select_notification_time">Select Notification Time</string>
+    <string name="new_plan_title_help_text">Write a new title or select from existing courses.</string>
 
 </resources>
