@@ -111,6 +111,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/image_desc"
                 android:gravity="center_vertical|center"
+                android:visibility="gone"
                 android:src="@drawable/ic_pause_circle_filled_black_24dp" />
 
             <ImageButton
@@ -119,8 +120,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/image_desc"
                 android:gravity="center_vertical|center"
-                android:src="@drawable/ic_play_circle_filled_black_24dp"
-                android:visibility="gone" />
+                android:src="@drawable/ic_play_circle_filled_black_24dp" />
 
         </LinearLayout>
 

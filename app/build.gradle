@@ -20,14 +20,14 @@ android {
     }
     buildTypes {
         release {
-            buildConfigField "String", "BASE_URL", "\"http://192.168.4.146:8080/\""
+            buildConfigField "String", "BASE_URL", "\"http://192.168.119.146:8080/\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             matchingFallbacks = ['release']
             multiDexEnabled true
         }
         debug {
-            buildConfigField "String", "BASE_URL", "\"http://192.168.167.55:8080/api/\""
+            buildConfigField "String", "BASE_URL", "\"http://192.168.119.146:8080/api/\""
             matchingFallbacks = ['release']
         }
     }

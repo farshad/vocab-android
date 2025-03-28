@@ -76,6 +76,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
 
     private fun setPageAdopter(wordId: Int) {
         currentItem = wordId
+        textToSpeech.speak(words[currentItem].title, TextToSpeech.QUEUE_ADD, null, null)
         viewPager = binding.wordViewPage
         val wordSwipeAdapter = WordSwipeAdapter(requireContext(), words)
 
@@ -86,8 +87,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
         viewPager!!.adapter = wordSwipeAdapter
         viewPager!!.currentItem = currentItem
         setViewPagerChangeListener()
-        textToSpeech.speak(words[currentItem].title, TextToSpeech.QUEUE_FLUSH, null, null)
-        startPageSwitcher(speed)
+//        startPageSwitcher(speed)
     }
 
     private fun startPageSwitcher(seconds: Long) {
@@ -166,7 +166,6 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     }
 
     override fun onResume() {
-        startPageSwitcher(speed)
         super.onResume()
     }
 
