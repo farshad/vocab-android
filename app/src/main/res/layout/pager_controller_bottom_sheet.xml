@@ -26,6 +26,72 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/speechRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:drawablePadding="4dp"
+                    android:gravity="left"
+                    android:text="@string/speech_rate"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/speechRate_controller"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/speechRate_controller" />
+
+                <LinearLayout
+                    android:id="@+id/speechRate_controller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageButton
+                        android:id="@+id/decreaseRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/image_desc"
+                        android:src="@drawable/baseline_remove_24" />
+
+                    <TextView
+                        android:id="@+id/speechRateNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:maxLines="1"
+                        android:textColor="@color/text_color"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:text="100" />
+
+                    <ImageButton
+                        android:id="@+id/increaseRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/image_desc"
+                        android:src="@drawable/baseline_add_24" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/speechRate" />
+
+                <TextView
                     android:id="@+id/velocity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,7 +114,7 @@
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@id/divider1">
 
                     <ImageButton
                         android:id="@+id/decrease"
@@ -64,10 +130,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
-                        android:textStyle="bold"
                         android:maxLines="1"
                         android:textColor="@color/text_color"
                         android:textSize="22sp"
+                        android:textStyle="bold"
                         tools:text="5" />
 
                     <ImageButton
@@ -132,7 +198,7 @@
                     android:text="@string/cancel" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/edit"
+                    android:id="@+id/save"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

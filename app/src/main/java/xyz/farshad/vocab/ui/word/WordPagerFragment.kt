@@ -16,16 +16,18 @@ import xyz.farshad.vocab.databinding.FragmentWordPagerBinding
 import xyz.farshad.vocab.ui.base.BaseFragment
 import xyz.farshad.vocab.viewmodel.WordViewModel
 import xyz.farshad.vocab.viewmodel.util.Constants.Companion.DEFAULT_PAGE_SWITCHER_TIMER
+import xyz.farshad.vocab.viewmodel.util.Constants.Companion.DEFAULT_SPEECH_RATE
 import xyz.farshad.vocab.viewmodel.util.Constants.Companion.ONE_MILLISECOND
 import java.util.*
 
 class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech.OnInitListener,
-    View.OnClickListener {
+    View.OnClickListener, PagerSettingsListener {
 
     private val wordViewModel: WordViewModel by viewModel()
     private val args: WordPagerFragmentArgs by navArgs()
     private var words: List<Word> = arrayListOf()
     private var currentItem: Int = 0
+    private var currentSpeechRate: Float = DEFAULT_SPEECH_RATE
     private lateinit var textToSpeech: TextToSpeech
     private var sound = true
     private var speed = DEFAULT_PAGE_SWITCHER_TIMER
@@ -46,6 +48,8 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
             binding.innerToolbarTitle,
             binding.backIcon
         )
+
+        pagerControllerBottomSheet = PagerControllerBottomSheet()
     }
 
     override fun onInit(status: Int) {
@@ -65,8 +69,6 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
         binding.pause.setOnClickListener(this)
         binding.play.setOnClickListener(this)
         binding.pagerController.setOnClickListener(this)
-
-        pagerControllerBottomSheet = PagerControllerBottomSheet()
     }
 
     private fun setWords() {
@@ -104,7 +106,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
         handler.postDelayed(runnable, seconds * ONE_MILLISECOND)
     }
 
-    private fun stopPageSwitcher(){
+    private fun stopPageSwitcher() {
         handler.removeCallbacks(runnable)
         handler.removeCallbacksAndMessages(null)
     }
@@ -157,7 +159,8 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
 
     private fun showPagerController(speed: Long) {
         if (!pagerControllerBottomSheet.isAdded) {
-            pagerControllerBottomSheet.setDefaultVelocity(speed)
+            pagerControllerBottomSheet.setDefaultSpeechRate(currentSpeechRate)
+            pagerControllerBottomSheet.listener = this
             pagerControllerBottomSheet.show(
                 requireActivity().supportFragmentManager,
                 PagerControllerBottomSheet.TAG
@@ -165,8 +168,9 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
         }
     }
 
-    override fun onResume() {
-        super.onResume()
+    private fun setSpeechRate(speechRate: Float) {
+        currentSpeechRate = speechRate
+        textToSpeech.setSpeechRate(speechRate)
     }
 
     override fun onPause() {
@@ -178,4 +182,17 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
         stopPageSwitcher()
         super.onDestroy()
     }
+
+    override fun onPagerSettingsChanged(
+        velocity: Long,
+        speechRate: Float,
+        isSoundEnabled: Boolean
+    ) {
+        setSpeechRate(speechRate)
+        sound = isSoundEnabled
+    }
+}
+
+interface PagerSettingsListener {
+    fun onPagerSettingsChanged(velocity: Long, speechRate: Float, isSoundEnabled: Boolean)
 }
