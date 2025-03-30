@@ -33,7 +33,7 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
     private var speed = DEFAULT_PAGE_SWITCHER_TIMER
     private var viewPager: ViewPager? = null
     private val handler = Handler(Looper.getMainLooper())
-    private lateinit var runnable: Runnable
+    private var runnable: Runnable? = null
     private lateinit var pagerControllerBottomSheet: PagerControllerBottomSheet
 
     override fun setViewBinding(
@@ -103,12 +103,14 @@ class WordPagerFragment : BaseFragment<FragmentWordPagerBinding>(), TextToSpeech
                 handler.postDelayed(this, seconds * ONE_MILLISECOND)
             }
         }
-        handler.postDelayed(runnable, seconds * ONE_MILLISECOND)
+        handler.postDelayed(runnable!!, seconds * ONE_MILLISECOND)
     }
 
     private fun stopPageSwitcher() {
-        handler.removeCallbacks(runnable)
-        handler.removeCallbacksAndMessages(null)
+        if (this.runnable != null) {
+            handler.removeCallbacks(runnable!!)
+            handler.removeCallbacksAndMessages(null)
+        }
     }
 
     private fun setViewPagerChangeListener() {
